@@ -213,6 +213,62 @@
   <Target Name="GetDocumentationFile"
           Returns="$(DocumentationFile)"/>
 
+  <PropertyGroup Condition="'$(GeneratePlatformNotSupportedAssemblyMessage2)' != ''">
+    <CoreCompileDependsOn>C;$(CoreCompileDependsOn)</CoreCompileDependsOn>
+    <!-- Not supported sources are created from the ref assembly, we currently don't produce finalizers in dummy assemblies, so we disable ApiCompat to not fail. -->
+    <RunApiCompat>false</RunApiCompat>
+  </PropertyGroup>
+
+  <Target Name="GetCompileItems"
+          Returns="@(CompileItemsWithFullPath)">
+    <ItemGroup>
+      <Compile Remove="@(Compile)" Condition="'$([System.IO.Path]::IsPathRooted(%(Compile.Identity)))' == 'true'" />
+      <CompileItemsWithFullPath Include="@(Compile -> '$([System.IO.Path]::GetFullPath('%(Compile.Identity)'))')" />      
+    </ItemGroup>
+  </Target>
+
+  <Target Name="C" DependsOnTargets="GenerateNotSupportedAssemblySourceFromRef;UpdateRefToNonSupportedAssembly">
+  </Target>
+
+  <Target Name="GenerateNotSupportedAssemblySourceFromRef">    
+    <MSBuild
+        Projects="$(ContractProject)"
+        Targets="GetCompileItems"
+        Properties="TargetFramework=$(TargetFramework)">
+      <Output TaskParameter="TargetOutputs" ItemName="ReferenceSources" />
+    </MSBuild>
+
+    <Copy SourceFiles="@(ReferenceSources)" DestinationFolder="$(IntermediateOutputPath)" />
+
+    <ItemGroup>
+      <UpdateReferencePaths Include="@(ReferenceSources -> '$(IntermediateOutputPath)\%(Filename)%(Extension)')"/>
+    </ItemGroup>
+  </Target>
+
+  <Target Name="UpdateRefToNonSupportedAssembly" 
+        Outputs="%(UpdateReferencePaths.Identity)" >
+    <ReadLinesFromFile
+      File="@(UpdateReferencePaths)" >
+      <Output
+        TaskParameter="Lines"
+        ItemName="OriginalLines"/>
+    </ReadLinesFromFile>
+    
+    <ItemGroup>
+      <ReplacedLines Include="@(OriginalLines->Replace('{ throw null; }', '{ throw new System.PlatformNotSupportedException($(GeneratePlatformNotSupportedAssemblyMessage2)); }'))" />
+    </ItemGroup>
+    
+    <WriteLinesToFile
+      File="@(UpdateReferencePaths)"
+      Lines="@(ReplacedLines)"
+      Overwrite="true"
+      Encoding="Unicode" />
+    
+    <ItemGroup>
+      <Compile Include="@(UpdateReferencePaths)" />
+    </ItemGroup>
+  </Target>
+
   <!--
     Do not clean binplace assets in the ref targeting pack to avoid incremental build failures
     when the SDK tries to resolve the assets from the FrameworkList.

@@ -10,7 +10,7 @@
     <!-- Constrained Execution Regions only apply to netstandard2.0 and net4* -->
     <DefineConstants Condition="$(TargetFramework.StartsWith('netstandard2.0')) or $(TargetFramework.StartsWith('net4'))">$(DefineConstants);FEATURE_CER</DefineConstants>
     <IsPartialFacadeAssembly Condition="$(TargetFramework.StartsWith('net4'))">true</IsPartialFacadeAssembly>
-    <GeneratePlatformNotSupportedAssemblyMessage Condition="'$(TargetFramework)' == 'netstandard2.0' and '$(TargetsAnyOS)' == 'true'">SR.PlatformNotSupported_SystemEvents</GeneratePlatformNotSupportedAssemblyMessage>
+    <GeneratePlatformNotSupportedAssemblyMessage2 Condition="'$(TargetFramework)' == 'netstandard2.0' and '$(TargetsAnyOS)' == 'true'">System.SR.PlatformNotSupported_SystemEvents</GeneratePlatformNotSupportedAssemblyMessage2>
   </PropertyGroup>
   <ItemGroup Condition="'$(TargetsWindows)' == 'true' ">
     <Compile Include="$(CommonPath)Interop\Windows\Interop.Libraries.cs"
