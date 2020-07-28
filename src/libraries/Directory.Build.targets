@@ -238,34 +238,24 @@
       <Output TaskParameter="TargetOutputs" ItemName="ReferenceSources" />
     </MSBuild>
 
-    <Copy SourceFiles="@(ReferenceSources)" DestinationFolder="$(IntermediateOutputPath)" />
-
     <ItemGroup>
-      <UpdateReferencePaths Include="@(ReferenceSources -> '$(IntermediateOutputPath)\%(Filename)%(Extension)')"/>
+      <UpdateReferencePaths Include="@(ReferenceSources)" NotSupportedPath="$(IntermediateOutputPath)\%(Filename).notsupported%(Extension)"/>
     </ItemGroup>
   </Target>
 
-  <Target Name="UpdateRefToNonSupportedAssembly" 
-        Outputs="%(UpdateReferencePaths.Identity)" >
-    <ReadLinesFromFile
-      File="@(UpdateReferencePaths)" >
-      <Output
-        TaskParameter="Lines"
-        ItemName="OriginalLines"/>
-    </ReadLinesFromFile>
-    
-    <ItemGroup>
-      <ReplacedLines Include="@(OriginalLines->Replace('{ throw null; }', '{ throw new System.PlatformNotSupportedException($(GeneratePlatformNotSupportedAssemblyMessage2)); }'))" />
-    </ItemGroup>
+  <Target Name="UpdateRefToNonSupportedAssembly"
+        Inputs="@(UpdateReferencePaths)"
+        Outputs="@(UpdateReferencePaths->'%(NotSupportedPath)')" >
     
     <WriteLinesToFile
-      File="@(UpdateReferencePaths)"
-      Lines="@(ReplacedLines)"
+      File="%(UpdateReferencePaths.NotSupportedPath)"
+      Lines="$([System.IO.File]::ReadAllText('%(UpdateReferencePaths.Identity)').Replace('{ }', '{ throw null; }').Replace('{ throw null; }', '{ throw new System.PlatformNotSupportedException($(GeneratePlatformNotSupportedAssemblyMessage2)); }'))"
       Overwrite="true"
       Encoding="Unicode" />
     
     <ItemGroup>
-      <Compile Include="@(UpdateReferencePaths)" />
+      <Compile Include="@(UpdateReferencePaths->'%(NotSupportedPath)')" />
+      <FileWrites Include="@(UpdateReferencePaths->'%(NotSupportedPath)')" />
     </ItemGroup>
   </Target>
 
