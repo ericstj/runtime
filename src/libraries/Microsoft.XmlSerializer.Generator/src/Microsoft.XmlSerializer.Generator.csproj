@@ -5,10 +5,20 @@
     <StringResourcesPath>..\..\System.Private.Xml\src\Resources\Strings.resx</StringResourcesPath>
     <StringResourcesName>FxResources.$(AssemblyName.Replace('-', '_')).SR</StringResourcesName>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>netcoreapp2.1</TargetFrameworks>
+    <DisableImplicitAssemblyReferences>false</DisableImplicitAssemblyReferences>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <GeneratorRuntimeConfig>$(MSBuildThisFileDirectory)..\pkg\build\dotnet-Microsoft.XmlSerializer.Generator.runtimeconfig.json</GeneratorRuntimeConfig>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Sgen.cs" />
+    <Content Include="$(GeneratorRuntimeConfig)">
+      <Link>$(AssemblyName).runtimeconfig.json</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="$(LibrariesProjectRoot)System.Reflection.MetadataLoadContext\src\System.Reflection.MetadataLoadContext.csproj" />
   </ItemGroup>
   <Import Project=".\GenerateThisAssemblyCs.targets" />
 </Project>

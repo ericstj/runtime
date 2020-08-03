@@ -1224,13 +1224,17 @@ namespace System.Xml.Serialization
                     flags |= TypeFlags.CtorInaccessible;
                 else
                 {
-                    object[] attrs = ctor.GetCustomAttributes(typeof(ObsoleteAttribute), false);
-                    if (attrs != null && attrs.Length > 0)
+                    var attributes = type.GetCustomAttributesData();
+                    foreach (var attribute in attributes)
                     {
-                        ObsoleteAttribute obsolete = (ObsoleteAttribute)attrs[0];
-                        if (obsolete.IsError)
+                        if (attribute.AttributeType == typeof(ObsoleteAttribute))
                         {
-                            flags |= TypeFlags.CtorInaccessible;
+                            var ctorArgs = attribute.ConstructorArguments;
+                            if (ctorArgs.Count > 1 && ctorArgs[1].ArgumentType == typeof(bool))
+                            {
+                                flags |= TypeFlags.CtorInaccessible;
+                                break;
+                            }
                         }
                     }
                 }

@@ -22,14 +22,12 @@ namespace Microsoft.XmlSerializer.Generator
             return sgen.Run(args);
         }
 
-        private static string s_references = string.Empty;
-        private static readonly Dictionary<string, string> s_referencedic = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-
         private int Run(string[] args)
         {
             string assembly = null;
             List<string> types = new List<string>();
             string codePath = null;
+            string references = null;
             var errs = new ArrayList();
             bool force = false;
             bool proxyOnly = false;
@@ -38,8 +36,6 @@ namespace Microsoft.XmlSerializer.Generator
             bool parsableErrors = false;
             bool silent = false;
             bool warnings = false;
-
-            AppDomain.CurrentDomain.AssemblyResolve += SgenAssemblyResolver;
 
             try
             {
@@ -133,7 +129,7 @@ namespace Microsoft.XmlSerializer.Generator
                         else
                         {
                             //if there are multiple --reference switches, the last one will overwrite previous ones.
-                            s_references = args[i];
+                            references = args[i];
                         }
                     }
                     else
@@ -185,12 +181,7 @@ namespace Microsoft.XmlSerializer.Generator
                     return 0;
                 }
 
-                if (!string.IsNullOrEmpty(s_references))
-                {
-                    ParseReferences();
-                }
-
-                GenerateFile(types, assembly, proxyOnly, silent, warnings, force, codePath, parsableErrors);
+                GenerateFile(types, assembly, references, proxyOnly, silent, warnings, force, codePath, parsableErrors);
             }
             catch (Exception e)
             {
@@ -206,9 +197,12 @@ namespace Microsoft.XmlSerializer.Generator
             return 0;
         }
 
-        private void GenerateFile(List<string> typeNames, string assemblyName, bool proxyOnly, bool silent, bool warnings, bool force, string outputDirectory, bool parsableerrors)
+        private void GenerateFile(List<string> typeNames, string assemblyName, string references, bool proxyOnly, bool silent, bool warnings, bool force, string outputDirectory, bool parsableerrors)
         {
-            Assembly assembly = LoadAssembly(assemblyName, true);
+            using MetadataLoadContext metadataLoadContext = GetLoadContext(references);
+
+            Assembly assembly = LoadAssembly(metadataLoadContext, assemblyName, true);
+
             Type[] types;
 
             if (typeNames == null || typeNames.Count == 0)
@@ -260,12 +254,14 @@ namespace Microsoft.XmlSerializer.Generator
                     if (type != null)
                     {
                         bool isObsolete = false;
-                        object[] obsoleteAttributes = type.GetCustomAttributes(typeof(ObsoleteAttribute), false);
-                        foreach (object attribute in obsoleteAttributes)
+
+                        var obsoleteAttributes = type.GetCustomAttributesData().Where(ca => ca.AttributeType == typeof(ObsoleteAttribute));
+                        foreach (var attribute in obsoleteAttributes)
                         {
-                            if (((ObsoleteAttribute)attribute).IsError)
+                            var ctorArgs = attribute.ConstructorArguments;
+                            if (ctorArgs.Count > 1 && ctorArgs[1].ArgumentType == typeof(bool))
                             {
-                                isObsolete = true;
+                                isObsolete = (bool)ctorArgs[1].Value;
                                 break;
                             }
                         }
@@ -437,11 +433,11 @@ namespace Microsoft.XmlSerializer.Generator
             }
         }
 
-        private static Assembly LoadAssembly(string assemblyName, bool throwOnFail)
+        private static Assembly LoadAssembly(MetadataLoadContext metadataLoadContext, string assemblyName, bool throwOnFail)
         {
             Assembly assembly = null;
             string path = Path.IsPathRooted(assemblyName) ? assemblyName : Path.GetFullPath(assemblyName);
-            assembly = Assembly.LoadFile(path);
+            assembly = metadataLoadContext.LoadFromAssemblyPath(path);
             if (assembly == null)
             {
                 throw new InvalidOperationException(SR.Format(SR.ErrLoadAssembly, assemblyName));
@@ -523,99 +519,80 @@ namespace Microsoft.XmlSerializer.Generator
             return parent.Name + ".XmlSerializers" + (ns == null || ns.Length == 0 ? "" : "." + ns.GetHashCode());
         }
 
-        private static void ParseReferences()
+        private static MetadataLoadContext GetLoadContext(string references)
         {
-            var referencelist = new List<string>();
-            if (s_references.Length > 0)
+            MetadataAssemblyResolver resolver = null;
+            string coreAssembly = null;
+            if (references?.Length > 0)
             {
-                foreach (var entry in s_references.Split(';'))
+                List<string> referencelist = new List<string>();
+                foreach (string entry in references.Split(';'))
                 {
-                    string trimentry = entry.Trim();
-                    if (string.IsNullOrEmpty(trimentry))
+                    string reference = entry.Trim();
+                    if (string.IsNullOrEmpty(reference))
                         continue;
-                    referencelist.Add(trimentry);
-                }
-            }
 
-            foreach (var reference in referencelist)
-            {
-                if (reference.EndsWith(".dll") || reference.EndsWith(".exe"))
-                {
                     if (File.Exists(reference))
                     {
-                        string filename = Path.GetFileNameWithoutExtension(reference);
-                        if (!string.IsNullOrEmpty(filename))
-                        {
-                            s_referencedic.Add(filename, reference);
-                        }
+                        referencelist.Add(reference);
                     }
                 }
 
+                resolver = new PathAssemblyResolver(referencelist);
             }
+            else
+            {
+                // give it our core assembly
+                resolver = new DirectoryAssemblyResolver(Path.GetDirectoryName(typeof(object).Assembly.Location));
+                coreAssembly = typeof(object).Assembly.FullName;
+            }
+
+            return new MetadataLoadContext(resolver, coreAssembly);
         }
 
-        private static Assembly SgenAssemblyResolver(object source, ResolveEventArgs e)
+        private class DirectoryAssemblyResolver : MetadataAssemblyResolver
         {
-            try
+            private readonly string directory;
+            private static readonly string[] extensions = new[] { ".dll", ".ni.dll", ".exe" };
+
+            public DirectoryAssemblyResolver(string directory)
             {
-                if (string.IsNullOrEmpty(e.Name) || e.Name.Split(',').Length == 0)
-                {
-                    return null;
-                }
-
-                string assemblyname = e.Name.Split(',')[0];
-                if (string.IsNullOrEmpty(assemblyname))
-                {
-                    return null;
-                }
-
-                if (s_referencedic.ContainsKey(assemblyname))
-                {
-                    string reference = s_referencedic[assemblyname];
-
-                    // For System.ServiceModel.Primitives, we need to load its runtime assembly rather than reference assembly
-                    if (assemblyname.Equals("System.ServiceModel.Primitives"))
-                    {
-                        // Replace "ref" with "lib" in the assembly's path, the path looks like:
-                        // dir\.nuget\packages\system.servicemodel.primitives\4.5.3\ref\netstandard2.0\System.ServiceModel.Primitives.dll;
-                        string pattern = @"\\ref\\netstandard\d*\.?\d*\.?\d*\\System.ServiceModel.Primitives.dll";
-                        Match match = null;
-                        try
-                        {
-                            match = Regex.Match(reference, pattern);
-                        }
-                        catch { }
-
-                        if (match != null && match.Success)
-                        {
-                            int index = match.Index + 1;
-                            StringBuilder sb = new StringBuilder(reference);
-                            sb.Remove(index, "ref".Length);
-                            sb.Insert(index, "lib");
-                            reference = sb.ToString();
-                        }
-                    }
-
-                    if (!string.IsNullOrEmpty(reference))
-                    {
-                        if (File.Exists(reference))
-                        {
-                            return Assembly.LoadFrom(reference);
-                        }
-                    }
-                }
-            }
-            catch (Exception exp)
-            {
-                if (exp is ThreadAbortException || exp is StackOverflowException || exp is OutOfMemoryException)
-                {
-                    throw;
-                }
-
-                WriteWarning(exp, true);
+                this.directory = directory;
             }
 
-            return null;
+            public override Assembly Resolve(MetadataLoadContext context, AssemblyName assemblyName)
+            {
+                Assembly result = null;
+
+                foreach (string extension in extensions)
+                {
+                    string path = Path.Combine(directory, assemblyName.Name + extension);
+
+                    if (File.Exists(path))
+                    {
+                        ReadOnlySpan<byte> pktFromName = assemblyName.GetPublicKeyToken();
+                        Assembly assemblyFromPath = context.LoadFromAssemblyPath(path);
+                        AssemblyName assemblyNameFromPath = assemblyFromPath.GetName();
+                        if (assemblyName.Name.Equals(assemblyNameFromPath.Name, StringComparison.OrdinalIgnoreCase))
+                        {
+                            ReadOnlySpan<byte> pktFromAssembly = assemblyNameFromPath.GetPublicKeyToken();
+
+                            // Find exact match on PublicKeyToken including treating no PublicKeyToken as its own entry.
+                            if (pktFromName.SequenceEqual(pktFromAssembly))
+                            {
+                                // Pick the highest version.
+                                if (assemblyNameFromPath.Version >= assemblyName.Version)
+                                {
+                                    result = assemblyFromPath;
+                                }
+                            }
+                        }
+
+                        break;
+                    }
+                }
+                return result;
+            }
         }
 
         private string[] ParseResponseFile(string[] args)
