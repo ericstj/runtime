@@ -406,6 +406,13 @@
     ]
   },
   {
+    "Name": "System.BinaryData",
+    "Description": "A lightweight abstraction for a payload of bytes.",
+    "CommonTypes": [
+      "System.BinaryData"
+    ]
+  },
+  {
     "Name": "System.Buffers",
     "Description": "Provides resource pooling of any type for performance-critical applications that allocate and deallocate objects frequently.",
     "CommonTypes": [

@@ -1563,6 +1563,12 @@
         "4.1.1.0": "4.3.0"
       }
     },
+    "System.BinaryData": {
+      "InboxOn": {},
+      "AssemblyVersionInPackageVersion": {
+        "5.0.0.0": "6.0.0"
+      }
+    },
     "System.Buffers": {
       "StableVersions": [
         "4.0.0",
