@@ -1563,12 +1563,6 @@
         "4.1.1.0": "4.3.0"
       }
     },
-    "System.BinaryData": {
-      "InboxOn": {},
-      "AssemblyVersionInPackageVersion": {
-        "5.0.0.0": "6.0.0"
-      }
-    },
     "System.Buffers": {
       "StableVersions": [
         "4.0.0",
@@ -3672,6 +3666,12 @@
         "4.0.1.0": "4.5.0",
         "4.0.1.1": "4.5.3",
         "4.1.0.0": "4.6.0"
+      }
+    },
+    "System.Memory.Data": {
+      "InboxOn": {},
+      "AssemblyVersionInPackageVersion": {
+        "5.0.0.0": "6.0.0"
       }
     },
     "System.Messaging": {
