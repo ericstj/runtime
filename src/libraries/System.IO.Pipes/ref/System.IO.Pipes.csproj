@@ -1,13 +1,24 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>$(NetCoreAppCurrent)</TargetFrameworks>
+    <TargetFrameworks>$(NetCoreAppCurrent);netcoreapp3.1;net5.0</TargetFrameworks>
     <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <PropertyGroup>
+    <!-- These two configurations never ship, they are just used for reference assemblies to expose types
+         for Pipes.AccessControl to forward to -->
+    <AssemblyVersion Condition="'$(TargetFramework)' == 'netcoreapp3.1'">4.1.2.0</AssemblyVersion>
+    <AssemblyVersion Condition="'$(TargetFramework)' == 'net5.0'">5.0.0.0</AssemblyVersion>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="System.IO.Pipes.cs" />
+    <Compile Condition="'$(TargetFramework)' != '$(NetCoreAppCurrent)'" Include="System.IO.Pipes.Internals.cs" />
   </ItemGroup>
-  <ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == '$(NetCoreAppCurrent)'">
     <ProjectReference Include="..\..\System.Runtime\ref\System.Runtime.csproj" />
     <ProjectReference Include="..\..\System.Security.Principal\ref\System.Security.Principal.csproj" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' != '$(NetCoreAppCurrent)'">
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Security.Principal" />
   </ItemGroup>
 </Project>
