@@ -1,7 +1,9 @@
 ﻿<Project>
   <Import Project="..\Directory.Build.props" />
   <PropertyGroup>
-    <AssemblyVersion>4.0.0.0</AssemblyVersion>
+    <!-- this assembly is inbox in desktop, therefor any TargetFramework
+         compatible with Desktop must keep the desktop version. -->
+    <AssemblyVersion Condition="$([MSBuild]::IsTargetFrameworkCompatible('net48', '$(TargetFramework)'))">4.0.0.0</AssemblyVersion>
     <StrongNameKeyId>ECMA</StrongNameKeyId>
     <PackageDescription>This namespace provides classes that constitute the core of the Managed Extensibility Framework, or MEF.
 

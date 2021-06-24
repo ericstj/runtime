@@ -1,8 +1,9 @@
 ﻿<Project>
   <Import Project="..\Directory.Build.props" />
   <PropertyGroup>
-    <!-- AssemblyVersion is frozen to that which originally shipped in 2.1 -->
-    <AssemblyVersion>4.0.0.0</AssemblyVersion>
+    <!-- this assembly is inbox in desktop, therefor any TargetFramework
+         compatible with Desktop must keep the desktop version. -->
+    <AssemblyVersion Condition="$([MSBuild]::IsTargetFrameworkCompatible('net48', '$(TargetFramework)'))">4.0.0.0</AssemblyVersion>
     <StrongNameKeyId>ECMA</StrongNameKeyId>
   </PropertyGroup>
 </Project>

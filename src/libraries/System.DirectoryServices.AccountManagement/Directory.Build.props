@@ -1,10 +1,9 @@
 ﻿<Project>
   <Import Project="..\Directory.Build.props" />
   <PropertyGroup>
-    <!-- this assembly is inbox in desktop, do not version it unless you
-         plan on shipping a new desktop version out of band. Instead add API
-         to a different assembly. -->
-    <AssemblyVersion>4.0.0.0</AssemblyVersion>
+    <!-- this assembly is inbox in desktop, therefor any TargetFramework
+         compatible with Desktop must keep the desktop version. -->
+    <AssemblyVersion Condition="$([MSBuild]::IsTargetFrameworkCompatible('net48', '$(TargetFramework)'))">4.0.0.0</AssemblyVersion>
     <StrongNameKeyId>ECMA</StrongNameKeyId>
     <SupportedOSPlatforms>windows</SupportedOSPlatforms>
     <PackageDescription>Provides uniform access and manipulation of user, computer, and group security principals across the multiple principal stores: Active Directory Domain Services (AD DS), Active Directory Lightweight Directory Services (AD LDS), and Machine SAM (MSAM).</PackageDescription>
