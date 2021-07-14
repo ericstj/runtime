@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <AssemblyName>System.Runtime</AssemblyName>
+    <PackageId>$(MSBuildProjectName)</PackageId>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <FeatureGenericMath>true</FeatureGenericMath>
     <!-- It is a core assembly because it defines System.Object so we need to pass RuntimeMetadataVersion to the compiler -->
@@ -8,9 +9,13 @@
     <!-- disable warnings about obsolete APIs,
         Remove warning disable when nullable attributes are respected,
         Type has no accessible constructors which use only CLS-compliant types -->
-    <NoWarn>$(NoWarn);0809;0618;CS8614;CS3015</NoWarn>
+    <NoWarn>$(NoWarn);0809;0618;CS8614;CS3015;NU5131</NoWarn>
     <TargetFrameworks>$(NetCoreAppCurrent)</TargetFrameworks>
     <Nullable>enable</Nullable>
+    <IsPackable>true</IsPackable>
+    <PackageDescription>Exposes new experimental API from System.Runtime</PackageDescription>
+    <!-- Place this assembly in the ref folder -->
+    <BuildOutputTargetFolder>ref</BuildOutputTargetFolder>
   </PropertyGroup>
   <PropertyGroup>
     <DefineConstants Condition="'$(FeatureGenericMath)' == 'true'">$(DefineConstants);FEATURE_GENERIC_MATH</DefineConstants>
@@ -25,9 +30,7 @@
       <_FileVersionMin>$(FileVersion.Split('.')[1])</_FileVersionMin>
       <_FileVersionBld>$(FileVersion.Split('.')[2])</_FileVersionBld>
       <_FileVersionRev>$(FileVersion.Split('.')[3])</_FileVersionRev>
+      <FileVersion>$(_FileVersionMaj).$(_FileVersionMin).$([MSBuild]::Add($(_FileVersionBld), 100)).$(_FileVersionRev)</FileVersion>
     </PropertyGroup>
-    <CreateProperty Value="$(_FileVersionMaj).$(_FileVersionMin).$([MSBuild]::Add($(_FileVersionBld), 100)).$(_FileVersionRev)">
-      <Output TaskParameter="Value" PropertyName="FileVersion" />
-    </CreateProperty>
   </Target>
 </Project>

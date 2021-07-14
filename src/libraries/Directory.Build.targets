@@ -282,10 +282,14 @@
   </Choose>
 
   <Target Name="LibIntellisenseDocs" Condition="'$(IncludeBuildOutput)' == 'true'">
+   <PropertyGroup>
+     <_intellisenseRootFolder>$(BuildOutputTargetFolder)</_intellisenseRootFolder>
+     <_intellisenseRootFolder Condition="'$(_intellisenseRootFolder)' == ''">lib</_intellisenseRootFolder>
+   </PropertyGroup>
    <ItemGroup>
       <TfmSpecificPackageFile Include="$(XmlDocFileRoot)1033\$(TargetName).xml"
                               Condition="Exists('$(XmlDocFileRoot)1033\$(TargetName).xml')"
-                              PackagePath="lib/$(TargetFramework)" />
+                              PackagePath="$(_intellisenseRootFolder)/$(TargetFramework)" />
     </ItemGroup>
   </Target>
 
