@@ -49,6 +49,10 @@
           <RegistryValue KeyPath="yes" Action="write" Name="Path" Type="string" Value="[DOTNETHOME]"/>
         </RegistryKey>
         <Environment Id="E_PATH" Name="PATH" Value="[DOTNETHOME]" Part="last" Action="set" System="yes" />
+
+        <?if not $(var.Platform)~=x86 ?>
+        <Environment Id="E_remove_PATH_x86" Name="PATH" Value="[ProgramFilesFolder]dotnet\" Part="last" Action="remove" System="yes" />
+        <?endif?>
       </Component>
 
       <Component Id="cmpLicenseFiles" Directory="DOTNETHOME" Guid="{A61CBE5B-1282-4F29-90AD-63597AA2372E}">
