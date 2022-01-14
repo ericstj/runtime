@@ -17,9 +17,9 @@ namespace System.Runtime.Intrinsics
         public static System.Runtime.Intrinsics.Vector128<System.Int16> AsInt16<T>(this System.Runtime.Intrinsics.Vector128<T> vector) where T : struct { throw null; }
         public static System.Runtime.Intrinsics.Vector128<System.Int32> AsInt32<T>(this System.Runtime.Intrinsics.Vector128<T> vector) where T : struct { throw null; }
         public static System.Runtime.Intrinsics.Vector128<System.Int64> AsInt64<T>(this System.Runtime.Intrinsics.Vector128<T> vector) where T : struct { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nint> AsNInt<T>(this System.Runtime.Intrinsics.Vector128<T> vector) where T : struct { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.IntPtr> AsNInt<T>(this System.Runtime.Intrinsics.Vector128<T> vector) where T : struct { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static System.Runtime.Intrinsics.Vector128<nuint> AsNUInt<T>(this System.Runtime.Intrinsics.Vector128<T> vector) where T : struct { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.UIntPtr> AsNUInt<T>(this System.Runtime.Intrinsics.Vector128<T> vector) where T : struct { throw null; }
         [System.CLSCompliantAttribute(false)]
         public static System.Runtime.Intrinsics.Vector128<System.SByte> AsSByte<T>(this System.Runtime.Intrinsics.Vector128<T> vector) where T : struct { throw null; }
         public static System.Runtime.Intrinsics.Vector128<System.Single> AsSingle<T>(this System.Runtime.Intrinsics.Vector128<T> vector) where T : struct { throw null; }
@@ -68,7 +68,7 @@ namespace System.Runtime.Intrinsics
         public static System.Runtime.Intrinsics.Vector128<System.Int32> Create(int e0, int e1, int e2, int e3) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<System.Int64> Create(long value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<System.Int64> Create(long e0, long e1) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nint> Create(nint value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.IntPtr> Create(System.IntPtr value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<System.Byte> Create(System.Runtime.Intrinsics.Vector64<byte> lower, System.Runtime.Intrinsics.Vector64<byte> upper) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<System.Double> Create(System.Runtime.Intrinsics.Vector64<double> lower, System.Runtime.Intrinsics.Vector64<double> upper) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<System.Int16> Create(System.Runtime.Intrinsics.Vector64<short> lower, System.Runtime.Intrinsics.Vector64<short> upper) { throw null; }
@@ -102,13 +102,13 @@ namespace System.Runtime.Intrinsics
         [System.CLSCompliantAttribute(false)]
         public static System.Runtime.Intrinsics.Vector128<System.UInt64> Create(ulong e0, ulong e1) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static System.Runtime.Intrinsics.Vector128<nuint> Create(nuint value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.UIntPtr> Create(System.UIntPtr value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<System.Byte> CreateScalar(byte value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<System.Double> CreateScalar(double value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<System.Int16> CreateScalar(short value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<System.Int32> CreateScalar(int value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<System.Int64> CreateScalar(long value) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nint> CreateScalar(nint value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.IntPtr> CreateScalar(System.IntPtr value) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public static System.Runtime.Intrinsics.Vector128<System.SByte> CreateScalar(sbyte value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<System.Single> CreateScalar(float value) { throw null; }
@@ -119,13 +119,13 @@ namespace System.Runtime.Intrinsics
         [System.CLSCompliantAttribute(false)]
         public static System.Runtime.Intrinsics.Vector128<System.UInt64> CreateScalar(ulong value) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static System.Runtime.Intrinsics.Vector128<nuint> CreateScalar(nuint value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.UIntPtr> CreateScalar(System.UIntPtr value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<System.Byte> CreateScalarUnsafe(byte value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<System.Double> CreateScalarUnsafe(double value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<System.Int16> CreateScalarUnsafe(short value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<System.Int32> CreateScalarUnsafe(int value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<System.Int64> CreateScalarUnsafe(long value) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nint> CreateScalarUnsafe(nint value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.IntPtr> CreateScalarUnsafe(System.IntPtr value) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public static System.Runtime.Intrinsics.Vector128<System.SByte> CreateScalarUnsafe(sbyte value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<System.Single> CreateScalarUnsafe(float value) { throw null; }
@@ -136,7 +136,7 @@ namespace System.Runtime.Intrinsics
         [System.CLSCompliantAttribute(false)]
         public static System.Runtime.Intrinsics.Vector128<System.UInt64> CreateScalarUnsafe(ulong value) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static System.Runtime.Intrinsics.Vector128<nuint> CreateScalarUnsafe(nuint value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.UIntPtr> CreateScalarUnsafe(System.UIntPtr value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<T> Create<T>(System.ReadOnlySpan<T> values) where T : struct { throw null; }
         public static System.Runtime.Intrinsics.Vector128<T> Create<T>(T value) where T : struct { throw null; }
         public static System.Runtime.Intrinsics.Vector128<T> Create<T>(T[] values) where T : struct { throw null; }
@@ -240,9 +240,9 @@ namespace System.Runtime.Intrinsics
         public static System.Runtime.Intrinsics.Vector256<System.Int16> AsInt16<T>(this System.Runtime.Intrinsics.Vector256<T> vector) where T : struct { throw null; }
         public static System.Runtime.Intrinsics.Vector256<System.Int32> AsInt32<T>(this System.Runtime.Intrinsics.Vector256<T> vector) where T : struct { throw null; }
         public static System.Runtime.Intrinsics.Vector256<System.Int64> AsInt64<T>(this System.Runtime.Intrinsics.Vector256<T> vector) where T : struct { throw null; }
-        public static System.Runtime.Intrinsics.Vector256<nint> AsNInt<T>(this System.Runtime.Intrinsics.Vector256<T> vector) where T : struct { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.IntPtr> AsNInt<T>(this System.Runtime.Intrinsics.Vector256<T> vector) where T : struct { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static System.Runtime.Intrinsics.Vector256<nuint> AsNUInt<T>(this System.Runtime.Intrinsics.Vector256<T> vector) where T : struct { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.UIntPtr> AsNUInt<T>(this System.Runtime.Intrinsics.Vector256<T> vector) where T : struct { throw null; }
         [System.CLSCompliantAttribute(false)]
         public static System.Runtime.Intrinsics.Vector256<System.SByte> AsSByte<T>(this System.Runtime.Intrinsics.Vector256<T> vector) where T : struct { throw null; }
         public static System.Runtime.Intrinsics.Vector256<System.Single> AsSingle<T>(this System.Runtime.Intrinsics.Vector256<T> vector) where T : struct { throw null; }
@@ -285,7 +285,7 @@ namespace System.Runtime.Intrinsics
         public static System.Runtime.Intrinsics.Vector256<System.Int32> Create(int e0, int e1, int e2, int e3, int e4, int e5, int e6, int e7) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<System.Int64> Create(long value) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<System.Int64> Create(long e0, long e1, long e2, long e3) { throw null; }
-        public static System.Runtime.Intrinsics.Vector256<nint> Create(nint value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.IntPtr> Create(System.IntPtr value) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<System.Byte> Create(System.Runtime.Intrinsics.Vector128<byte> lower, System.Runtime.Intrinsics.Vector128<byte> upper) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<System.Double> Create(System.Runtime.Intrinsics.Vector128<double> lower, System.Runtime.Intrinsics.Vector128<double> upper) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<System.Int16> Create(System.Runtime.Intrinsics.Vector128<short> lower, System.Runtime.Intrinsics.Vector128<short> upper) { throw null; }
@@ -319,13 +319,13 @@ namespace System.Runtime.Intrinsics
         [System.CLSCompliantAttribute(false)]
         public static System.Runtime.Intrinsics.Vector256<System.UInt64> Create(ulong e0, ulong e1, ulong e2, ulong e3) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static System.Runtime.Intrinsics.Vector256<nuint> Create(nuint value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.UIntPtr> Create(System.UIntPtr value) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<System.Byte> CreateScalar(byte value) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<System.Double> CreateScalar(double value) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<System.Int16> CreateScalar(short value) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<System.Int32> CreateScalar(int value) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<System.Int64> CreateScalar(long value) { throw null; }
-        public static System.Runtime.Intrinsics.Vector256<nint> CreateScalar(nint value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.IntPtr> CreateScalar(System.IntPtr value) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public static System.Runtime.Intrinsics.Vector256<System.SByte> CreateScalar(sbyte value) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<System.Single> CreateScalar(float value) { throw null; }
@@ -336,13 +336,13 @@ namespace System.Runtime.Intrinsics
         [System.CLSCompliantAttribute(false)]
         public static System.Runtime.Intrinsics.Vector256<System.UInt64> CreateScalar(ulong value) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static System.Runtime.Intrinsics.Vector256<nuint> CreateScalar(nuint value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.UIntPtr> CreateScalar(System.UIntPtr value) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<System.Byte> CreateScalarUnsafe(byte value) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<System.Double> CreateScalarUnsafe(double value) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<System.Int16> CreateScalarUnsafe(short value) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<System.Int32> CreateScalarUnsafe(int value) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<System.Int64> CreateScalarUnsafe(long value) { throw null; }
-        public static System.Runtime.Intrinsics.Vector256<nint> CreateScalarUnsafe(nint value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.IntPtr> CreateScalarUnsafe(System.IntPtr value) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public static System.Runtime.Intrinsics.Vector256<System.SByte> CreateScalarUnsafe(sbyte value) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<System.Single> CreateScalarUnsafe(float value) { throw null; }
@@ -353,7 +353,7 @@ namespace System.Runtime.Intrinsics
         [System.CLSCompliantAttribute(false)]
         public static System.Runtime.Intrinsics.Vector256<System.UInt64> CreateScalarUnsafe(ulong value) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static System.Runtime.Intrinsics.Vector256<nuint> CreateScalarUnsafe(nuint value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.UIntPtr> CreateScalarUnsafe(System.UIntPtr value) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<T> Create<T>(System.ReadOnlySpan<T> values) where T : struct { throw null; }
         public static System.Runtime.Intrinsics.Vector256<T> Create<T>(T value) where T : struct { throw null; }
         public static System.Runtime.Intrinsics.Vector256<T> Create<T>(T[] values) where T : struct { throw null; }
@@ -455,9 +455,9 @@ namespace System.Runtime.Intrinsics
         public static System.Runtime.Intrinsics.Vector64<System.Int16> AsInt16<T>(this System.Runtime.Intrinsics.Vector64<T> vector) where T : struct { throw null; }
         public static System.Runtime.Intrinsics.Vector64<System.Int32> AsInt32<T>(this System.Runtime.Intrinsics.Vector64<T> vector) where T : struct { throw null; }
         public static System.Runtime.Intrinsics.Vector64<System.Int64> AsInt64<T>(this System.Runtime.Intrinsics.Vector64<T> vector) where T : struct { throw null; }
-        public static System.Runtime.Intrinsics.Vector64<nint> AsNInt<T>(this System.Runtime.Intrinsics.Vector64<T> vector) where T : struct { throw null; }
+        public static System.Runtime.Intrinsics.Vector64<System.IntPtr> AsNInt<T>(this System.Runtime.Intrinsics.Vector64<T> vector) where T : struct { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static System.Runtime.Intrinsics.Vector64<nuint> AsNUInt<T>(this System.Runtime.Intrinsics.Vector64<T> vector) where T : struct { throw null; }
+        public static System.Runtime.Intrinsics.Vector64<System.UIntPtr> AsNUInt<T>(this System.Runtime.Intrinsics.Vector64<T> vector) where T : struct { throw null; }
         [System.CLSCompliantAttribute(false)]
         public static System.Runtime.Intrinsics.Vector64<System.SByte> AsSByte<T>(this System.Runtime.Intrinsics.Vector64<T> vector) where T : struct { throw null; }
         public static System.Runtime.Intrinsics.Vector64<System.Single> AsSingle<T>(this System.Runtime.Intrinsics.Vector64<T> vector) where T : struct { throw null; }
@@ -496,7 +496,7 @@ namespace System.Runtime.Intrinsics
         public static System.Runtime.Intrinsics.Vector64<System.Int32> Create(int value) { throw null; }
         public static System.Runtime.Intrinsics.Vector64<System.Int32> Create(int e0, int e1) { throw null; }
         public static System.Runtime.Intrinsics.Vector64<System.Int64> Create(long value) { throw null; }
-        public static System.Runtime.Intrinsics.Vector64<nint> Create(nint value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector64<System.IntPtr> Create(System.IntPtr value) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public static System.Runtime.Intrinsics.Vector64<System.SByte> Create(sbyte value) { throw null; }
         [System.CLSCompliantAttribute(false)]
@@ -514,13 +514,13 @@ namespace System.Runtime.Intrinsics
         [System.CLSCompliantAttribute(false)]
         public static System.Runtime.Intrinsics.Vector64<System.UInt64> Create(ulong value) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static System.Runtime.Intrinsics.Vector64<nuint> Create(nuint value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector64<System.UIntPtr> Create(System.UIntPtr value) { throw null; }
         public static System.Runtime.Intrinsics.Vector64<System.Byte> CreateScalar(byte value) { throw null; }
         public static System.Runtime.Intrinsics.Vector64<System.Double> CreateScalar(double value) { throw null; }
         public static System.Runtime.Intrinsics.Vector64<System.Int16> CreateScalar(short value) { throw null; }
         public static System.Runtime.Intrinsics.Vector64<System.Int32> CreateScalar(int value) { throw null; }
         public static System.Runtime.Intrinsics.Vector64<System.Int64> CreateScalar(long value) { throw null; }
-        public static System.Runtime.Intrinsics.Vector64<nint> CreateScalar(nint value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector64<System.IntPtr> CreateScalar(System.IntPtr value) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public static System.Runtime.Intrinsics.Vector64<System.SByte> CreateScalar(sbyte value) { throw null; }
         public static System.Runtime.Intrinsics.Vector64<System.Single> CreateScalar(float value) { throw null; }
@@ -531,11 +531,11 @@ namespace System.Runtime.Intrinsics
         [System.CLSCompliantAttribute(false)]
         public static System.Runtime.Intrinsics.Vector64<System.UInt64> CreateScalar(ulong value) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static System.Runtime.Intrinsics.Vector64<nuint> CreateScalar(nuint value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector64<System.UIntPtr> CreateScalar(System.UIntPtr value) { throw null; }
         public static System.Runtime.Intrinsics.Vector64<System.Byte> CreateScalarUnsafe(byte value) { throw null; }
         public static System.Runtime.Intrinsics.Vector64<System.Int16> CreateScalarUnsafe(short value) { throw null; }
         public static System.Runtime.Intrinsics.Vector64<System.Int32> CreateScalarUnsafe(int value) { throw null; }
-        public static System.Runtime.Intrinsics.Vector64<nint> CreateScalarUnsafe(nint value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector64<System.IntPtr> CreateScalarUnsafe(System.IntPtr value) { throw null; }
         [System.CLSCompliantAttribute(false)]
         public static System.Runtime.Intrinsics.Vector64<System.SByte> CreateScalarUnsafe(sbyte value) { throw null; }
         public static System.Runtime.Intrinsics.Vector64<System.Single> CreateScalarUnsafe(float value) { throw null; }
@@ -544,7 +544,7 @@ namespace System.Runtime.Intrinsics
         [System.CLSCompliantAttribute(false)]
         public static System.Runtime.Intrinsics.Vector64<System.UInt32> CreateScalarUnsafe(uint value) { throw null; }
         [System.CLSCompliantAttribute(false)]
-        public static System.Runtime.Intrinsics.Vector64<nuint> CreateScalarUnsafe(nuint value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector64<System.UIntPtr> CreateScalarUnsafe(System.UIntPtr value) { throw null; }
         public static System.Runtime.Intrinsics.Vector64<T> Create<T>(System.ReadOnlySpan<T> values) where T : struct { throw null; }
         public static System.Runtime.Intrinsics.Vector64<T> Create<T>(T value) where T : struct { throw null; }
         public static System.Runtime.Intrinsics.Vector64<T> Create<T>(T[] values) where T : struct { throw null; }
@@ -3105,13 +3105,13 @@ namespace System.Runtime.Intrinsics.X86
         public static System.Runtime.Intrinsics.Vector128<short> ExtractVector128(System.Runtime.Intrinsics.Vector256<short> value, byte index) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<int> ExtractVector128(System.Runtime.Intrinsics.Vector256<int> value, byte index) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<long> ExtractVector128(System.Runtime.Intrinsics.Vector256<long> value, byte index) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nint> ExtractVector128(System.Runtime.Intrinsics.Vector256<nint> value, byte index) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.IntPtr> ExtractVector128(System.Runtime.Intrinsics.Vector256<System.IntPtr> value, byte index) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<sbyte> ExtractVector128(System.Runtime.Intrinsics.Vector256<sbyte> value, byte index) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<float> ExtractVector128(System.Runtime.Intrinsics.Vector256<float> value, byte index) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ushort> ExtractVector128(System.Runtime.Intrinsics.Vector256<ushort> value, byte index) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<uint> ExtractVector128(System.Runtime.Intrinsics.Vector256<uint> value, byte index) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ulong> ExtractVector128(System.Runtime.Intrinsics.Vector256<ulong> value, byte index) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nuint> ExtractVector128(System.Runtime.Intrinsics.Vector256<nuint> value, byte index) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.UIntPtr> ExtractVector128(System.Runtime.Intrinsics.Vector256<System.UIntPtr> value, byte index) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<double> Floor(System.Runtime.Intrinsics.Vector256<double> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<float> Floor(System.Runtime.Intrinsics.Vector256<float> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<double> HorizontalAdd(System.Runtime.Intrinsics.Vector256<double> left, System.Runtime.Intrinsics.Vector256<double> right) { throw null; }
@@ -3123,47 +3123,47 @@ namespace System.Runtime.Intrinsics.X86
         public static System.Runtime.Intrinsics.Vector256<short> InsertVector128(System.Runtime.Intrinsics.Vector256<short> value, System.Runtime.Intrinsics.Vector128<short> data, byte index) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<int> InsertVector128(System.Runtime.Intrinsics.Vector256<int> value, System.Runtime.Intrinsics.Vector128<int> data, byte index) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<long> InsertVector128(System.Runtime.Intrinsics.Vector256<long> value, System.Runtime.Intrinsics.Vector128<long> data, byte index) { throw null; }
-        public static System.Runtime.Intrinsics.Vector256<nint> InsertVector128(System.Runtime.Intrinsics.Vector256<nint> value, System.Runtime.Intrinsics.Vector128<nint> data, byte index) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.IntPtr> InsertVector128(System.Runtime.Intrinsics.Vector256<System.IntPtr> value, System.Runtime.Intrinsics.Vector128<System.IntPtr> data, byte index) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<sbyte> InsertVector128(System.Runtime.Intrinsics.Vector256<sbyte> value, System.Runtime.Intrinsics.Vector128<sbyte> data, byte index) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<float> InsertVector128(System.Runtime.Intrinsics.Vector256<float> value, System.Runtime.Intrinsics.Vector128<float> data, byte index) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ushort> InsertVector128(System.Runtime.Intrinsics.Vector256<ushort> value, System.Runtime.Intrinsics.Vector128<ushort> data, byte index) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<uint> InsertVector128(System.Runtime.Intrinsics.Vector256<uint> value, System.Runtime.Intrinsics.Vector128<uint> data, byte index) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ulong> InsertVector128(System.Runtime.Intrinsics.Vector256<ulong> value, System.Runtime.Intrinsics.Vector128<ulong> data, byte index) { throw null; }
-        public static System.Runtime.Intrinsics.Vector256<nuint> InsertVector128(System.Runtime.Intrinsics.Vector256<nuint> value, System.Runtime.Intrinsics.Vector128<nuint> data, byte index) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.UIntPtr> InsertVector128(System.Runtime.Intrinsics.Vector256<System.UIntPtr> value, System.Runtime.Intrinsics.Vector128<System.UIntPtr> data, byte index) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<byte> LoadAlignedVector256(byte* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<double> LoadAlignedVector256(double* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<short> LoadAlignedVector256(short* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<int> LoadAlignedVector256(int* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<long> LoadAlignedVector256(long* address) { throw null; }
-        public unsafe static System.Runtime.Intrinsics.Vector256<nint> LoadAlignedVector256(nint* address) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector256<System.IntPtr> LoadAlignedVector256(System.IntPtr* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<sbyte> LoadAlignedVector256(sbyte* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<float> LoadAlignedVector256(float* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<ushort> LoadAlignedVector256(ushort* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<uint> LoadAlignedVector256(uint* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<ulong> LoadAlignedVector256(ulong* address) { throw null; }
-        public unsafe static System.Runtime.Intrinsics.Vector256<nuint> LoadAlignedVector256(nuint* address) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector256<System.UIntPtr> LoadAlignedVector256(System.UIntPtr* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<byte> LoadDquVector256(byte* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<short> LoadDquVector256(short* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<int> LoadDquVector256(int* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<long> LoadDquVector256(long* address) { throw null; }
-        public unsafe static System.Runtime.Intrinsics.Vector256<nint> LoadDquVector256(nint* address) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector256<System.IntPtr> LoadDquVector256(System.IntPtr* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<sbyte> LoadDquVector256(sbyte* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<ushort> LoadDquVector256(ushort* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<uint> LoadDquVector256(uint* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<ulong> LoadDquVector256(ulong* address) { throw null; }
-        public unsafe static System.Runtime.Intrinsics.Vector256<nuint> LoadDquVector256(nuint* address) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector256<System.UIntPtr> LoadDquVector256(System.UIntPtr* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<byte> LoadVector256(byte* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<double> LoadVector256(double* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<short> LoadVector256(short* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<int> LoadVector256(int* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<long> LoadVector256(long* address) { throw null; }
-        public unsafe static System.Runtime.Intrinsics.Vector256<nint> LoadVector256(nint* address) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector256<System.IntPtr> LoadVector256(System.IntPtr* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<sbyte> LoadVector256(sbyte* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<float> LoadVector256(float* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<ushort> LoadVector256(ushort* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<uint> LoadVector256(uint* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<ulong> LoadVector256(ulong* address) { throw null; }
-        public unsafe static System.Runtime.Intrinsics.Vector256<nuint> LoadVector256(nuint* address) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector256<System.UIntPtr> LoadVector256(System.UIntPtr* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<double> MaskLoad(double* address, System.Runtime.Intrinsics.Vector128<double> mask) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<double> MaskLoad(double* address, System.Runtime.Intrinsics.Vector256<double> mask) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<float> MaskLoad(float* address, System.Runtime.Intrinsics.Vector128<float> mask) { throw null; }
@@ -3191,13 +3191,13 @@ namespace System.Runtime.Intrinsics.X86
         public static System.Runtime.Intrinsics.Vector256<short> Permute2x128(System.Runtime.Intrinsics.Vector256<short> left, System.Runtime.Intrinsics.Vector256<short> right, byte control) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<int> Permute2x128(System.Runtime.Intrinsics.Vector256<int> left, System.Runtime.Intrinsics.Vector256<int> right, byte control) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<long> Permute2x128(System.Runtime.Intrinsics.Vector256<long> left, System.Runtime.Intrinsics.Vector256<long> right, byte control) { throw null; }
-        public static System.Runtime.Intrinsics.Vector256<nint> Permute2x128(System.Runtime.Intrinsics.Vector256<nint> left, System.Runtime.Intrinsics.Vector256<nint> right, byte control) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.IntPtr> Permute2x128(System.Runtime.Intrinsics.Vector256<System.IntPtr> left, System.Runtime.Intrinsics.Vector256<System.IntPtr> right, byte control) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<sbyte> Permute2x128(System.Runtime.Intrinsics.Vector256<sbyte> left, System.Runtime.Intrinsics.Vector256<sbyte> right, byte control) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<float> Permute2x128(System.Runtime.Intrinsics.Vector256<float> left, System.Runtime.Intrinsics.Vector256<float> right, byte control) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ushort> Permute2x128(System.Runtime.Intrinsics.Vector256<ushort> left, System.Runtime.Intrinsics.Vector256<ushort> right, byte control) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<uint> Permute2x128(System.Runtime.Intrinsics.Vector256<uint> left, System.Runtime.Intrinsics.Vector256<uint> right, byte control) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ulong> Permute2x128(System.Runtime.Intrinsics.Vector256<ulong> left, System.Runtime.Intrinsics.Vector256<ulong> right, byte control) { throw null; }
-        public static System.Runtime.Intrinsics.Vector256<nuint> Permute2x128(System.Runtime.Intrinsics.Vector256<nuint> left, System.Runtime.Intrinsics.Vector256<nuint> right, byte control) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.UIntPtr> Permute2x128(System.Runtime.Intrinsics.Vector256<System.UIntPtr> left, System.Runtime.Intrinsics.Vector256<System.UIntPtr> right, byte control) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<double> PermuteVar(System.Runtime.Intrinsics.Vector128<double> left, System.Runtime.Intrinsics.Vector128<long> control) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<float> PermuteVar(System.Runtime.Intrinsics.Vector128<float> left, System.Runtime.Intrinsics.Vector128<int> control) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<double> PermuteVar(System.Runtime.Intrinsics.Vector256<double> left, System.Runtime.Intrinsics.Vector256<long> control) { throw null; }
@@ -3223,37 +3223,37 @@ namespace System.Runtime.Intrinsics.X86
         public unsafe static void Store(short* address, System.Runtime.Intrinsics.Vector256<short> source) { }
         public unsafe static void Store(int* address, System.Runtime.Intrinsics.Vector256<int> source) { }
         public unsafe static void Store(long* address, System.Runtime.Intrinsics.Vector256<long> source) { }
-        public unsafe static void Store(nint* address, System.Runtime.Intrinsics.Vector256<nint> source) { }
+        public unsafe static void Store(System.IntPtr* address, System.Runtime.Intrinsics.Vector256<System.IntPtr> source) { }
         public unsafe static void Store(sbyte* address, System.Runtime.Intrinsics.Vector256<sbyte> source) { }
         public unsafe static void Store(float* address, System.Runtime.Intrinsics.Vector256<float> source) { }
         public unsafe static void Store(ushort* address, System.Runtime.Intrinsics.Vector256<ushort> source) { }
         public unsafe static void Store(uint* address, System.Runtime.Intrinsics.Vector256<uint> source) { }
         public unsafe static void Store(ulong* address, System.Runtime.Intrinsics.Vector256<ulong> source) { }
-        public unsafe static void Store(nuint* address, System.Runtime.Intrinsics.Vector256<nuint> source) { }
+        public unsafe static void Store(System.UIntPtr* address, System.Runtime.Intrinsics.Vector256<System.UIntPtr> source) { }
         public unsafe static void StoreAligned(byte* address, System.Runtime.Intrinsics.Vector256<byte> source) { }
         public unsafe static void StoreAligned(double* address, System.Runtime.Intrinsics.Vector256<double> source) { }
         public unsafe static void StoreAligned(short* address, System.Runtime.Intrinsics.Vector256<short> source) { }
         public unsafe static void StoreAligned(int* address, System.Runtime.Intrinsics.Vector256<int> source) { }
         public unsafe static void StoreAligned(long* address, System.Runtime.Intrinsics.Vector256<long> source) { }
-        public unsafe static void StoreAligned(nint* address, System.Runtime.Intrinsics.Vector256<nint> source) { }
+        public unsafe static void StoreAligned(System.IntPtr* address, System.Runtime.Intrinsics.Vector256<System.IntPtr> source) { }
         public unsafe static void StoreAligned(sbyte* address, System.Runtime.Intrinsics.Vector256<sbyte> source) { }
         public unsafe static void StoreAligned(float* address, System.Runtime.Intrinsics.Vector256<float> source) { }
         public unsafe static void StoreAligned(ushort* address, System.Runtime.Intrinsics.Vector256<ushort> source) { }
         public unsafe static void StoreAligned(uint* address, System.Runtime.Intrinsics.Vector256<uint> source) { }
         public unsafe static void StoreAligned(ulong* address, System.Runtime.Intrinsics.Vector256<ulong> source) { }
-        public unsafe static void StoreAligned(nuint* address, System.Runtime.Intrinsics.Vector256<nuint> source) { }
+        public unsafe static void StoreAligned(System.UIntPtr* address, System.Runtime.Intrinsics.Vector256<System.UIntPtr> source) { }
         public unsafe static void StoreAlignedNonTemporal(byte* address, System.Runtime.Intrinsics.Vector256<byte> source) { }
         public unsafe static void StoreAlignedNonTemporal(double* address, System.Runtime.Intrinsics.Vector256<double> source) { }
         public unsafe static void StoreAlignedNonTemporal(short* address, System.Runtime.Intrinsics.Vector256<short> source) { }
         public unsafe static void StoreAlignedNonTemporal(int* address, System.Runtime.Intrinsics.Vector256<int> source) { }
         public unsafe static void StoreAlignedNonTemporal(long* address, System.Runtime.Intrinsics.Vector256<long> source) { }
-        public unsafe static void StoreAlignedNonTemporal(nint* address, System.Runtime.Intrinsics.Vector256<nint> source) { }
+        public unsafe static void StoreAlignedNonTemporal(System.IntPtr* address, System.Runtime.Intrinsics.Vector256<System.IntPtr> source) { }
         public unsafe static void StoreAlignedNonTemporal(sbyte* address, System.Runtime.Intrinsics.Vector256<sbyte> source) { }
         public unsafe static void StoreAlignedNonTemporal(float* address, System.Runtime.Intrinsics.Vector256<float> source) { }
         public unsafe static void StoreAlignedNonTemporal(ushort* address, System.Runtime.Intrinsics.Vector256<ushort> source) { }
         public unsafe static void StoreAlignedNonTemporal(uint* address, System.Runtime.Intrinsics.Vector256<uint> source) { }
         public unsafe static void StoreAlignedNonTemporal(ulong* address, System.Runtime.Intrinsics.Vector256<ulong> source) { }
-        public unsafe static void StoreAlignedNonTemporal(nuint* address, System.Runtime.Intrinsics.Vector256<nuint> source) { }
+        public unsafe static void StoreAlignedNonTemporal(System.UIntPtr* address, System.Runtime.Intrinsics.Vector256<System.UIntPtr> source) { }
         public static System.Runtime.Intrinsics.Vector256<double> Subtract(System.Runtime.Intrinsics.Vector256<double> left, System.Runtime.Intrinsics.Vector256<double> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<float> Subtract(System.Runtime.Intrinsics.Vector256<float> left, System.Runtime.Intrinsics.Vector256<float> right) { throw null; }
         public static bool TestC(System.Runtime.Intrinsics.Vector128<double> left, System.Runtime.Intrinsics.Vector128<double> right) { throw null; }
@@ -3263,13 +3263,13 @@ namespace System.Runtime.Intrinsics.X86
         public static bool TestC(System.Runtime.Intrinsics.Vector256<short> left, System.Runtime.Intrinsics.Vector256<short> right) { throw null; }
         public static bool TestC(System.Runtime.Intrinsics.Vector256<int> left, System.Runtime.Intrinsics.Vector256<int> right) { throw null; }
         public static bool TestC(System.Runtime.Intrinsics.Vector256<long> left, System.Runtime.Intrinsics.Vector256<long> right) { throw null; }
-        public static bool TestC(System.Runtime.Intrinsics.Vector256<nint> left, System.Runtime.Intrinsics.Vector256<nint> right) { throw null; }
+        public static bool TestC(System.Runtime.Intrinsics.Vector256<System.IntPtr> left, System.Runtime.Intrinsics.Vector256<System.IntPtr> right) { throw null; }
         public static bool TestC(System.Runtime.Intrinsics.Vector256<sbyte> left, System.Runtime.Intrinsics.Vector256<sbyte> right) { throw null; }
         public static bool TestC(System.Runtime.Intrinsics.Vector256<float> left, System.Runtime.Intrinsics.Vector256<float> right) { throw null; }
         public static bool TestC(System.Runtime.Intrinsics.Vector256<ushort> left, System.Runtime.Intrinsics.Vector256<ushort> right) { throw null; }
         public static bool TestC(System.Runtime.Intrinsics.Vector256<uint> left, System.Runtime.Intrinsics.Vector256<uint> right) { throw null; }
         public static bool TestC(System.Runtime.Intrinsics.Vector256<ulong> left, System.Runtime.Intrinsics.Vector256<ulong> right) { throw null; }
-        public static bool TestC(System.Runtime.Intrinsics.Vector256<nuint> left, System.Runtime.Intrinsics.Vector256<nuint> right) { throw null; }
+        public static bool TestC(System.Runtime.Intrinsics.Vector256<System.UIntPtr> left, System.Runtime.Intrinsics.Vector256<System.UIntPtr> right) { throw null; }
         public static bool TestNotZAndNotC(System.Runtime.Intrinsics.Vector128<double> left, System.Runtime.Intrinsics.Vector128<double> right) { throw null; }
         public static bool TestNotZAndNotC(System.Runtime.Intrinsics.Vector128<float> left, System.Runtime.Intrinsics.Vector128<float> right) { throw null; }
         public static bool TestNotZAndNotC(System.Runtime.Intrinsics.Vector256<byte> left, System.Runtime.Intrinsics.Vector256<byte> right) { throw null; }
@@ -3277,13 +3277,13 @@ namespace System.Runtime.Intrinsics.X86
         public static bool TestNotZAndNotC(System.Runtime.Intrinsics.Vector256<short> left, System.Runtime.Intrinsics.Vector256<short> right) { throw null; }
         public static bool TestNotZAndNotC(System.Runtime.Intrinsics.Vector256<int> left, System.Runtime.Intrinsics.Vector256<int> right) { throw null; }
         public static bool TestNotZAndNotC(System.Runtime.Intrinsics.Vector256<long> left, System.Runtime.Intrinsics.Vector256<long> right) { throw null; }
-        public static bool TestNotZAndNotC(System.Runtime.Intrinsics.Vector256<nint> left, System.Runtime.Intrinsics.Vector256<nint> right) { throw null; }
+        public static bool TestNotZAndNotC(System.Runtime.Intrinsics.Vector256<System.IntPtr> left, System.Runtime.Intrinsics.Vector256<System.IntPtr> right) { throw null; }
         public static bool TestNotZAndNotC(System.Runtime.Intrinsics.Vector256<sbyte> left, System.Runtime.Intrinsics.Vector256<sbyte> right) { throw null; }
         public static bool TestNotZAndNotC(System.Runtime.Intrinsics.Vector256<float> left, System.Runtime.Intrinsics.Vector256<float> right) { throw null; }
         public static bool TestNotZAndNotC(System.Runtime.Intrinsics.Vector256<ushort> left, System.Runtime.Intrinsics.Vector256<ushort> right) { throw null; }
         public static bool TestNotZAndNotC(System.Runtime.Intrinsics.Vector256<uint> left, System.Runtime.Intrinsics.Vector256<uint> right) { throw null; }
         public static bool TestNotZAndNotC(System.Runtime.Intrinsics.Vector256<ulong> left, System.Runtime.Intrinsics.Vector256<ulong> right) { throw null; }
-        public static bool TestNotZAndNotC(System.Runtime.Intrinsics.Vector256<nuint> left, System.Runtime.Intrinsics.Vector256<nuint> right) { throw null; }
+        public static bool TestNotZAndNotC(System.Runtime.Intrinsics.Vector256<System.UIntPtr> left, System.Runtime.Intrinsics.Vector256<System.UIntPtr> right) { throw null; }
         public static bool TestZ(System.Runtime.Intrinsics.Vector128<double> left, System.Runtime.Intrinsics.Vector128<double> right) { throw null; }
         public static bool TestZ(System.Runtime.Intrinsics.Vector128<float> left, System.Runtime.Intrinsics.Vector128<float> right) { throw null; }
         public static bool TestZ(System.Runtime.Intrinsics.Vector256<byte> left, System.Runtime.Intrinsics.Vector256<byte> right) { throw null; }
@@ -3291,13 +3291,13 @@ namespace System.Runtime.Intrinsics.X86
         public static bool TestZ(System.Runtime.Intrinsics.Vector256<short> left, System.Runtime.Intrinsics.Vector256<short> right) { throw null; }
         public static bool TestZ(System.Runtime.Intrinsics.Vector256<int> left, System.Runtime.Intrinsics.Vector256<int> right) { throw null; }
         public static bool TestZ(System.Runtime.Intrinsics.Vector256<long> left, System.Runtime.Intrinsics.Vector256<long> right) { throw null; }
-        public static bool TestZ(System.Runtime.Intrinsics.Vector256<nint> left, System.Runtime.Intrinsics.Vector256<nint> right) { throw null; }
+        public static bool TestZ(System.Runtime.Intrinsics.Vector256<System.IntPtr> left, System.Runtime.Intrinsics.Vector256<System.IntPtr> right) { throw null; }
         public static bool TestZ(System.Runtime.Intrinsics.Vector256<sbyte> left, System.Runtime.Intrinsics.Vector256<sbyte> right) { throw null; }
         public static bool TestZ(System.Runtime.Intrinsics.Vector256<float> left, System.Runtime.Intrinsics.Vector256<float> right) { throw null; }
         public static bool TestZ(System.Runtime.Intrinsics.Vector256<ushort> left, System.Runtime.Intrinsics.Vector256<ushort> right) { throw null; }
         public static bool TestZ(System.Runtime.Intrinsics.Vector256<uint> left, System.Runtime.Intrinsics.Vector256<uint> right) { throw null; }
         public static bool TestZ(System.Runtime.Intrinsics.Vector256<ulong> left, System.Runtime.Intrinsics.Vector256<ulong> right) { throw null; }
-        public static bool TestZ(System.Runtime.Intrinsics.Vector256<nuint> left, System.Runtime.Intrinsics.Vector256<nuint> right) { throw null; }
+        public static bool TestZ(System.Runtime.Intrinsics.Vector256<System.UIntPtr> left, System.Runtime.Intrinsics.Vector256<System.UIntPtr> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<double> UnpackHigh(System.Runtime.Intrinsics.Vector256<double> left, System.Runtime.Intrinsics.Vector256<double> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<float> UnpackHigh(System.Runtime.Intrinsics.Vector256<float> left, System.Runtime.Intrinsics.Vector256<float> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<double> UnpackLow(System.Runtime.Intrinsics.Vector256<double> left, System.Runtime.Intrinsics.Vector256<double> right) { throw null; }
@@ -3322,10 +3322,12 @@ namespace System.Runtime.Intrinsics.X86
         public static System.Runtime.Intrinsics.Vector256<short> Add(System.Runtime.Intrinsics.Vector256<short> left, System.Runtime.Intrinsics.Vector256<short> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<int> Add(System.Runtime.Intrinsics.Vector256<int> left, System.Runtime.Intrinsics.Vector256<int> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<long> Add(System.Runtime.Intrinsics.Vector256<long> left, System.Runtime.Intrinsics.Vector256<long> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.IntPtr> Add(System.Runtime.Intrinsics.Vector256<System.IntPtr> left, System.Runtime.Intrinsics.Vector256<System.IntPtr> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<sbyte> Add(System.Runtime.Intrinsics.Vector256<sbyte> left, System.Runtime.Intrinsics.Vector256<sbyte> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ushort> Add(System.Runtime.Intrinsics.Vector256<ushort> left, System.Runtime.Intrinsics.Vector256<ushort> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<uint> Add(System.Runtime.Intrinsics.Vector256<uint> left, System.Runtime.Intrinsics.Vector256<uint> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ulong> Add(System.Runtime.Intrinsics.Vector256<ulong> left, System.Runtime.Intrinsics.Vector256<ulong> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.UIntPtr> Add(System.Runtime.Intrinsics.Vector256<System.UIntPtr> left, System.Runtime.Intrinsics.Vector256<System.UIntPtr> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<byte> AddSaturate(System.Runtime.Intrinsics.Vector256<byte> left, System.Runtime.Intrinsics.Vector256<byte> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<short> AddSaturate(System.Runtime.Intrinsics.Vector256<short> left, System.Runtime.Intrinsics.Vector256<short> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<sbyte> AddSaturate(System.Runtime.Intrinsics.Vector256<sbyte> left, System.Runtime.Intrinsics.Vector256<sbyte> right) { throw null; }
@@ -3334,26 +3336,32 @@ namespace System.Runtime.Intrinsics.X86
         public static System.Runtime.Intrinsics.Vector256<short> AlignRight(System.Runtime.Intrinsics.Vector256<short> left, System.Runtime.Intrinsics.Vector256<short> right, byte mask) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<int> AlignRight(System.Runtime.Intrinsics.Vector256<int> left, System.Runtime.Intrinsics.Vector256<int> right, byte mask) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<long> AlignRight(System.Runtime.Intrinsics.Vector256<long> left, System.Runtime.Intrinsics.Vector256<long> right, byte mask) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.IntPtr> AlignRight(System.Runtime.Intrinsics.Vector256<System.IntPtr> left, System.Runtime.Intrinsics.Vector256<System.IntPtr> right, byte mask) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<sbyte> AlignRight(System.Runtime.Intrinsics.Vector256<sbyte> left, System.Runtime.Intrinsics.Vector256<sbyte> right, byte mask) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ushort> AlignRight(System.Runtime.Intrinsics.Vector256<ushort> left, System.Runtime.Intrinsics.Vector256<ushort> right, byte mask) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<uint> AlignRight(System.Runtime.Intrinsics.Vector256<uint> left, System.Runtime.Intrinsics.Vector256<uint> right, byte mask) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ulong> AlignRight(System.Runtime.Intrinsics.Vector256<ulong> left, System.Runtime.Intrinsics.Vector256<ulong> right, byte mask) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.UIntPtr> AlignRight(System.Runtime.Intrinsics.Vector256<System.UIntPtr> left, System.Runtime.Intrinsics.Vector256<System.UIntPtr> right, byte mask) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<byte> And(System.Runtime.Intrinsics.Vector256<byte> left, System.Runtime.Intrinsics.Vector256<byte> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<short> And(System.Runtime.Intrinsics.Vector256<short> left, System.Runtime.Intrinsics.Vector256<short> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<int> And(System.Runtime.Intrinsics.Vector256<int> left, System.Runtime.Intrinsics.Vector256<int> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<long> And(System.Runtime.Intrinsics.Vector256<long> left, System.Runtime.Intrinsics.Vector256<long> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.IntPtr> And(System.Runtime.Intrinsics.Vector256<System.IntPtr> left, System.Runtime.Intrinsics.Vector256<System.IntPtr> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<sbyte> And(System.Runtime.Intrinsics.Vector256<sbyte> left, System.Runtime.Intrinsics.Vector256<sbyte> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ushort> And(System.Runtime.Intrinsics.Vector256<ushort> left, System.Runtime.Intrinsics.Vector256<ushort> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<uint> And(System.Runtime.Intrinsics.Vector256<uint> left, System.Runtime.Intrinsics.Vector256<uint> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ulong> And(System.Runtime.Intrinsics.Vector256<ulong> left, System.Runtime.Intrinsics.Vector256<ulong> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.UIntPtr> And(System.Runtime.Intrinsics.Vector256<System.UIntPtr> left, System.Runtime.Intrinsics.Vector256<System.UIntPtr> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<byte> AndNot(System.Runtime.Intrinsics.Vector256<byte> left, System.Runtime.Intrinsics.Vector256<byte> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<short> AndNot(System.Runtime.Intrinsics.Vector256<short> left, System.Runtime.Intrinsics.Vector256<short> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<int> AndNot(System.Runtime.Intrinsics.Vector256<int> left, System.Runtime.Intrinsics.Vector256<int> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<long> AndNot(System.Runtime.Intrinsics.Vector256<long> left, System.Runtime.Intrinsics.Vector256<long> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.IntPtr> AndNot(System.Runtime.Intrinsics.Vector256<System.IntPtr> left, System.Runtime.Intrinsics.Vector256<System.IntPtr> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<sbyte> AndNot(System.Runtime.Intrinsics.Vector256<sbyte> left, System.Runtime.Intrinsics.Vector256<sbyte> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ushort> AndNot(System.Runtime.Intrinsics.Vector256<ushort> left, System.Runtime.Intrinsics.Vector256<ushort> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<uint> AndNot(System.Runtime.Intrinsics.Vector256<uint> left, System.Runtime.Intrinsics.Vector256<uint> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ulong> AndNot(System.Runtime.Intrinsics.Vector256<ulong> left, System.Runtime.Intrinsics.Vector256<ulong> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.UIntPtr> AndNot(System.Runtime.Intrinsics.Vector256<System.UIntPtr> left, System.Runtime.Intrinsics.Vector256<System.UIntPtr> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<byte> Average(System.Runtime.Intrinsics.Vector256<byte> left, System.Runtime.Intrinsics.Vector256<byte> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ushort> Average(System.Runtime.Intrinsics.Vector256<ushort> left, System.Runtime.Intrinsics.Vector256<ushort> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<int> Blend(System.Runtime.Intrinsics.Vector128<int> left, System.Runtime.Intrinsics.Vector128<int> right, byte control) { throw null; }
@@ -3366,65 +3374,80 @@ namespace System.Runtime.Intrinsics.X86
         public static System.Runtime.Intrinsics.Vector256<short> BlendVariable(System.Runtime.Intrinsics.Vector256<short> left, System.Runtime.Intrinsics.Vector256<short> right, System.Runtime.Intrinsics.Vector256<short> mask) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<int> BlendVariable(System.Runtime.Intrinsics.Vector256<int> left, System.Runtime.Intrinsics.Vector256<int> right, System.Runtime.Intrinsics.Vector256<int> mask) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<long> BlendVariable(System.Runtime.Intrinsics.Vector256<long> left, System.Runtime.Intrinsics.Vector256<long> right, System.Runtime.Intrinsics.Vector256<long> mask) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.IntPtr> BlendVariable(System.Runtime.Intrinsics.Vector256<System.IntPtr> left, System.Runtime.Intrinsics.Vector256<System.IntPtr> right, System.Runtime.Intrinsics.Vector256<System.IntPtr> mask) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<sbyte> BlendVariable(System.Runtime.Intrinsics.Vector256<sbyte> left, System.Runtime.Intrinsics.Vector256<sbyte> right, System.Runtime.Intrinsics.Vector256<sbyte> mask) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ushort> BlendVariable(System.Runtime.Intrinsics.Vector256<ushort> left, System.Runtime.Intrinsics.Vector256<ushort> right, System.Runtime.Intrinsics.Vector256<ushort> mask) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<uint> BlendVariable(System.Runtime.Intrinsics.Vector256<uint> left, System.Runtime.Intrinsics.Vector256<uint> right, System.Runtime.Intrinsics.Vector256<uint> mask) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ulong> BlendVariable(System.Runtime.Intrinsics.Vector256<ulong> left, System.Runtime.Intrinsics.Vector256<ulong> right, System.Runtime.Intrinsics.Vector256<ulong> mask) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.UIntPtr> BlendVariable(System.Runtime.Intrinsics.Vector256<System.UIntPtr> left, System.Runtime.Intrinsics.Vector256<System.UIntPtr> right, System.Runtime.Intrinsics.Vector256<System.UIntPtr> mask) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<byte> BroadcastScalarToVector128(byte* source) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<short> BroadcastScalarToVector128(short* source) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<int> BroadcastScalarToVector128(int* source) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<long> BroadcastScalarToVector128(long* source) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<System.IntPtr> BroadcastScalarToVector128(System.IntPtr* source) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<byte> BroadcastScalarToVector128(System.Runtime.Intrinsics.Vector128<byte> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<double> BroadcastScalarToVector128(System.Runtime.Intrinsics.Vector128<double> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<short> BroadcastScalarToVector128(System.Runtime.Intrinsics.Vector128<short> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<int> BroadcastScalarToVector128(System.Runtime.Intrinsics.Vector128<int> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<long> BroadcastScalarToVector128(System.Runtime.Intrinsics.Vector128<long> value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.IntPtr> BroadcastScalarToVector128(System.Runtime.Intrinsics.Vector128<System.IntPtr> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<sbyte> BroadcastScalarToVector128(System.Runtime.Intrinsics.Vector128<sbyte> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<float> BroadcastScalarToVector128(System.Runtime.Intrinsics.Vector128<float> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ushort> BroadcastScalarToVector128(System.Runtime.Intrinsics.Vector128<ushort> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<uint> BroadcastScalarToVector128(System.Runtime.Intrinsics.Vector128<uint> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ulong> BroadcastScalarToVector128(System.Runtime.Intrinsics.Vector128<ulong> value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.UIntPtr> BroadcastScalarToVector128(System.Runtime.Intrinsics.Vector128<System.UIntPtr> value) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<sbyte> BroadcastScalarToVector128(sbyte* source) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<ushort> BroadcastScalarToVector128(ushort* source) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<uint> BroadcastScalarToVector128(uint* source) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<ulong> BroadcastScalarToVector128(ulong* source) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<System.UIntPtr> BroadcastScalarToVector128(System.UIntPtr* source) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<byte> BroadcastScalarToVector256(byte* source) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<short> BroadcastScalarToVector256(short* source) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<int> BroadcastScalarToVector256(int* source) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<long> BroadcastScalarToVector256(long* source) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector256<System.IntPtr> BroadcastScalarToVector256(System.IntPtr* source) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<byte> BroadcastScalarToVector256(System.Runtime.Intrinsics.Vector128<byte> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<double> BroadcastScalarToVector256(System.Runtime.Intrinsics.Vector128<double> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<short> BroadcastScalarToVector256(System.Runtime.Intrinsics.Vector128<short> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<int> BroadcastScalarToVector256(System.Runtime.Intrinsics.Vector128<int> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<long> BroadcastScalarToVector256(System.Runtime.Intrinsics.Vector128<long> value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.IntPtr> BroadcastScalarToVector256(System.Runtime.Intrinsics.Vector128<System.IntPtr> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<sbyte> BroadcastScalarToVector256(System.Runtime.Intrinsics.Vector128<sbyte> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<float> BroadcastScalarToVector256(System.Runtime.Intrinsics.Vector128<float> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ushort> BroadcastScalarToVector256(System.Runtime.Intrinsics.Vector128<ushort> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<uint> BroadcastScalarToVector256(System.Runtime.Intrinsics.Vector128<uint> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ulong> BroadcastScalarToVector256(System.Runtime.Intrinsics.Vector128<ulong> value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.UIntPtr> BroadcastScalarToVector256(System.Runtime.Intrinsics.Vector128<System.UIntPtr> value) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<sbyte> BroadcastScalarToVector256(sbyte* source) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<ushort> BroadcastScalarToVector256(ushort* source) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<uint> BroadcastScalarToVector256(uint* source) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<ulong> BroadcastScalarToVector256(ulong* source) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector256<System.UIntPtr> BroadcastScalarToVector256(System.UIntPtr* source) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<byte> BroadcastVector128ToVector256(byte* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<short> BroadcastVector128ToVector256(short* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<int> BroadcastVector128ToVector256(int* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<long> BroadcastVector128ToVector256(long* address) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector256<System.IntPtr> BroadcastVector128ToVector256(System.IntPtr* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<sbyte> BroadcastVector128ToVector256(sbyte* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<ushort> BroadcastVector128ToVector256(ushort* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<uint> BroadcastVector128ToVector256(uint* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<ulong> BroadcastVector128ToVector256(ulong* address) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector256<System.UIntPtr> BroadcastVector128ToVector256(System.UIntPtr* address) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<byte> CompareEqual(System.Runtime.Intrinsics.Vector256<byte> left, System.Runtime.Intrinsics.Vector256<byte> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<short> CompareEqual(System.Runtime.Intrinsics.Vector256<short> left, System.Runtime.Intrinsics.Vector256<short> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<int> CompareEqual(System.Runtime.Intrinsics.Vector256<int> left, System.Runtime.Intrinsics.Vector256<int> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<long> CompareEqual(System.Runtime.Intrinsics.Vector256<long> left, System.Runtime.Intrinsics.Vector256<long> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.IntPtr> CompareEqual(System.Runtime.Intrinsics.Vector256<System.IntPtr> left, System.Runtime.Intrinsics.Vector256<System.IntPtr> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<sbyte> CompareEqual(System.Runtime.Intrinsics.Vector256<sbyte> left, System.Runtime.Intrinsics.Vector256<sbyte> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ushort> CompareEqual(System.Runtime.Intrinsics.Vector256<ushort> left, System.Runtime.Intrinsics.Vector256<ushort> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<uint> CompareEqual(System.Runtime.Intrinsics.Vector256<uint> left, System.Runtime.Intrinsics.Vector256<uint> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ulong> CompareEqual(System.Runtime.Intrinsics.Vector256<ulong> left, System.Runtime.Intrinsics.Vector256<ulong> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.UIntPtr> CompareEqual(System.Runtime.Intrinsics.Vector256<System.UIntPtr> left, System.Runtime.Intrinsics.Vector256<System.UIntPtr> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<short> CompareGreaterThan(System.Runtime.Intrinsics.Vector256<short> left, System.Runtime.Intrinsics.Vector256<short> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<int> CompareGreaterThan(System.Runtime.Intrinsics.Vector256<int> left, System.Runtime.Intrinsics.Vector256<int> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<long> CompareGreaterThan(System.Runtime.Intrinsics.Vector256<long> left, System.Runtime.Intrinsics.Vector256<long> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.IntPtr> CompareGreaterThan(System.Runtime.Intrinsics.Vector256<System.IntPtr> left, System.Runtime.Intrinsics.Vector256<System.IntPtr> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<sbyte> CompareGreaterThan(System.Runtime.Intrinsics.Vector256<sbyte> left, System.Runtime.Intrinsics.Vector256<sbyte> right) { throw null; }
         public static int ConvertToInt32(System.Runtime.Intrinsics.Vector256<int> value) { throw null; }
         public static uint ConvertToUInt32(System.Runtime.Intrinsics.Vector256<uint> value) { throw null; }
@@ -3452,62 +3475,104 @@ namespace System.Runtime.Intrinsics.X86
         public unsafe static System.Runtime.Intrinsics.Vector256<long> ConvertToVector256Int64(sbyte* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<long> ConvertToVector256Int64(ushort* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<long> ConvertToVector256Int64(uint* address) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector256<System.IntPtr> ConvertToVector256NInt(byte* address) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector256<System.IntPtr> ConvertToVector256NInt(short* address) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector256<System.IntPtr> ConvertToVector256NInt(int* address) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.IntPtr> ConvertToVector256NInt(System.Runtime.Intrinsics.Vector128<byte> value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.IntPtr> ConvertToVector256NInt(System.Runtime.Intrinsics.Vector128<short> value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.IntPtr> ConvertToVector256NInt(System.Runtime.Intrinsics.Vector128<int> value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.IntPtr> ConvertToVector256NInt(System.Runtime.Intrinsics.Vector128<sbyte> value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.IntPtr> ConvertToVector256NInt(System.Runtime.Intrinsics.Vector128<ushort> value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.IntPtr> ConvertToVector256NInt(System.Runtime.Intrinsics.Vector128<uint> value) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector256<System.IntPtr> ConvertToVector256NInt(sbyte* address) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector256<System.IntPtr> ConvertToVector256NInt(ushort* address) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector256<System.IntPtr> ConvertToVector256NInt(uint* address) { throw null; }
         public static new System.Runtime.Intrinsics.Vector128<byte> ExtractVector128(System.Runtime.Intrinsics.Vector256<byte> value, byte index) { throw null; }
         public static new System.Runtime.Intrinsics.Vector128<short> ExtractVector128(System.Runtime.Intrinsics.Vector256<short> value, byte index) { throw null; }
         public static new System.Runtime.Intrinsics.Vector128<int> ExtractVector128(System.Runtime.Intrinsics.Vector256<int> value, byte index) { throw null; }
         public static new System.Runtime.Intrinsics.Vector128<long> ExtractVector128(System.Runtime.Intrinsics.Vector256<long> value, byte index) { throw null; }
+        public static new System.Runtime.Intrinsics.Vector128<System.IntPtr> ExtractVector128(System.Runtime.Intrinsics.Vector256<System.IntPtr> value, byte index) { throw null; }
         public static new System.Runtime.Intrinsics.Vector128<sbyte> ExtractVector128(System.Runtime.Intrinsics.Vector256<sbyte> value, byte index) { throw null; }
         public static new System.Runtime.Intrinsics.Vector128<ushort> ExtractVector128(System.Runtime.Intrinsics.Vector256<ushort> value, byte index) { throw null; }
         public static new System.Runtime.Intrinsics.Vector128<uint> ExtractVector128(System.Runtime.Intrinsics.Vector256<uint> value, byte index) { throw null; }
         public static new System.Runtime.Intrinsics.Vector128<ulong> ExtractVector128(System.Runtime.Intrinsics.Vector256<ulong> value, byte index) { throw null; }
+        public static new System.Runtime.Intrinsics.Vector128<System.UIntPtr> ExtractVector128(System.Runtime.Intrinsics.Vector256<System.UIntPtr> value, byte index) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<double> GatherMaskVector128(System.Runtime.Intrinsics.Vector128<double> source, double* baseAddress, System.Runtime.Intrinsics.Vector128<int> index, System.Runtime.Intrinsics.Vector128<double> mask, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<double> GatherMaskVector128(System.Runtime.Intrinsics.Vector128<double> source, double* baseAddress, System.Runtime.Intrinsics.Vector128<long> index, System.Runtime.Intrinsics.Vector128<double> mask, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<int> GatherMaskVector128(System.Runtime.Intrinsics.Vector128<int> source, int* baseAddress, System.Runtime.Intrinsics.Vector128<int> index, System.Runtime.Intrinsics.Vector128<int> mask, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<int> GatherMaskVector128(System.Runtime.Intrinsics.Vector128<int> source, int* baseAddress, System.Runtime.Intrinsics.Vector128<long> index, System.Runtime.Intrinsics.Vector128<int> mask, byte scale) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<int> GatherMaskVector128(System.Runtime.Intrinsics.Vector128<int> source, int* baseAddress, System.Runtime.Intrinsics.Vector128<System.IntPtr> index, System.Runtime.Intrinsics.Vector128<int> mask, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<int> GatherMaskVector128(System.Runtime.Intrinsics.Vector128<int> source, int* baseAddress, System.Runtime.Intrinsics.Vector256<long> index, System.Runtime.Intrinsics.Vector128<int> mask, byte scale) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<int> GatherMaskVector128(System.Runtime.Intrinsics.Vector128<int> source, int* baseAddress, System.Runtime.Intrinsics.Vector256<System.IntPtr> index, System.Runtime.Intrinsics.Vector128<int> mask, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<long> GatherMaskVector128(System.Runtime.Intrinsics.Vector128<long> source, long* baseAddress, System.Runtime.Intrinsics.Vector128<int> index, System.Runtime.Intrinsics.Vector128<long> mask, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<long> GatherMaskVector128(System.Runtime.Intrinsics.Vector128<long> source, long* baseAddress, System.Runtime.Intrinsics.Vector128<long> index, System.Runtime.Intrinsics.Vector128<long> mask, byte scale) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<long> GatherMaskVector128(System.Runtime.Intrinsics.Vector128<long> source, long* baseAddress, System.Runtime.Intrinsics.Vector128<System.IntPtr> index, System.Runtime.Intrinsics.Vector128<long> mask, byte scale) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<System.IntPtr> GatherMaskVector128(System.Runtime.Intrinsics.Vector128<System.IntPtr> source, System.IntPtr* baseAddress, System.Runtime.Intrinsics.Vector128<int> index, System.Runtime.Intrinsics.Vector128<System.IntPtr> mask, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<float> GatherMaskVector128(System.Runtime.Intrinsics.Vector128<float> source, float* baseAddress, System.Runtime.Intrinsics.Vector128<int> index, System.Runtime.Intrinsics.Vector128<float> mask, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<float> GatherMaskVector128(System.Runtime.Intrinsics.Vector128<float> source, float* baseAddress, System.Runtime.Intrinsics.Vector128<long> index, System.Runtime.Intrinsics.Vector128<float> mask, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<float> GatherMaskVector128(System.Runtime.Intrinsics.Vector128<float> source, float* baseAddress, System.Runtime.Intrinsics.Vector256<long> index, System.Runtime.Intrinsics.Vector128<float> mask, byte scale) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<float> GatherMaskVector128(System.Runtime.Intrinsics.Vector128<float> source, float* baseAddress, System.Runtime.Intrinsics.Vector256<System.IntPtr> index, System.Runtime.Intrinsics.Vector128<float> mask, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<uint> GatherMaskVector128(System.Runtime.Intrinsics.Vector128<uint> source, uint* baseAddress, System.Runtime.Intrinsics.Vector128<int> index, System.Runtime.Intrinsics.Vector128<uint> mask, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<uint> GatherMaskVector128(System.Runtime.Intrinsics.Vector128<uint> source, uint* baseAddress, System.Runtime.Intrinsics.Vector128<long> index, System.Runtime.Intrinsics.Vector128<uint> mask, byte scale) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<uint> GatherMaskVector128(System.Runtime.Intrinsics.Vector128<uint> source, uint* baseAddress, System.Runtime.Intrinsics.Vector128<System.IntPtr> index, System.Runtime.Intrinsics.Vector128<uint> mask, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<uint> GatherMaskVector128(System.Runtime.Intrinsics.Vector128<uint> source, uint* baseAddress, System.Runtime.Intrinsics.Vector256<long> index, System.Runtime.Intrinsics.Vector128<uint> mask, byte scale) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<uint> GatherMaskVector128(System.Runtime.Intrinsics.Vector128<uint> source, uint* baseAddress, System.Runtime.Intrinsics.Vector256<System.IntPtr> index, System.Runtime.Intrinsics.Vector128<uint> mask, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<ulong> GatherMaskVector128(System.Runtime.Intrinsics.Vector128<ulong> source, ulong* baseAddress, System.Runtime.Intrinsics.Vector128<int> index, System.Runtime.Intrinsics.Vector128<ulong> mask, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<ulong> GatherMaskVector128(System.Runtime.Intrinsics.Vector128<ulong> source, ulong* baseAddress, System.Runtime.Intrinsics.Vector128<long> index, System.Runtime.Intrinsics.Vector128<ulong> mask, byte scale) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<ulong> GatherMaskVector128(System.Runtime.Intrinsics.Vector128<ulong> source, ulong* baseAddress, System.Runtime.Intrinsics.Vector128<System.IntPtr> index, System.Runtime.Intrinsics.Vector128<ulong> mask, byte scale) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<System.UIntPtr> GatherMaskVector128(System.Runtime.Intrinsics.Vector128<System.UIntPtr> source, System.UIntPtr* baseAddress, System.Runtime.Intrinsics.Vector128<int> index, System.Runtime.Intrinsics.Vector128<System.UIntPtr> mask, byte scale) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector256<double> GatherMaskVector256(System.Runtime.Intrinsics.Vector128<double> source, double* baseAddress, System.Runtime.Intrinsics.Vector256<System.IntPtr> index, System.Runtime.Intrinsics.Vector128<double> mask, byte scale) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector256<long> GatherMaskVector256(System.Runtime.Intrinsics.Vector128<long> source, long* baseAddress, System.Runtime.Intrinsics.Vector256<System.IntPtr> index, System.Runtime.Intrinsics.Vector128<long> mask, byte scale) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector256<System.IntPtr> GatherMaskVector256(System.Runtime.Intrinsics.Vector128<System.IntPtr> source, System.IntPtr* baseAddress, System.Runtime.Intrinsics.Vector256<System.IntPtr> index, System.Runtime.Intrinsics.Vector128<System.IntPtr> mask, byte scale) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector256<ulong> GatherMaskVector256(System.Runtime.Intrinsics.Vector128<ulong> source, ulong* baseAddress, System.Runtime.Intrinsics.Vector256<System.IntPtr> index, System.Runtime.Intrinsics.Vector128<ulong> mask, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<double> GatherMaskVector256(System.Runtime.Intrinsics.Vector256<double> source, double* baseAddress, System.Runtime.Intrinsics.Vector128<int> index, System.Runtime.Intrinsics.Vector256<double> mask, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<double> GatherMaskVector256(System.Runtime.Intrinsics.Vector256<double> source, double* baseAddress, System.Runtime.Intrinsics.Vector256<long> index, System.Runtime.Intrinsics.Vector256<double> mask, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<int> GatherMaskVector256(System.Runtime.Intrinsics.Vector256<int> source, int* baseAddress, System.Runtime.Intrinsics.Vector256<int> index, System.Runtime.Intrinsics.Vector256<int> mask, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<long> GatherMaskVector256(System.Runtime.Intrinsics.Vector256<long> source, long* baseAddress, System.Runtime.Intrinsics.Vector128<int> index, System.Runtime.Intrinsics.Vector256<long> mask, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<long> GatherMaskVector256(System.Runtime.Intrinsics.Vector256<long> source, long* baseAddress, System.Runtime.Intrinsics.Vector256<long> index, System.Runtime.Intrinsics.Vector256<long> mask, byte scale) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector256<System.IntPtr> GatherMaskVector256(System.Runtime.Intrinsics.Vector256<System.IntPtr> source, System.IntPtr* baseAddress, System.Runtime.Intrinsics.Vector128<int> index, System.Runtime.Intrinsics.Vector256<System.IntPtr> mask, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<float> GatherMaskVector256(System.Runtime.Intrinsics.Vector256<float> source, float* baseAddress, System.Runtime.Intrinsics.Vector256<int> index, System.Runtime.Intrinsics.Vector256<float> mask, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<uint> GatherMaskVector256(System.Runtime.Intrinsics.Vector256<uint> source, uint* baseAddress, System.Runtime.Intrinsics.Vector256<int> index, System.Runtime.Intrinsics.Vector256<uint> mask, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<ulong> GatherMaskVector256(System.Runtime.Intrinsics.Vector256<ulong> source, ulong* baseAddress, System.Runtime.Intrinsics.Vector128<int> index, System.Runtime.Intrinsics.Vector256<ulong> mask, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<ulong> GatherMaskVector256(System.Runtime.Intrinsics.Vector256<ulong> source, ulong* baseAddress, System.Runtime.Intrinsics.Vector256<long> index, System.Runtime.Intrinsics.Vector256<ulong> mask, byte scale) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector256<System.UIntPtr> GatherMaskVector256(System.Runtime.Intrinsics.Vector256<System.UIntPtr> source, System.UIntPtr* baseAddress, System.Runtime.Intrinsics.Vector128<int> index, System.Runtime.Intrinsics.Vector256<System.UIntPtr> mask, byte scale) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector256<System.UIntPtr> GatherMaskVector256(System.Runtime.Intrinsics.Vector256<System.UIntPtr> source, System.UIntPtr* baseAddress, System.Runtime.Intrinsics.Vector256<System.UIntPtr> index, System.Runtime.Intrinsics.Vector128<System.UIntPtr> mask, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<double> GatherVector128(double* baseAddress, System.Runtime.Intrinsics.Vector128<int> index, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<double> GatherVector128(double* baseAddress, System.Runtime.Intrinsics.Vector128<long> index, byte scale) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<double> GatherVector128(double* baseAddress, System.Runtime.Intrinsics.Vector128<System.IntPtr> index, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<int> GatherVector128(int* baseAddress, System.Runtime.Intrinsics.Vector128<int> index, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<int> GatherVector128(int* baseAddress, System.Runtime.Intrinsics.Vector128<long> index, byte scale) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<int> GatherVector128(int* baseAddress, System.Runtime.Intrinsics.Vector128<System.IntPtr> index, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<int> GatherVector128(int* baseAddress, System.Runtime.Intrinsics.Vector256<long> index, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<long> GatherVector128(long* baseAddress, System.Runtime.Intrinsics.Vector128<int> index, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<long> GatherVector128(long* baseAddress, System.Runtime.Intrinsics.Vector128<long> index, byte scale) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<long> GatherVector128(long* baseAddress, System.Runtime.Intrinsics.Vector128<System.IntPtr> index, byte scale) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<System.IntPtr> GatherVector128(System.IntPtr* baseAddress, System.Runtime.Intrinsics.Vector128<int> index, byte scale) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<System.IntPtr> GatherVector128(System.IntPtr* baseAddress, System.Runtime.Intrinsics.Vector128<System.IntPtr> index, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<float> GatherVector128(float* baseAddress, System.Runtime.Intrinsics.Vector128<int> index, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<float> GatherVector128(float* baseAddress, System.Runtime.Intrinsics.Vector128<long> index, byte scale) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<float> GatherVector128(float* baseAddress, System.Runtime.Intrinsics.Vector128<System.IntPtr> index, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<float> GatherVector128(float* baseAddress, System.Runtime.Intrinsics.Vector256<long> index, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<uint> GatherVector128(uint* baseAddress, System.Runtime.Intrinsics.Vector128<int> index, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<uint> GatherVector128(uint* baseAddress, System.Runtime.Intrinsics.Vector128<long> index, byte scale) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<uint> GatherVector128(uint* baseAddress, System.Runtime.Intrinsics.Vector128<System.IntPtr> index, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<uint> GatherVector128(uint* baseAddress, System.Runtime.Intrinsics.Vector256<long> index, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<ulong> GatherVector128(ulong* baseAddress, System.Runtime.Intrinsics.Vector128<int> index, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<ulong> GatherVector128(ulong* baseAddress, System.Runtime.Intrinsics.Vector128<long> index, byte scale) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<ulong> GatherVector128(ulong* baseAddress, System.Runtime.Intrinsics.Vector128<System.IntPtr> index, byte scale) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<System.UIntPtr> GatherVector128(System.UIntPtr* baseAddress, System.Runtime.Intrinsics.Vector128<int> index, byte scale) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<System.UIntPtr> GatherVector128(System.UIntPtr* baseAddress, System.Runtime.Intrinsics.Vector128<System.IntPtr> index, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<double> GatherVector256(double* baseAddress, System.Runtime.Intrinsics.Vector128<int> index, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<double> GatherVector256(double* baseAddress, System.Runtime.Intrinsics.Vector256<long> index, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<int> GatherVector256(int* baseAddress, System.Runtime.Intrinsics.Vector256<int> index, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<long> GatherVector256(long* baseAddress, System.Runtime.Intrinsics.Vector128<int> index, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<long> GatherVector256(long* baseAddress, System.Runtime.Intrinsics.Vector256<long> index, byte scale) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector256<System.IntPtr> GatherVector256(System.IntPtr* baseAddress, System.Runtime.Intrinsics.Vector128<int> index, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<float> GatherVector256(float* baseAddress, System.Runtime.Intrinsics.Vector256<int> index, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<uint> GatherVector256(uint* baseAddress, System.Runtime.Intrinsics.Vector256<int> index, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<ulong> GatherVector256(ulong* baseAddress, System.Runtime.Intrinsics.Vector128<int> index, byte scale) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<ulong> GatherVector256(ulong* baseAddress, System.Runtime.Intrinsics.Vector256<long> index, byte scale) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector256<System.UIntPtr> GatherVector256(System.UIntPtr* baseAddress, System.Runtime.Intrinsics.Vector128<int> index, byte scale) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<short> HorizontalAdd(System.Runtime.Intrinsics.Vector256<short> left, System.Runtime.Intrinsics.Vector256<short> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<int> HorizontalAdd(System.Runtime.Intrinsics.Vector256<int> left, System.Runtime.Intrinsics.Vector256<int> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<short> HorizontalAddSaturate(System.Runtime.Intrinsics.Vector256<short> left, System.Runtime.Intrinsics.Vector256<short> right) { throw null; }
@@ -3518,34 +3583,46 @@ namespace System.Runtime.Intrinsics.X86
         public static new System.Runtime.Intrinsics.Vector256<short> InsertVector128(System.Runtime.Intrinsics.Vector256<short> value, System.Runtime.Intrinsics.Vector128<short> data, byte index) { throw null; }
         public static new System.Runtime.Intrinsics.Vector256<int> InsertVector128(System.Runtime.Intrinsics.Vector256<int> value, System.Runtime.Intrinsics.Vector128<int> data, byte index) { throw null; }
         public static new System.Runtime.Intrinsics.Vector256<long> InsertVector128(System.Runtime.Intrinsics.Vector256<long> value, System.Runtime.Intrinsics.Vector128<long> data, byte index) { throw null; }
+        public static new System.Runtime.Intrinsics.Vector256<System.IntPtr> InsertVector128(System.Runtime.Intrinsics.Vector256<System.IntPtr> value, System.Runtime.Intrinsics.Vector128<System.IntPtr> data, byte index) { throw null; }
         public static new System.Runtime.Intrinsics.Vector256<sbyte> InsertVector128(System.Runtime.Intrinsics.Vector256<sbyte> value, System.Runtime.Intrinsics.Vector128<sbyte> data, byte index) { throw null; }
         public static new System.Runtime.Intrinsics.Vector256<ushort> InsertVector128(System.Runtime.Intrinsics.Vector256<ushort> value, System.Runtime.Intrinsics.Vector128<ushort> data, byte index) { throw null; }
         public static new System.Runtime.Intrinsics.Vector256<uint> InsertVector128(System.Runtime.Intrinsics.Vector256<uint> value, System.Runtime.Intrinsics.Vector128<uint> data, byte index) { throw null; }
         public static new System.Runtime.Intrinsics.Vector256<ulong> InsertVector128(System.Runtime.Intrinsics.Vector256<ulong> value, System.Runtime.Intrinsics.Vector128<ulong> data, byte index) { throw null; }
+        public static new System.Runtime.Intrinsics.Vector256<System.UIntPtr> InsertVector128(System.Runtime.Intrinsics.Vector256<System.UIntPtr> value, System.Runtime.Intrinsics.Vector128<System.UIntPtr> data, byte index) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<byte> LoadAlignedVector256NonTemporal(byte* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<short> LoadAlignedVector256NonTemporal(short* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<int> LoadAlignedVector256NonTemporal(int* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<long> LoadAlignedVector256NonTemporal(long* address) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector256<System.IntPtr> LoadAlignedVector256NonTemporal(System.IntPtr* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<sbyte> LoadAlignedVector256NonTemporal(sbyte* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<ushort> LoadAlignedVector256NonTemporal(ushort* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<uint> LoadAlignedVector256NonTemporal(uint* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<ulong> LoadAlignedVector256NonTemporal(ulong* address) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector256<System.UIntPtr> LoadAlignedVector256NonTemporal(System.UIntPtr* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<int> MaskLoad(int* address, System.Runtime.Intrinsics.Vector128<int> mask) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<int> MaskLoad(int* address, System.Runtime.Intrinsics.Vector256<int> mask) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<long> MaskLoad(long* address, System.Runtime.Intrinsics.Vector128<long> mask) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<long> MaskLoad(long* address, System.Runtime.Intrinsics.Vector256<long> mask) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<System.IntPtr> MaskLoad(System.IntPtr* address, System.Runtime.Intrinsics.Vector128<System.IntPtr> mask) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector256<System.IntPtr> MaskLoad(System.IntPtr* address, System.Runtime.Intrinsics.Vector256<System.IntPtr> mask) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<uint> MaskLoad(uint* address, System.Runtime.Intrinsics.Vector128<uint> mask) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<uint> MaskLoad(uint* address, System.Runtime.Intrinsics.Vector256<uint> mask) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<ulong> MaskLoad(ulong* address, System.Runtime.Intrinsics.Vector128<ulong> mask) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector256<ulong> MaskLoad(ulong* address, System.Runtime.Intrinsics.Vector256<ulong> mask) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<System.UIntPtr> MaskLoad(System.UIntPtr* address, System.Runtime.Intrinsics.Vector128<System.UIntPtr> mask) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector256<System.UIntPtr> MaskLoad(System.UIntPtr* address, System.Runtime.Intrinsics.Vector256<System.UIntPtr> mask) { throw null; }
         public unsafe static void MaskStore(int* address, System.Runtime.Intrinsics.Vector128<int> mask, System.Runtime.Intrinsics.Vector128<int> source) { }
         public unsafe static void MaskStore(int* address, System.Runtime.Intrinsics.Vector256<int> mask, System.Runtime.Intrinsics.Vector256<int> source) { }
         public unsafe static void MaskStore(long* address, System.Runtime.Intrinsics.Vector128<long> mask, System.Runtime.Intrinsics.Vector128<long> source) { }
         public unsafe static void MaskStore(long* address, System.Runtime.Intrinsics.Vector256<long> mask, System.Runtime.Intrinsics.Vector256<long> source) { }
+        public unsafe static void MaskStore(System.IntPtr* address, System.Runtime.Intrinsics.Vector128<System.IntPtr> mask, System.Runtime.Intrinsics.Vector128<System.IntPtr> source) { }
+        public unsafe static void MaskStore(System.IntPtr* address, System.Runtime.Intrinsics.Vector256<System.IntPtr> mask, System.Runtime.Intrinsics.Vector256<System.IntPtr> source) { }
         public unsafe static void MaskStore(uint* address, System.Runtime.Intrinsics.Vector128<uint> mask, System.Runtime.Intrinsics.Vector128<uint> source) { }
         public unsafe static void MaskStore(uint* address, System.Runtime.Intrinsics.Vector256<uint> mask, System.Runtime.Intrinsics.Vector256<uint> source) { }
         public unsafe static void MaskStore(ulong* address, System.Runtime.Intrinsics.Vector128<ulong> mask, System.Runtime.Intrinsics.Vector128<ulong> source) { }
         public unsafe static void MaskStore(ulong* address, System.Runtime.Intrinsics.Vector256<ulong> mask, System.Runtime.Intrinsics.Vector256<ulong> source) { }
+        public unsafe static void MaskStore(System.UIntPtr* address, System.Runtime.Intrinsics.Vector128<System.UIntPtr> mask, System.Runtime.Intrinsics.Vector128<System.UIntPtr> source) { }
+        public unsafe static void MaskStore(System.UIntPtr* address, System.Runtime.Intrinsics.Vector256<System.UIntPtr> mask, System.Runtime.Intrinsics.Vector256<System.UIntPtr> source) { }
         public static System.Runtime.Intrinsics.Vector256<byte> Max(System.Runtime.Intrinsics.Vector256<byte> left, System.Runtime.Intrinsics.Vector256<byte> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<short> Max(System.Runtime.Intrinsics.Vector256<short> left, System.Runtime.Intrinsics.Vector256<short> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<int> Max(System.Runtime.Intrinsics.Vector256<int> left, System.Runtime.Intrinsics.Vector256<int> right) { throw null; }
@@ -3576,10 +3653,12 @@ namespace System.Runtime.Intrinsics.X86
         public static System.Runtime.Intrinsics.Vector256<short> Or(System.Runtime.Intrinsics.Vector256<short> left, System.Runtime.Intrinsics.Vector256<short> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<int> Or(System.Runtime.Intrinsics.Vector256<int> left, System.Runtime.Intrinsics.Vector256<int> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<long> Or(System.Runtime.Intrinsics.Vector256<long> left, System.Runtime.Intrinsics.Vector256<long> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.IntPtr> Or(System.Runtime.Intrinsics.Vector256<System.IntPtr> left, System.Runtime.Intrinsics.Vector256<System.IntPtr> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<sbyte> Or(System.Runtime.Intrinsics.Vector256<sbyte> left, System.Runtime.Intrinsics.Vector256<sbyte> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ushort> Or(System.Runtime.Intrinsics.Vector256<ushort> left, System.Runtime.Intrinsics.Vector256<ushort> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<uint> Or(System.Runtime.Intrinsics.Vector256<uint> left, System.Runtime.Intrinsics.Vector256<uint> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ulong> Or(System.Runtime.Intrinsics.Vector256<ulong> left, System.Runtime.Intrinsics.Vector256<ulong> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.UIntPtr> Or(System.Runtime.Intrinsics.Vector256<System.UIntPtr> left, System.Runtime.Intrinsics.Vector256<System.UIntPtr> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<sbyte> PackSignedSaturate(System.Runtime.Intrinsics.Vector256<short> left, System.Runtime.Intrinsics.Vector256<short> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<short> PackSignedSaturate(System.Runtime.Intrinsics.Vector256<int> left, System.Runtime.Intrinsics.Vector256<int> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<byte> PackUnsignedSaturate(System.Runtime.Intrinsics.Vector256<short> left, System.Runtime.Intrinsics.Vector256<short> right) { throw null; }
@@ -3588,13 +3667,17 @@ namespace System.Runtime.Intrinsics.X86
         public static new System.Runtime.Intrinsics.Vector256<short> Permute2x128(System.Runtime.Intrinsics.Vector256<short> left, System.Runtime.Intrinsics.Vector256<short> right, byte control) { throw null; }
         public static new System.Runtime.Intrinsics.Vector256<int> Permute2x128(System.Runtime.Intrinsics.Vector256<int> left, System.Runtime.Intrinsics.Vector256<int> right, byte control) { throw null; }
         public static new System.Runtime.Intrinsics.Vector256<long> Permute2x128(System.Runtime.Intrinsics.Vector256<long> left, System.Runtime.Intrinsics.Vector256<long> right, byte control) { throw null; }
+        public static new System.Runtime.Intrinsics.Vector256<System.IntPtr> Permute2x128(System.Runtime.Intrinsics.Vector256<System.IntPtr> left, System.Runtime.Intrinsics.Vector256<System.IntPtr> right, byte control) { throw null; }
         public static new System.Runtime.Intrinsics.Vector256<sbyte> Permute2x128(System.Runtime.Intrinsics.Vector256<sbyte> left, System.Runtime.Intrinsics.Vector256<sbyte> right, byte control) { throw null; }
         public static new System.Runtime.Intrinsics.Vector256<ushort> Permute2x128(System.Runtime.Intrinsics.Vector256<ushort> left, System.Runtime.Intrinsics.Vector256<ushort> right, byte control) { throw null; }
         public static new System.Runtime.Intrinsics.Vector256<uint> Permute2x128(System.Runtime.Intrinsics.Vector256<uint> left, System.Runtime.Intrinsics.Vector256<uint> right, byte control) { throw null; }
         public static new System.Runtime.Intrinsics.Vector256<ulong> Permute2x128(System.Runtime.Intrinsics.Vector256<ulong> left, System.Runtime.Intrinsics.Vector256<ulong> right, byte control) { throw null; }
+        public static new System.Runtime.Intrinsics.Vector256<System.UIntPtr> Permute2x128(System.Runtime.Intrinsics.Vector256<System.UIntPtr> left, System.Runtime.Intrinsics.Vector256<System.UIntPtr> right, byte control) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<double> Permute4x64(System.Runtime.Intrinsics.Vector256<double> value, byte control) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<long> Permute4x64(System.Runtime.Intrinsics.Vector256<long> value, byte control) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.IntPtr> Permute4x64(System.Runtime.Intrinsics.Vector256<System.IntPtr> value, byte control) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ulong> Permute4x64(System.Runtime.Intrinsics.Vector256<ulong> value, byte control) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.UIntPtr> Permute4x64(System.Runtime.Intrinsics.Vector256<System.UIntPtr> value, byte control) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<int> PermuteVar8x32(System.Runtime.Intrinsics.Vector256<int> left, System.Runtime.Intrinsics.Vector256<int> control) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<float> PermuteVar8x32(System.Runtime.Intrinsics.Vector256<float> left, System.Runtime.Intrinsics.Vector256<int> control) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<uint> PermuteVar8x32(System.Runtime.Intrinsics.Vector256<uint> left, System.Runtime.Intrinsics.Vector256<uint> control) { throw null; }
@@ -3604,28 +3687,36 @@ namespace System.Runtime.Intrinsics.X86
         public static System.Runtime.Intrinsics.Vector256<int> ShiftLeftLogical(System.Runtime.Intrinsics.Vector256<int> value, System.Runtime.Intrinsics.Vector128<int> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<long> ShiftLeftLogical(System.Runtime.Intrinsics.Vector256<long> value, byte count) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<long> ShiftLeftLogical(System.Runtime.Intrinsics.Vector256<long> value, System.Runtime.Intrinsics.Vector128<long> count) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.IntPtr> ShiftLeftLogical(System.Runtime.Intrinsics.Vector256<System.IntPtr> value, byte count) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.IntPtr> ShiftLeftLogical(System.Runtime.Intrinsics.Vector256<System.IntPtr> value, System.Runtime.Intrinsics.Vector128<System.IntPtr> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ushort> ShiftLeftLogical(System.Runtime.Intrinsics.Vector256<ushort> value, byte count) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ushort> ShiftLeftLogical(System.Runtime.Intrinsics.Vector256<ushort> value, System.Runtime.Intrinsics.Vector128<ushort> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<uint> ShiftLeftLogical(System.Runtime.Intrinsics.Vector256<uint> value, byte count) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<uint> ShiftLeftLogical(System.Runtime.Intrinsics.Vector256<uint> value, System.Runtime.Intrinsics.Vector128<uint> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ulong> ShiftLeftLogical(System.Runtime.Intrinsics.Vector256<ulong> value, byte count) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ulong> ShiftLeftLogical(System.Runtime.Intrinsics.Vector256<ulong> value, System.Runtime.Intrinsics.Vector128<ulong> count) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.UIntPtr> ShiftLeftLogical(System.Runtime.Intrinsics.Vector256<System.UIntPtr> value, byte count) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.UIntPtr> ShiftLeftLogical(System.Runtime.Intrinsics.Vector256<System.UIntPtr> value, System.Runtime.Intrinsics.Vector128<System.UIntPtr> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<byte> ShiftLeftLogical128BitLane(System.Runtime.Intrinsics.Vector256<byte> value, byte numBytes) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<short> ShiftLeftLogical128BitLane(System.Runtime.Intrinsics.Vector256<short> value, byte numBytes) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<int> ShiftLeftLogical128BitLane(System.Runtime.Intrinsics.Vector256<int> value, byte numBytes) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<long> ShiftLeftLogical128BitLane(System.Runtime.Intrinsics.Vector256<long> value, byte numBytes) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.IntPtr> ShiftLeftLogical128BitLane(System.Runtime.Intrinsics.Vector256<System.IntPtr> value, byte numBytes) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<sbyte> ShiftLeftLogical128BitLane(System.Runtime.Intrinsics.Vector256<sbyte> value, byte numBytes) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ushort> ShiftLeftLogical128BitLane(System.Runtime.Intrinsics.Vector256<ushort> value, byte numBytes) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<uint> ShiftLeftLogical128BitLane(System.Runtime.Intrinsics.Vector256<uint> value, byte numBytes) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ulong> ShiftLeftLogical128BitLane(System.Runtime.Intrinsics.Vector256<ulong> value, byte numBytes) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.UIntPtr> ShiftLeftLogical128BitLane(System.Runtime.Intrinsics.Vector256<System.UIntPtr> value, byte numBytes) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<int> ShiftLeftLogicalVariable(System.Runtime.Intrinsics.Vector128<int> value, System.Runtime.Intrinsics.Vector128<uint> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<long> ShiftLeftLogicalVariable(System.Runtime.Intrinsics.Vector128<long> value, System.Runtime.Intrinsics.Vector128<ulong> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<uint> ShiftLeftLogicalVariable(System.Runtime.Intrinsics.Vector128<uint> value, System.Runtime.Intrinsics.Vector128<uint> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ulong> ShiftLeftLogicalVariable(System.Runtime.Intrinsics.Vector128<ulong> value, System.Runtime.Intrinsics.Vector128<ulong> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<int> ShiftLeftLogicalVariable(System.Runtime.Intrinsics.Vector256<int> value, System.Runtime.Intrinsics.Vector256<uint> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<long> ShiftLeftLogicalVariable(System.Runtime.Intrinsics.Vector256<long> value, System.Runtime.Intrinsics.Vector256<ulong> count) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.IntPtr> ShiftLeftLogicalVariable(System.Runtime.Intrinsics.Vector256<System.IntPtr> value, System.Runtime.Intrinsics.Vector256<System.IntPtr> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<uint> ShiftLeftLogicalVariable(System.Runtime.Intrinsics.Vector256<uint> value, System.Runtime.Intrinsics.Vector256<uint> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ulong> ShiftLeftLogicalVariable(System.Runtime.Intrinsics.Vector256<ulong> value, System.Runtime.Intrinsics.Vector256<ulong> count) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.UIntPtr> ShiftLeftLogicalVariable(System.Runtime.Intrinsics.Vector256<System.UIntPtr> value, System.Runtime.Intrinsics.Vector256<System.UIntPtr> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<short> ShiftRightArithmetic(System.Runtime.Intrinsics.Vector256<short> value, byte count) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<short> ShiftRightArithmetic(System.Runtime.Intrinsics.Vector256<short> value, System.Runtime.Intrinsics.Vector128<short> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<int> ShiftRightArithmetic(System.Runtime.Intrinsics.Vector256<int> value, byte count) { throw null; }
@@ -3638,28 +3729,36 @@ namespace System.Runtime.Intrinsics.X86
         public static System.Runtime.Intrinsics.Vector256<int> ShiftRightLogical(System.Runtime.Intrinsics.Vector256<int> value, System.Runtime.Intrinsics.Vector128<int> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<long> ShiftRightLogical(System.Runtime.Intrinsics.Vector256<long> value, byte count) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<long> ShiftRightLogical(System.Runtime.Intrinsics.Vector256<long> value, System.Runtime.Intrinsics.Vector128<long> count) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.IntPtr> ShiftRightLogical(System.Runtime.Intrinsics.Vector256<System.IntPtr> value, System.Runtime.Intrinsics.Vector128<System.IntPtr> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ushort> ShiftRightLogical(System.Runtime.Intrinsics.Vector256<ushort> value, byte count) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ushort> ShiftRightLogical(System.Runtime.Intrinsics.Vector256<ushort> value, System.Runtime.Intrinsics.Vector128<ushort> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<uint> ShiftRightLogical(System.Runtime.Intrinsics.Vector256<uint> value, byte count) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<uint> ShiftRightLogical(System.Runtime.Intrinsics.Vector256<uint> value, System.Runtime.Intrinsics.Vector128<uint> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ulong> ShiftRightLogical(System.Runtime.Intrinsics.Vector256<ulong> value, byte count) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ulong> ShiftRightLogical(System.Runtime.Intrinsics.Vector256<ulong> value, System.Runtime.Intrinsics.Vector128<ulong> count) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.UIntPtr> ShiftRightLogical(System.Runtime.Intrinsics.Vector256<System.UIntPtr> value, System.Runtime.Intrinsics.Vector128<System.UIntPtr> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<byte> ShiftRightLogical128BitLane(System.Runtime.Intrinsics.Vector256<byte> value, byte numBytes) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<short> ShiftRightLogical128BitLane(System.Runtime.Intrinsics.Vector256<short> value, byte numBytes) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<int> ShiftRightLogical128BitLane(System.Runtime.Intrinsics.Vector256<int> value, byte numBytes) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<long> ShiftRightLogical128BitLane(System.Runtime.Intrinsics.Vector256<long> value, byte numBytes) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.IntPtr> ShiftRightLogical128BitLane(System.Runtime.Intrinsics.Vector256<System.IntPtr> value, byte numBytes) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<sbyte> ShiftRightLogical128BitLane(System.Runtime.Intrinsics.Vector256<sbyte> value, byte numBytes) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ushort> ShiftRightLogical128BitLane(System.Runtime.Intrinsics.Vector256<ushort> value, byte numBytes) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<uint> ShiftRightLogical128BitLane(System.Runtime.Intrinsics.Vector256<uint> value, byte numBytes) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ulong> ShiftRightLogical128BitLane(System.Runtime.Intrinsics.Vector256<ulong> value, byte numBytes) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.UIntPtr> ShiftRightLogical128BitLane(System.Runtime.Intrinsics.Vector256<System.UIntPtr> value, byte numBytes) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<int> ShiftRightLogicalVariable(System.Runtime.Intrinsics.Vector128<int> value, System.Runtime.Intrinsics.Vector128<uint> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<long> ShiftRightLogicalVariable(System.Runtime.Intrinsics.Vector128<long> value, System.Runtime.Intrinsics.Vector128<ulong> count) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.IntPtr> ShiftRightLogicalVariable(System.Runtime.Intrinsics.Vector128<System.IntPtr> value, System.Runtime.Intrinsics.Vector128<System.UIntPtr> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<uint> ShiftRightLogicalVariable(System.Runtime.Intrinsics.Vector128<uint> value, System.Runtime.Intrinsics.Vector128<uint> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ulong> ShiftRightLogicalVariable(System.Runtime.Intrinsics.Vector128<ulong> value, System.Runtime.Intrinsics.Vector128<ulong> count) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.UIntPtr> ShiftRightLogicalVariable(System.Runtime.Intrinsics.Vector128<System.UIntPtr> value, System.Runtime.Intrinsics.Vector128<System.UIntPtr> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<int> ShiftRightLogicalVariable(System.Runtime.Intrinsics.Vector256<int> value, System.Runtime.Intrinsics.Vector256<uint> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<long> ShiftRightLogicalVariable(System.Runtime.Intrinsics.Vector256<long> value, System.Runtime.Intrinsics.Vector256<ulong> count) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.IntPtr> ShiftRightLogicalVariable(System.Runtime.Intrinsics.Vector256<System.IntPtr> value, System.Runtime.Intrinsics.Vector256<System.UIntPtr> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<uint> ShiftRightLogicalVariable(System.Runtime.Intrinsics.Vector256<uint> value, System.Runtime.Intrinsics.Vector256<uint> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ulong> ShiftRightLogicalVariable(System.Runtime.Intrinsics.Vector256<ulong> value, System.Runtime.Intrinsics.Vector256<ulong> count) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.UIntPtr> ShiftRightLogicalVariable(System.Runtime.Intrinsics.Vector256<System.UIntPtr> value, System.Runtime.Intrinsics.Vector256<System.UIntPtr> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<byte> Shuffle(System.Runtime.Intrinsics.Vector256<byte> value, System.Runtime.Intrinsics.Vector256<byte> mask) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<int> Shuffle(System.Runtime.Intrinsics.Vector256<int> value, byte control) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<sbyte> Shuffle(System.Runtime.Intrinsics.Vector256<sbyte> value, System.Runtime.Intrinsics.Vector256<sbyte> mask) { throw null; }
@@ -3675,10 +3774,12 @@ namespace System.Runtime.Intrinsics.X86
         public static System.Runtime.Intrinsics.Vector256<short> Subtract(System.Runtime.Intrinsics.Vector256<short> left, System.Runtime.Intrinsics.Vector256<short> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<int> Subtract(System.Runtime.Intrinsics.Vector256<int> left, System.Runtime.Intrinsics.Vector256<int> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<long> Subtract(System.Runtime.Intrinsics.Vector256<long> left, System.Runtime.Intrinsics.Vector256<long> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.IntPtr> Subtract(System.Runtime.Intrinsics.Vector256<System.IntPtr> left, System.Runtime.Intrinsics.Vector256<System.IntPtr> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<sbyte> Subtract(System.Runtime.Intrinsics.Vector256<sbyte> left, System.Runtime.Intrinsics.Vector256<sbyte> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ushort> Subtract(System.Runtime.Intrinsics.Vector256<ushort> left, System.Runtime.Intrinsics.Vector256<ushort> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<uint> Subtract(System.Runtime.Intrinsics.Vector256<uint> left, System.Runtime.Intrinsics.Vector256<uint> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ulong> Subtract(System.Runtime.Intrinsics.Vector256<ulong> left, System.Runtime.Intrinsics.Vector256<ulong> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.UIntPtr> Subtract(System.Runtime.Intrinsics.Vector256<System.UIntPtr> left, System.Runtime.Intrinsics.Vector256<System.UIntPtr> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<byte> SubtractSaturate(System.Runtime.Intrinsics.Vector256<byte> left, System.Runtime.Intrinsics.Vector256<byte> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<short> SubtractSaturate(System.Runtime.Intrinsics.Vector256<short> left, System.Runtime.Intrinsics.Vector256<short> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<sbyte> SubtractSaturate(System.Runtime.Intrinsics.Vector256<sbyte> left, System.Runtime.Intrinsics.Vector256<sbyte> right) { throw null; }
@@ -3688,26 +3789,32 @@ namespace System.Runtime.Intrinsics.X86
         public static System.Runtime.Intrinsics.Vector256<short> UnpackHigh(System.Runtime.Intrinsics.Vector256<short> left, System.Runtime.Intrinsics.Vector256<short> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<int> UnpackHigh(System.Runtime.Intrinsics.Vector256<int> left, System.Runtime.Intrinsics.Vector256<int> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<long> UnpackHigh(System.Runtime.Intrinsics.Vector256<long> left, System.Runtime.Intrinsics.Vector256<long> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.IntPtr> UnpackHigh(System.Runtime.Intrinsics.Vector256<System.IntPtr> left, System.Runtime.Intrinsics.Vector256<System.IntPtr> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<sbyte> UnpackHigh(System.Runtime.Intrinsics.Vector256<sbyte> left, System.Runtime.Intrinsics.Vector256<sbyte> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ushort> UnpackHigh(System.Runtime.Intrinsics.Vector256<ushort> left, System.Runtime.Intrinsics.Vector256<ushort> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<uint> UnpackHigh(System.Runtime.Intrinsics.Vector256<uint> left, System.Runtime.Intrinsics.Vector256<uint> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ulong> UnpackHigh(System.Runtime.Intrinsics.Vector256<ulong> left, System.Runtime.Intrinsics.Vector256<ulong> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.UIntPtr> UnpackHigh(System.Runtime.Intrinsics.Vector256<System.UIntPtr> left, System.Runtime.Intrinsics.Vector256<System.UIntPtr> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<byte> UnpackLow(System.Runtime.Intrinsics.Vector256<byte> left, System.Runtime.Intrinsics.Vector256<byte> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<short> UnpackLow(System.Runtime.Intrinsics.Vector256<short> left, System.Runtime.Intrinsics.Vector256<short> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<int> UnpackLow(System.Runtime.Intrinsics.Vector256<int> left, System.Runtime.Intrinsics.Vector256<int> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<long> UnpackLow(System.Runtime.Intrinsics.Vector256<long> left, System.Runtime.Intrinsics.Vector256<long> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.IntPtr> UnpackLow(System.Runtime.Intrinsics.Vector256<System.IntPtr> left, System.Runtime.Intrinsics.Vector256<System.IntPtr> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<sbyte> UnpackLow(System.Runtime.Intrinsics.Vector256<sbyte> left, System.Runtime.Intrinsics.Vector256<sbyte> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ushort> UnpackLow(System.Runtime.Intrinsics.Vector256<ushort> left, System.Runtime.Intrinsics.Vector256<ushort> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<uint> UnpackLow(System.Runtime.Intrinsics.Vector256<uint> left, System.Runtime.Intrinsics.Vector256<uint> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ulong> UnpackLow(System.Runtime.Intrinsics.Vector256<ulong> left, System.Runtime.Intrinsics.Vector256<ulong> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.UIntPtr> UnpackLow(System.Runtime.Intrinsics.Vector256<System.UIntPtr> left, System.Runtime.Intrinsics.Vector256<System.UIntPtr> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<byte> Xor(System.Runtime.Intrinsics.Vector256<byte> left, System.Runtime.Intrinsics.Vector256<byte> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<short> Xor(System.Runtime.Intrinsics.Vector256<short> left, System.Runtime.Intrinsics.Vector256<short> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<int> Xor(System.Runtime.Intrinsics.Vector256<int> left, System.Runtime.Intrinsics.Vector256<int> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<long> Xor(System.Runtime.Intrinsics.Vector256<long> left, System.Runtime.Intrinsics.Vector256<long> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.IntPtr> Xor(System.Runtime.Intrinsics.Vector256<System.IntPtr> left, System.Runtime.Intrinsics.Vector256<System.IntPtr> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<sbyte> Xor(System.Runtime.Intrinsics.Vector256<sbyte> left, System.Runtime.Intrinsics.Vector256<sbyte> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ushort> Xor(System.Runtime.Intrinsics.Vector256<ushort> left, System.Runtime.Intrinsics.Vector256<ushort> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<uint> Xor(System.Runtime.Intrinsics.Vector256<uint> left, System.Runtime.Intrinsics.Vector256<uint> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector256<ulong> Xor(System.Runtime.Intrinsics.Vector256<ulong> left, System.Runtime.Intrinsics.Vector256<ulong> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector256<System.UIntPtr> Xor(System.Runtime.Intrinsics.Vector256<System.UIntPtr> left, System.Runtime.Intrinsics.Vector256<System.UIntPtr> right) { throw null; }
         public new abstract partial class X64 : System.Runtime.Intrinsics.X86.Avx.X64
         {
             internal X64() { }
@@ -3740,19 +3847,19 @@ namespace System.Runtime.Intrinsics.X86
         internal Bmi1() { }
         public static new bool IsSupported { get { throw null; } }
         public static uint AndNot(uint left, uint right) { throw null; }
-        public static nuint AndNot(nuint left, nuint right) { throw null; }
+        public static System.UIntPtr AndNot(System.UIntPtr left, System.UIntPtr right) { throw null; }
         public static uint BitFieldExtract(uint value, byte start, byte length) { throw null; }
         public static uint BitFieldExtract(uint value, ushort control) { throw null; }
-        public static nuint BitFieldExtract(nuint value, byte start, byte length) { throw null; }
-        public static nuint BitFieldExtract(nuint value, ushort control) { throw null; }
+        public static System.UIntPtr BitFieldExtract(System.UIntPtr value, byte start, byte length) { throw null; }
+        public static System.UIntPtr BitFieldExtract(System.UIntPtr value, ushort control) { throw null; }
         public static uint ExtractLowestSetBit(uint value) { throw null; }
-        public static nuint ExtractLowestSetBit(nuint value) { throw null; }
+        public static System.UIntPtr ExtractLowestSetBit(System.UIntPtr value) { throw null; }
         public static uint GetMaskUpToLowestSetBit(uint value) { throw null; }
-        public static nuint GetMaskUpToLowestSetBit(nuint value) { throw null; }
+        public static System.UIntPtr GetMaskUpToLowestSetBit(System.UIntPtr value) { throw null; }
         public static uint ResetLowestSetBit(uint value) { throw null; }
-        public static nuint ResetLowestSetBit(nuint value) { throw null; }
+        public static System.UIntPtr ResetLowestSetBit(System.UIntPtr value) { throw null; }
         public static uint TrailingZeroCount(uint value) { throw null; }
-        public static nuint TrailingZeroCount(nuint value) { throw null; }
+        public static System.UIntPtr TrailingZeroCount(System.UIntPtr value) { throw null; }
         public new abstract partial class X64 : System.Runtime.Intrinsics.X86.X86Base.X64
         {
             internal X64() { }
@@ -3773,14 +3880,14 @@ namespace System.Runtime.Intrinsics.X86
         public static new bool IsSupported { get { throw null; } }
         public static uint MultiplyNoFlags(uint left, uint right) { throw null; }
         public unsafe static uint MultiplyNoFlags(uint left, uint right, uint* low) { throw null; }
-        public static nuint MultiplyNoFlags(nuint left, nuint right) { throw null; }
-        public unsafe static nuint MultiplyNoFlags(nuint left, nuint right, nuint* low) { throw null; }
+        public static System.UIntPtr MultiplyNoFlags(System.UIntPtr left, System.UIntPtr right) { throw null; }
+        public unsafe static System.UIntPtr MultiplyNoFlags(System.UIntPtr left, System.UIntPtr right, System.UIntPtr* low) { throw null; }
         public static uint ParallelBitDeposit(uint value, uint mask) { throw null; }
-        public static nuint ParallelBitDeposit(nuint value, nuint mask) { throw null; }
+        public static System.UIntPtr ParallelBitDeposit(System.UIntPtr value, System.UIntPtr mask) { throw null; }
         public static uint ParallelBitExtract(uint value, uint mask) { throw null; }
-        public static nuint ParallelBitExtract(nuint value, nuint mask) { throw null; }
+        public static System.UIntPtr ParallelBitExtract(System.UIntPtr value, System.UIntPtr mask) { throw null; }
         public static uint ZeroHighBits(uint value, uint index) { throw null; }
-        public static nuint ZeroHighBits(nuint value, nuint index) { throw null; }
+        public static System.UIntPtr ZeroHighBits(System.UIntPtr value, System.UIntPtr index) { throw null; }
         public new abstract partial class X64 : System.Runtime.Intrinsics.X86.X86Base.X64
         {
             internal X64() { }
@@ -3876,7 +3983,7 @@ namespace System.Runtime.Intrinsics.X86
         internal Lzcnt() { }
         public static new bool IsSupported { get { throw null; } }
         public static uint LeadingZeroCount(uint value) { throw null; }
-        public static nuint LeadingZeroCount(nuint value) { throw null; }
+        public static System.UIntPtr LeadingZeroCount(System.UIntPtr value) { throw null; }
         public new abstract partial class X64 : System.Runtime.Intrinsics.X86.X86Base.X64
         {
             internal X64() { }
@@ -3903,7 +4010,7 @@ namespace System.Runtime.Intrinsics.X86
         internal Popcnt() { }
         public static new bool IsSupported { get { throw null; } }
         public static uint PopCount(uint value) { throw null; }
-        public static nuint PopCount(nuint value) { throw null; }
+        public static System.UIntPtr PopCount(System.UIntPtr value) { throw null; }
         public new abstract partial class X64 : System.Runtime.Intrinsics.X86.Sse42.X64
         {
             internal X64() { }
@@ -3957,11 +4064,11 @@ namespace System.Runtime.Intrinsics.X86
         public static bool CompareScalarUnorderedNotEqual(System.Runtime.Intrinsics.Vector128<float> left, System.Runtime.Intrinsics.Vector128<float> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<float> CompareUnordered(System.Runtime.Intrinsics.Vector128<float> left, System.Runtime.Intrinsics.Vector128<float> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<float> ConvertScalarToVector128Single(System.Runtime.Intrinsics.Vector128<float> upper, int value) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<float> ConvertScalarToVector128Single(System.Runtime.Intrinsics.Vector128<float> upper, nint value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<float> ConvertScalarToVector128Single(System.Runtime.Intrinsics.Vector128<float> upper, System.IntPtr value) { throw null; }
         public static int ConvertToInt32(System.Runtime.Intrinsics.Vector128<float> value) { throw null; }
         public static int ConvertToInt32WithTruncation(System.Runtime.Intrinsics.Vector128<float> value) { throw null; }
-        public static nint ConvertToNInt(System.Runtime.Intrinsics.Vector128<float> value) { throw null; }
-        public static nint ConvertToNIntWithTruncation(System.Runtime.Intrinsics.Vector128<float> value) { throw null; }
+        public static System.IntPtr ConvertToNInt(System.Runtime.Intrinsics.Vector128<float> value) { throw null; }
+        public static System.IntPtr ConvertToNIntWithTruncation(System.Runtime.Intrinsics.Vector128<float> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<float> Divide(System.Runtime.Intrinsics.Vector128<float> left, System.Runtime.Intrinsics.Vector128<float> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<float> DivideScalar(System.Runtime.Intrinsics.Vector128<float> left, System.Runtime.Intrinsics.Vector128<float> right) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<float> LoadAlignedVector128(float* address) { throw null; }
@@ -4025,12 +4132,12 @@ namespace System.Runtime.Intrinsics.X86
         public static System.Runtime.Intrinsics.Vector128<short> Add(System.Runtime.Intrinsics.Vector128<short> left, System.Runtime.Intrinsics.Vector128<short> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<int> Add(System.Runtime.Intrinsics.Vector128<int> left, System.Runtime.Intrinsics.Vector128<int> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<long> Add(System.Runtime.Intrinsics.Vector128<long> left, System.Runtime.Intrinsics.Vector128<long> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.IntPtr> Add(System.Runtime.Intrinsics.Vector128<System.IntPtr> left, System.Runtime.Intrinsics.Vector128<System.IntPtr> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<sbyte> Add(System.Runtime.Intrinsics.Vector128<sbyte> left, System.Runtime.Intrinsics.Vector128<sbyte> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ushort> Add(System.Runtime.Intrinsics.Vector128<ushort> left, System.Runtime.Intrinsics.Vector128<ushort> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<uint> Add(System.Runtime.Intrinsics.Vector128<uint> left, System.Runtime.Intrinsics.Vector128<uint> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ulong> Add(System.Runtime.Intrinsics.Vector128<ulong> left, System.Runtime.Intrinsics.Vector128<ulong> right) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nint> Add(System.Runtime.Intrinsics.Vector128<nint> left, System.Runtime.Intrinsics.Vector128<nint> right) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nuint> Add(System.Runtime.Intrinsics.Vector128<nuint> left, System.Runtime.Intrinsics.Vector128<nuint> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.UIntPtr> Add(System.Runtime.Intrinsics.Vector128<System.UIntPtr> left, System.Runtime.Intrinsics.Vector128<System.UIntPtr> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<byte> AddSaturate(System.Runtime.Intrinsics.Vector128<byte> left, System.Runtime.Intrinsics.Vector128<byte> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<short> AddSaturate(System.Runtime.Intrinsics.Vector128<short> left, System.Runtime.Intrinsics.Vector128<short> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<sbyte> AddSaturate(System.Runtime.Intrinsics.Vector128<sbyte> left, System.Runtime.Intrinsics.Vector128<sbyte> right) { throw null; }
@@ -4041,23 +4148,23 @@ namespace System.Runtime.Intrinsics.X86
         public static System.Runtime.Intrinsics.Vector128<short> And(System.Runtime.Intrinsics.Vector128<short> left, System.Runtime.Intrinsics.Vector128<short> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<int> And(System.Runtime.Intrinsics.Vector128<int> left, System.Runtime.Intrinsics.Vector128<int> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<long> And(System.Runtime.Intrinsics.Vector128<long> left, System.Runtime.Intrinsics.Vector128<long> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.IntPtr> And(System.Runtime.Intrinsics.Vector128<System.IntPtr> left, System.Runtime.Intrinsics.Vector128<System.IntPtr> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<sbyte> And(System.Runtime.Intrinsics.Vector128<sbyte> left, System.Runtime.Intrinsics.Vector128<sbyte> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ushort> And(System.Runtime.Intrinsics.Vector128<ushort> left, System.Runtime.Intrinsics.Vector128<ushort> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<uint> And(System.Runtime.Intrinsics.Vector128<uint> left, System.Runtime.Intrinsics.Vector128<uint> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ulong> And(System.Runtime.Intrinsics.Vector128<ulong> left, System.Runtime.Intrinsics.Vector128<ulong> right) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nint> And(System.Runtime.Intrinsics.Vector128<nint> left, System.Runtime.Intrinsics.Vector128<nint> right) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nuint> And(System.Runtime.Intrinsics.Vector128<nuint> left, System.Runtime.Intrinsics.Vector128<nuint> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.UIntPtr> And(System.Runtime.Intrinsics.Vector128<System.UIntPtr> left, System.Runtime.Intrinsics.Vector128<System.UIntPtr> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<byte> AndNot(System.Runtime.Intrinsics.Vector128<byte> left, System.Runtime.Intrinsics.Vector128<byte> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<double> AndNot(System.Runtime.Intrinsics.Vector128<double> left, System.Runtime.Intrinsics.Vector128<double> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<short> AndNot(System.Runtime.Intrinsics.Vector128<short> left, System.Runtime.Intrinsics.Vector128<short> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<int> AndNot(System.Runtime.Intrinsics.Vector128<int> left, System.Runtime.Intrinsics.Vector128<int> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<long> AndNot(System.Runtime.Intrinsics.Vector128<long> left, System.Runtime.Intrinsics.Vector128<long> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.IntPtr> AndNot(System.Runtime.Intrinsics.Vector128<System.IntPtr> left, System.Runtime.Intrinsics.Vector128<System.IntPtr> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<sbyte> AndNot(System.Runtime.Intrinsics.Vector128<sbyte> left, System.Runtime.Intrinsics.Vector128<sbyte> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ushort> AndNot(System.Runtime.Intrinsics.Vector128<ushort> left, System.Runtime.Intrinsics.Vector128<ushort> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<uint> AndNot(System.Runtime.Intrinsics.Vector128<uint> left, System.Runtime.Intrinsics.Vector128<uint> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ulong> AndNot(System.Runtime.Intrinsics.Vector128<ulong> left, System.Runtime.Intrinsics.Vector128<ulong> right) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nint> AndNot(System.Runtime.Intrinsics.Vector128<nint> left, System.Runtime.Intrinsics.Vector128<nint> right) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nuint> AndNot(System.Runtime.Intrinsics.Vector128<nuint> left, System.Runtime.Intrinsics.Vector128<nuint> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.UIntPtr> AndNot(System.Runtime.Intrinsics.Vector128<System.UIntPtr> left, System.Runtime.Intrinsics.Vector128<System.UIntPtr> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<byte> Average(System.Runtime.Intrinsics.Vector128<byte> left, System.Runtime.Intrinsics.Vector128<byte> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ushort> Average(System.Runtime.Intrinsics.Vector128<ushort> left, System.Runtime.Intrinsics.Vector128<ushort> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<byte> CompareEqual(System.Runtime.Intrinsics.Vector128<byte> left, System.Runtime.Intrinsics.Vector128<byte> right) { throw null; }
@@ -4109,20 +4216,20 @@ namespace System.Runtime.Intrinsics.X86
         public static bool CompareScalarUnorderedNotEqual(System.Runtime.Intrinsics.Vector128<double> left, System.Runtime.Intrinsics.Vector128<double> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<double> CompareUnordered(System.Runtime.Intrinsics.Vector128<double> left, System.Runtime.Intrinsics.Vector128<double> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<double> ConvertScalarToVector128Double(System.Runtime.Intrinsics.Vector128<double> upper, int value) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<double> ConvertScalarToVector128Double(System.Runtime.Intrinsics.Vector128<double> upper, nint value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<double> ConvertScalarToVector128Double(System.Runtime.Intrinsics.Vector128<double> upper, System.IntPtr value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<double> ConvertScalarToVector128Double(System.Runtime.Intrinsics.Vector128<double> upper, System.Runtime.Intrinsics.Vector128<float> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<int> ConvertScalarToVector128Int32(int value) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nint> ConvertScalarToVector128NInt(nint value) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nuint> ConvertScalarToVector128NUInt(nuint value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.IntPtr> ConvertScalarToVector128NInt(System.IntPtr value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.UIntPtr> ConvertScalarToVector128NUInt(System.UIntPtr value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<float> ConvertScalarToVector128Single(System.Runtime.Intrinsics.Vector128<float> upper, System.Runtime.Intrinsics.Vector128<double> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<uint> ConvertScalarToVector128UInt32(uint value) { throw null; }
         public static int ConvertToInt32(System.Runtime.Intrinsics.Vector128<double> value) { throw null; }
         public static int ConvertToInt32(System.Runtime.Intrinsics.Vector128<int> value) { throw null; }
-        public static nint ConvertToNInt(System.Runtime.Intrinsics.Vector128<nint> value) { throw null; }
-        public static nuint ConvertToNUInt(System.Runtime.Intrinsics.Vector128<nuint> value) { throw null; }
         public static int ConvertToInt32WithTruncation(System.Runtime.Intrinsics.Vector128<double> value) { throw null; }
-        public static nint ConvertToNInt(System.Runtime.Intrinsics.Vector128<double> value) { throw null; }
-        public static nint ConvertToNIntWithTruncation(System.Runtime.Intrinsics.Vector128<double> value) { throw null; }
+        public static System.IntPtr ConvertToNInt(System.Runtime.Intrinsics.Vector128<double> value) { throw null; }
+        public static System.IntPtr ConvertToNInt(System.Runtime.Intrinsics.Vector128<System.IntPtr> value) { throw null; }
+        public static System.IntPtr ConvertToNIntWithTruncation(System.Runtime.Intrinsics.Vector128<double> value) { throw null; }
+        public static System.UIntPtr ConvertToNUInt(System.Runtime.Intrinsics.Vector128<System.UIntPtr> value) { throw null; }
         public static uint ConvertToUInt32(System.Runtime.Intrinsics.Vector128<uint> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<double> ConvertToVector128Double(System.Runtime.Intrinsics.Vector128<int> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<double> ConvertToVector128Double(System.Runtime.Intrinsics.Vector128<float> value) { throw null; }
@@ -4142,33 +4249,33 @@ namespace System.Runtime.Intrinsics.X86
         public unsafe static System.Runtime.Intrinsics.Vector128<short> LoadAlignedVector128(short* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<int> LoadAlignedVector128(int* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<long> LoadAlignedVector128(long* address) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<System.IntPtr> LoadAlignedVector128(System.IntPtr* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<sbyte> LoadAlignedVector128(sbyte* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<ushort> LoadAlignedVector128(ushort* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<uint> LoadAlignedVector128(uint* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<ulong> LoadAlignedVector128(ulong* address) { throw null; }
-        public unsafe static System.Runtime.Intrinsics.Vector128<nint> LoadAlignedVector128(nint* address) { throw null; }
-        public unsafe static System.Runtime.Intrinsics.Vector128<nuint> LoadAlignedVector128(nuint* address) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<System.UIntPtr> LoadAlignedVector128(System.UIntPtr* address) { throw null; }
         public static void LoadFence() { }
         public unsafe static System.Runtime.Intrinsics.Vector128<double> LoadHigh(System.Runtime.Intrinsics.Vector128<double> lower, double* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<double> LoadLow(System.Runtime.Intrinsics.Vector128<double> upper, double* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<double> LoadScalarVector128(double* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<int> LoadScalarVector128(int* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<long> LoadScalarVector128(long* address) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<System.IntPtr> LoadScalarVector128(System.IntPtr* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<uint> LoadScalarVector128(uint* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<ulong> LoadScalarVector128(ulong* address) { throw null; }
-        public unsafe static System.Runtime.Intrinsics.Vector128<nint> LoadScalarVector128(nint* address) { throw null; }
-        public unsafe static System.Runtime.Intrinsics.Vector128<nuint> LoadScalarVector128(nuint* address) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<System.UIntPtr> LoadScalarVector128(System.UIntPtr* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<byte> LoadVector128(byte* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<double> LoadVector128(double* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<short> LoadVector128(short* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<int> LoadVector128(int* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<long> LoadVector128(long* address) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<System.IntPtr> LoadVector128(System.IntPtr* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<sbyte> LoadVector128(sbyte* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<ushort> LoadVector128(ushort* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<uint> LoadVector128(uint* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<ulong> LoadVector128(ulong* address) { throw null; }
-        public unsafe static System.Runtime.Intrinsics.Vector128<nint> LoadVector128(nint* address) { throw null; }
-        public unsafe static System.Runtime.Intrinsics.Vector128<nuint> LoadVector128(nuint* address) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<System.UIntPtr> LoadVector128(System.UIntPtr* address) { throw null; }
         public unsafe static void MaskMove(System.Runtime.Intrinsics.Vector128<byte> source, System.Runtime.Intrinsics.Vector128<byte> mask, byte* address) { }
         public unsafe static void MaskMove(System.Runtime.Intrinsics.Vector128<sbyte> source, System.Runtime.Intrinsics.Vector128<sbyte> mask, sbyte* address) { }
         public static System.Runtime.Intrinsics.Vector128<byte> Max(System.Runtime.Intrinsics.Vector128<byte> left, System.Runtime.Intrinsics.Vector128<byte> right) { throw null; }
@@ -4185,9 +4292,9 @@ namespace System.Runtime.Intrinsics.X86
         public static int MoveMask(System.Runtime.Intrinsics.Vector128<sbyte> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<double> MoveScalar(System.Runtime.Intrinsics.Vector128<double> upper, System.Runtime.Intrinsics.Vector128<double> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<long> MoveScalar(System.Runtime.Intrinsics.Vector128<long> value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.IntPtr> MoveScalar(System.Runtime.Intrinsics.Vector128<System.IntPtr> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ulong> MoveScalar(System.Runtime.Intrinsics.Vector128<ulong> value) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nint> MoveScalar(System.Runtime.Intrinsics.Vector128<nint> value) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nuint> MoveScalar(System.Runtime.Intrinsics.Vector128<nuint> value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.UIntPtr> MoveScalar(System.Runtime.Intrinsics.Vector128<System.UIntPtr> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<double> Multiply(System.Runtime.Intrinsics.Vector128<double> left, System.Runtime.Intrinsics.Vector128<double> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ulong> Multiply(System.Runtime.Intrinsics.Vector128<uint> left, System.Runtime.Intrinsics.Vector128<uint> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<int> MultiplyAddAdjacent(System.Runtime.Intrinsics.Vector128<short> left, System.Runtime.Intrinsics.Vector128<short> right) { throw null; }
@@ -4201,12 +4308,12 @@ namespace System.Runtime.Intrinsics.X86
         public static System.Runtime.Intrinsics.Vector128<short> Or(System.Runtime.Intrinsics.Vector128<short> left, System.Runtime.Intrinsics.Vector128<short> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<int> Or(System.Runtime.Intrinsics.Vector128<int> left, System.Runtime.Intrinsics.Vector128<int> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<long> Or(System.Runtime.Intrinsics.Vector128<long> left, System.Runtime.Intrinsics.Vector128<long> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.IntPtr> Or(System.Runtime.Intrinsics.Vector128<System.IntPtr> left, System.Runtime.Intrinsics.Vector128<System.IntPtr> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<sbyte> Or(System.Runtime.Intrinsics.Vector128<sbyte> left, System.Runtime.Intrinsics.Vector128<sbyte> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ushort> Or(System.Runtime.Intrinsics.Vector128<ushort> left, System.Runtime.Intrinsics.Vector128<ushort> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<uint> Or(System.Runtime.Intrinsics.Vector128<uint> left, System.Runtime.Intrinsics.Vector128<uint> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ulong> Or(System.Runtime.Intrinsics.Vector128<ulong> left, System.Runtime.Intrinsics.Vector128<ulong> right) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nint> Or(System.Runtime.Intrinsics.Vector128<nint> left, System.Runtime.Intrinsics.Vector128<nint> right) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nuint> Or(System.Runtime.Intrinsics.Vector128<nuint> left, System.Runtime.Intrinsics.Vector128<nuint> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.UIntPtr> Or(System.Runtime.Intrinsics.Vector128<System.UIntPtr> left, System.Runtime.Intrinsics.Vector128<System.UIntPtr> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<sbyte> PackSignedSaturate(System.Runtime.Intrinsics.Vector128<short> left, System.Runtime.Intrinsics.Vector128<short> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<short> PackSignedSaturate(System.Runtime.Intrinsics.Vector128<int> left, System.Runtime.Intrinsics.Vector128<int> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<byte> PackUnsignedSaturate(System.Runtime.Intrinsics.Vector128<short> left, System.Runtime.Intrinsics.Vector128<short> right) { throw null; }
@@ -4216,54 +4323,54 @@ namespace System.Runtime.Intrinsics.X86
         public static System.Runtime.Intrinsics.Vector128<int> ShiftLeftLogical(System.Runtime.Intrinsics.Vector128<int> value, System.Runtime.Intrinsics.Vector128<int> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<long> ShiftLeftLogical(System.Runtime.Intrinsics.Vector128<long> value, byte count) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<long> ShiftLeftLogical(System.Runtime.Intrinsics.Vector128<long> value, System.Runtime.Intrinsics.Vector128<long> count) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nint> ShiftLeftLogical(System.Runtime.Intrinsics.Vector128<nint> value, System.Runtime.Intrinsics.Vector128<nint> count) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nuint> ShiftLeftLogical(System.Runtime.Intrinsics.Vector128<nuint> value, System.Runtime.Intrinsics.Vector128<nuint> count) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.IntPtr> ShiftLeftLogical(System.Runtime.Intrinsics.Vector128<System.IntPtr> value, System.Runtime.Intrinsics.Vector128<System.IntPtr> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ushort> ShiftLeftLogical(System.Runtime.Intrinsics.Vector128<ushort> value, byte count) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ushort> ShiftLeftLogical(System.Runtime.Intrinsics.Vector128<ushort> value, System.Runtime.Intrinsics.Vector128<ushort> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<uint> ShiftLeftLogical(System.Runtime.Intrinsics.Vector128<uint> value, byte count) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<uint> ShiftLeftLogical(System.Runtime.Intrinsics.Vector128<uint> value, System.Runtime.Intrinsics.Vector128<uint> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ulong> ShiftLeftLogical(System.Runtime.Intrinsics.Vector128<ulong> value, byte count) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ulong> ShiftLeftLogical(System.Runtime.Intrinsics.Vector128<ulong> value, System.Runtime.Intrinsics.Vector128<ulong> count) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.UIntPtr> ShiftLeftLogical(System.Runtime.Intrinsics.Vector128<System.UIntPtr> value, System.Runtime.Intrinsics.Vector128<System.UIntPtr> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<byte> ShiftLeftLogical128BitLane(System.Runtime.Intrinsics.Vector128<byte> value, byte numBytes) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<short> ShiftLeftLogical128BitLane(System.Runtime.Intrinsics.Vector128<short> value, byte numBytes) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<int> ShiftLeftLogical128BitLane(System.Runtime.Intrinsics.Vector128<int> value, byte numBytes) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<long> ShiftLeftLogical128BitLane(System.Runtime.Intrinsics.Vector128<long> value, byte numBytes) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.IntPtr> ShiftLeftLogical128BitLane(System.Runtime.Intrinsics.Vector128<System.IntPtr> value, byte numBytes) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<sbyte> ShiftLeftLogical128BitLane(System.Runtime.Intrinsics.Vector128<sbyte> value, byte numBytes) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ushort> ShiftLeftLogical128BitLane(System.Runtime.Intrinsics.Vector128<ushort> value, byte numBytes) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<uint> ShiftLeftLogical128BitLane(System.Runtime.Intrinsics.Vector128<uint> value, byte numBytes) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ulong> ShiftLeftLogical128BitLane(System.Runtime.Intrinsics.Vector128<ulong> value, byte numBytes) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nint> ShiftLeftLogical128BitLane(System.Runtime.Intrinsics.Vector128<nint> value, byte numBytes) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nuint> ShiftLeftLogical128BitLane(System.Runtime.Intrinsics.Vector128<nuint> value, byte numBytes) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.UIntPtr> ShiftLeftLogical128BitLane(System.Runtime.Intrinsics.Vector128<System.UIntPtr> value, byte numBytes) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<short> ShiftRightArithmetic(System.Runtime.Intrinsics.Vector128<short> value, byte count) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<short> ShiftRightArithmetic(System.Runtime.Intrinsics.Vector128<short> value, System.Runtime.Intrinsics.Vector128<short> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<int> ShiftRightArithmetic(System.Runtime.Intrinsics.Vector128<int> value, byte count) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<int> ShiftRightArithmetic(System.Runtime.Intrinsics.Vector128<int> value, System.Runtime.Intrinsics.Vector128<int> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<short> ShiftRightLogical(System.Runtime.Intrinsics.Vector128<short> value, byte count) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<short> ShiftRightLogical(System.Runtime.Intrinsics.Vector128<short> value, System.Runtime.Intrinsics.Vector128<short> count) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<ushort> ShiftRightLogical(System.Runtime.Intrinsics.Vector128<ushort> value, byte count) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<ushort> ShiftRightLogical(System.Runtime.Intrinsics.Vector128<ushort> value, System.Runtime.Intrinsics.Vector128<ushort> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<int> ShiftRightLogical(System.Runtime.Intrinsics.Vector128<int> value, byte count) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<int> ShiftRightLogical(System.Runtime.Intrinsics.Vector128<int> value, System.Runtime.Intrinsics.Vector128<int> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<long> ShiftRightLogical(System.Runtime.Intrinsics.Vector128<long> value, byte count) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<long> ShiftRightLogical(System.Runtime.Intrinsics.Vector128<long> value, System.Runtime.Intrinsics.Vector128<long> count) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nint> ShiftRightLogical(System.Runtime.Intrinsics.Vector128<nint> value, System.Runtime.Intrinsics.Vector128<nint> count) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nuint> ShiftRightLogical(System.Runtime.Intrinsics.Vector128<nuint> value, System.Runtime.Intrinsics.Vector128<nuint> count) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nint> ShiftRightLogical(System.Runtime.Intrinsics.Vector128<nint> value, byte count) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nuint> ShiftRightLogical(System.Runtime.Intrinsics.Vector128<nuint> value, byte count) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.IntPtr> ShiftRightLogical(System.Runtime.Intrinsics.Vector128<System.IntPtr> value, byte count) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.IntPtr> ShiftRightLogical(System.Runtime.Intrinsics.Vector128<System.IntPtr> value, System.Runtime.Intrinsics.Vector128<System.IntPtr> count) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<ushort> ShiftRightLogical(System.Runtime.Intrinsics.Vector128<ushort> value, byte count) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<ushort> ShiftRightLogical(System.Runtime.Intrinsics.Vector128<ushort> value, System.Runtime.Intrinsics.Vector128<ushort> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<uint> ShiftRightLogical(System.Runtime.Intrinsics.Vector128<uint> value, byte count) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<uint> ShiftRightLogical(System.Runtime.Intrinsics.Vector128<uint> value, System.Runtime.Intrinsics.Vector128<uint> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ulong> ShiftRightLogical(System.Runtime.Intrinsics.Vector128<ulong> value, byte count) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ulong> ShiftRightLogical(System.Runtime.Intrinsics.Vector128<ulong> value, System.Runtime.Intrinsics.Vector128<ulong> count) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.UIntPtr> ShiftRightLogical(System.Runtime.Intrinsics.Vector128<System.UIntPtr> value, byte count) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.UIntPtr> ShiftRightLogical(System.Runtime.Intrinsics.Vector128<System.UIntPtr> value, System.Runtime.Intrinsics.Vector128<System.UIntPtr> count) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<byte> ShiftRightLogical128BitLane(System.Runtime.Intrinsics.Vector128<byte> value, byte numBytes) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<short> ShiftRightLogical128BitLane(System.Runtime.Intrinsics.Vector128<short> value, byte numBytes) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<int> ShiftRightLogical128BitLane(System.Runtime.Intrinsics.Vector128<int> value, byte numBytes) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<long> ShiftRightLogical128BitLane(System.Runtime.Intrinsics.Vector128<long> value, byte numBytes) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.IntPtr> ShiftRightLogical128BitLane(System.Runtime.Intrinsics.Vector128<System.IntPtr> value, byte numBytes) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<sbyte> ShiftRightLogical128BitLane(System.Runtime.Intrinsics.Vector128<sbyte> value, byte numBytes) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ushort> ShiftRightLogical128BitLane(System.Runtime.Intrinsics.Vector128<ushort> value, byte numBytes) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<uint> ShiftRightLogical128BitLane(System.Runtime.Intrinsics.Vector128<uint> value, byte numBytes) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ulong> ShiftRightLogical128BitLane(System.Runtime.Intrinsics.Vector128<ulong> value, byte numBytes) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nint> ShiftRightLogical128BitLane(System.Runtime.Intrinsics.Vector128<nint> value, byte numBytes) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nuint> ShiftRightLogical128BitLane(System.Runtime.Intrinsics.Vector128<nuint> value, byte numBytes) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.UIntPtr> ShiftRightLogical128BitLane(System.Runtime.Intrinsics.Vector128<System.UIntPtr> value, byte numBytes) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<double> Shuffle(System.Runtime.Intrinsics.Vector128<double> left, System.Runtime.Intrinsics.Vector128<double> right, byte control) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<int> Shuffle(System.Runtime.Intrinsics.Vector128<int> value, byte control) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<uint> Shuffle(System.Runtime.Intrinsics.Vector128<uint> value, byte control) { throw null; }
@@ -4279,58 +4386,58 @@ namespace System.Runtime.Intrinsics.X86
         public unsafe static void Store(short* address, System.Runtime.Intrinsics.Vector128<short> source) { }
         public unsafe static void Store(int* address, System.Runtime.Intrinsics.Vector128<int> source) { }
         public unsafe static void Store(long* address, System.Runtime.Intrinsics.Vector128<long> source) { }
+        public unsafe static void Store(System.IntPtr* address, System.Runtime.Intrinsics.Vector128<System.IntPtr> source) { }
         public unsafe static void Store(sbyte* address, System.Runtime.Intrinsics.Vector128<sbyte> source) { }
         public unsafe static void Store(ushort* address, System.Runtime.Intrinsics.Vector128<ushort> source) { }
         public unsafe static void Store(uint* address, System.Runtime.Intrinsics.Vector128<uint> source) { }
         public unsafe static void Store(ulong* address, System.Runtime.Intrinsics.Vector128<ulong> source) { }
-        public unsafe static void Store(nint* address, System.Runtime.Intrinsics.Vector128<nint> source) { }
-        public unsafe static void Store(nuint* address, System.Runtime.Intrinsics.Vector128<nuint> source) { }
+        public unsafe static void Store(System.UIntPtr* address, System.Runtime.Intrinsics.Vector128<System.UIntPtr> source) { }
         public unsafe static void StoreAligned(byte* address, System.Runtime.Intrinsics.Vector128<byte> source) { }
         public unsafe static void StoreAligned(double* address, System.Runtime.Intrinsics.Vector128<double> source) { }
         public unsafe static void StoreAligned(short* address, System.Runtime.Intrinsics.Vector128<short> source) { }
         public unsafe static void StoreAligned(int* address, System.Runtime.Intrinsics.Vector128<int> source) { }
         public unsafe static void StoreAligned(long* address, System.Runtime.Intrinsics.Vector128<long> source) { }
+        public unsafe static void StoreAligned(System.IntPtr* address, System.Runtime.Intrinsics.Vector128<System.IntPtr> source) { }
         public unsafe static void StoreAligned(sbyte* address, System.Runtime.Intrinsics.Vector128<sbyte> source) { }
         public unsafe static void StoreAligned(ushort* address, System.Runtime.Intrinsics.Vector128<ushort> source) { }
         public unsafe static void StoreAligned(uint* address, System.Runtime.Intrinsics.Vector128<uint> source) { }
         public unsafe static void StoreAligned(ulong* address, System.Runtime.Intrinsics.Vector128<ulong> source) { }
-        public unsafe static void StoreAligned(nint* address, System.Runtime.Intrinsics.Vector128<nint> source) { }
-        public unsafe static void StoreAligned(nuint* address, System.Runtime.Intrinsics.Vector128<nuint> source) { }
+        public unsafe static void StoreAligned(System.UIntPtr* address, System.Runtime.Intrinsics.Vector128<System.UIntPtr> source) { }
         public unsafe static void StoreAlignedNonTemporal(byte* address, System.Runtime.Intrinsics.Vector128<byte> source) { }
         public unsafe static void StoreAlignedNonTemporal(double* address, System.Runtime.Intrinsics.Vector128<double> source) { }
         public unsafe static void StoreAlignedNonTemporal(short* address, System.Runtime.Intrinsics.Vector128<short> source) { }
         public unsafe static void StoreAlignedNonTemporal(int* address, System.Runtime.Intrinsics.Vector128<int> source) { }
         public unsafe static void StoreAlignedNonTemporal(long* address, System.Runtime.Intrinsics.Vector128<long> source) { }
+        public unsafe static void StoreAlignedNonTemporal(System.IntPtr* address, System.Runtime.Intrinsics.Vector128<System.IntPtr> source) { }
         public unsafe static void StoreAlignedNonTemporal(sbyte* address, System.Runtime.Intrinsics.Vector128<sbyte> source) { }
         public unsafe static void StoreAlignedNonTemporal(ushort* address, System.Runtime.Intrinsics.Vector128<ushort> source) { }
         public unsafe static void StoreAlignedNonTemporal(uint* address, System.Runtime.Intrinsics.Vector128<uint> source) { }
         public unsafe static void StoreAlignedNonTemporal(ulong* address, System.Runtime.Intrinsics.Vector128<ulong> source) { }
-        public unsafe static void StoreAlignedNonTemporal(nint* address, System.Runtime.Intrinsics.Vector128<nint> source) { }
-        public unsafe static void StoreAlignedNonTemporal(nuint* address, System.Runtime.Intrinsics.Vector128<nuint> source) { }
+        public unsafe static void StoreAlignedNonTemporal(System.UIntPtr* address, System.Runtime.Intrinsics.Vector128<System.UIntPtr> source) { }
         public unsafe static void StoreHigh(double* address, System.Runtime.Intrinsics.Vector128<double> source) { }
         public unsafe static void StoreLow(double* address, System.Runtime.Intrinsics.Vector128<double> source) { }
         public unsafe static void StoreNonTemporal(int* address, int value) { }
+        public unsafe static void StoreNonTemporal(System.IntPtr* address, System.IntPtr value) { }
         public unsafe static void StoreNonTemporal(uint* address, uint value) { }
-        public unsafe static void StoreNonTemporal(nint* address, nint value) { }
-        public unsafe static void StoreNonTemporal(nuint* address, nuint value) { }
+        public unsafe static void StoreNonTemporal(System.UIntPtr* address, System.UIntPtr value) { }
         public unsafe static void StoreScalar(double* address, System.Runtime.Intrinsics.Vector128<double> source) { }
         public unsafe static void StoreScalar(int* address, System.Runtime.Intrinsics.Vector128<int> source) { }
         public unsafe static void StoreScalar(long* address, System.Runtime.Intrinsics.Vector128<long> source) { }
+        public unsafe static void StoreScalar(System.IntPtr* address, System.Runtime.Intrinsics.Vector128<System.IntPtr> source) { }
         public unsafe static void StoreScalar(uint* address, System.Runtime.Intrinsics.Vector128<uint> source) { }
         public unsafe static void StoreScalar(ulong* address, System.Runtime.Intrinsics.Vector128<ulong> source) { }
-        public unsafe static void StoreScalar(nint* address, System.Runtime.Intrinsics.Vector128<nint> source) { }
-        public unsafe static void StoreScalar(nuint* address, System.Runtime.Intrinsics.Vector128<nuint> source) { }
+        public unsafe static void StoreScalar(System.UIntPtr* address, System.Runtime.Intrinsics.Vector128<System.UIntPtr> source) { }
         public static System.Runtime.Intrinsics.Vector128<byte> Subtract(System.Runtime.Intrinsics.Vector128<byte> left, System.Runtime.Intrinsics.Vector128<byte> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<double> Subtract(System.Runtime.Intrinsics.Vector128<double> left, System.Runtime.Intrinsics.Vector128<double> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<short> Subtract(System.Runtime.Intrinsics.Vector128<short> left, System.Runtime.Intrinsics.Vector128<short> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<int> Subtract(System.Runtime.Intrinsics.Vector128<int> left, System.Runtime.Intrinsics.Vector128<int> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<long> Subtract(System.Runtime.Intrinsics.Vector128<long> left, System.Runtime.Intrinsics.Vector128<long> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.IntPtr> Subtract(System.Runtime.Intrinsics.Vector128<System.IntPtr> left, System.Runtime.Intrinsics.Vector128<System.IntPtr> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<sbyte> Subtract(System.Runtime.Intrinsics.Vector128<sbyte> left, System.Runtime.Intrinsics.Vector128<sbyte> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ushort> Subtract(System.Runtime.Intrinsics.Vector128<ushort> left, System.Runtime.Intrinsics.Vector128<ushort> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<uint> Subtract(System.Runtime.Intrinsics.Vector128<uint> left, System.Runtime.Intrinsics.Vector128<uint> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ulong> Subtract(System.Runtime.Intrinsics.Vector128<ulong> left, System.Runtime.Intrinsics.Vector128<ulong> right) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nint> Subtract(System.Runtime.Intrinsics.Vector128<nint> left, System.Runtime.Intrinsics.Vector128<nint> right) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nuint> Subtract(System.Runtime.Intrinsics.Vector128<nuint> left, System.Runtime.Intrinsics.Vector128<nuint> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.UIntPtr> Subtract(System.Runtime.Intrinsics.Vector128<System.UIntPtr> left, System.Runtime.Intrinsics.Vector128<System.UIntPtr> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<byte> SubtractSaturate(System.Runtime.Intrinsics.Vector128<byte> left, System.Runtime.Intrinsics.Vector128<byte> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<short> SubtractSaturate(System.Runtime.Intrinsics.Vector128<short> left, System.Runtime.Intrinsics.Vector128<short> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<sbyte> SubtractSaturate(System.Runtime.Intrinsics.Vector128<sbyte> left, System.Runtime.Intrinsics.Vector128<sbyte> right) { throw null; }
@@ -4342,34 +4449,34 @@ namespace System.Runtime.Intrinsics.X86
         public static System.Runtime.Intrinsics.Vector128<short> UnpackHigh(System.Runtime.Intrinsics.Vector128<short> left, System.Runtime.Intrinsics.Vector128<short> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<int> UnpackHigh(System.Runtime.Intrinsics.Vector128<int> left, System.Runtime.Intrinsics.Vector128<int> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<long> UnpackHigh(System.Runtime.Intrinsics.Vector128<long> left, System.Runtime.Intrinsics.Vector128<long> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.IntPtr> UnpackHigh(System.Runtime.Intrinsics.Vector128<System.IntPtr> left, System.Runtime.Intrinsics.Vector128<System.IntPtr> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<sbyte> UnpackHigh(System.Runtime.Intrinsics.Vector128<sbyte> left, System.Runtime.Intrinsics.Vector128<sbyte> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ushort> UnpackHigh(System.Runtime.Intrinsics.Vector128<ushort> left, System.Runtime.Intrinsics.Vector128<ushort> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<uint> UnpackHigh(System.Runtime.Intrinsics.Vector128<uint> left, System.Runtime.Intrinsics.Vector128<uint> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ulong> UnpackHigh(System.Runtime.Intrinsics.Vector128<ulong> left, System.Runtime.Intrinsics.Vector128<ulong> right) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nint> UnpackHigh(System.Runtime.Intrinsics.Vector128<nint> left, System.Runtime.Intrinsics.Vector128<nint> right) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nuint> UnpackHigh(System.Runtime.Intrinsics.Vector128<nuint> left, System.Runtime.Intrinsics.Vector128<nuint> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.UIntPtr> UnpackHigh(System.Runtime.Intrinsics.Vector128<System.UIntPtr> left, System.Runtime.Intrinsics.Vector128<System.UIntPtr> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<byte> UnpackLow(System.Runtime.Intrinsics.Vector128<byte> left, System.Runtime.Intrinsics.Vector128<byte> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<double> UnpackLow(System.Runtime.Intrinsics.Vector128<double> left, System.Runtime.Intrinsics.Vector128<double> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<short> UnpackLow(System.Runtime.Intrinsics.Vector128<short> left, System.Runtime.Intrinsics.Vector128<short> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<int> UnpackLow(System.Runtime.Intrinsics.Vector128<int> left, System.Runtime.Intrinsics.Vector128<int> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<long> UnpackLow(System.Runtime.Intrinsics.Vector128<long> left, System.Runtime.Intrinsics.Vector128<long> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.IntPtr> UnpackLow(System.Runtime.Intrinsics.Vector128<System.IntPtr> left, System.Runtime.Intrinsics.Vector128<System.IntPtr> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<sbyte> UnpackLow(System.Runtime.Intrinsics.Vector128<sbyte> left, System.Runtime.Intrinsics.Vector128<sbyte> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ushort> UnpackLow(System.Runtime.Intrinsics.Vector128<ushort> left, System.Runtime.Intrinsics.Vector128<ushort> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<uint> UnpackLow(System.Runtime.Intrinsics.Vector128<uint> left, System.Runtime.Intrinsics.Vector128<uint> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ulong> UnpackLow(System.Runtime.Intrinsics.Vector128<ulong> left, System.Runtime.Intrinsics.Vector128<ulong> right) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nint> UnpackLow(System.Runtime.Intrinsics.Vector128<nint> left, System.Runtime.Intrinsics.Vector128<nint> right) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nuint> UnpackLow(System.Runtime.Intrinsics.Vector128<nuint> left, System.Runtime.Intrinsics.Vector128<nuint> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.UIntPtr> UnpackLow(System.Runtime.Intrinsics.Vector128<System.UIntPtr> left, System.Runtime.Intrinsics.Vector128<System.UIntPtr> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<byte> Xor(System.Runtime.Intrinsics.Vector128<byte> left, System.Runtime.Intrinsics.Vector128<byte> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<double> Xor(System.Runtime.Intrinsics.Vector128<double> left, System.Runtime.Intrinsics.Vector128<double> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<short> Xor(System.Runtime.Intrinsics.Vector128<short> left, System.Runtime.Intrinsics.Vector128<short> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<int> Xor(System.Runtime.Intrinsics.Vector128<int> left, System.Runtime.Intrinsics.Vector128<int> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<long> Xor(System.Runtime.Intrinsics.Vector128<long> left, System.Runtime.Intrinsics.Vector128<long> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.IntPtr> Xor(System.Runtime.Intrinsics.Vector128<System.IntPtr> left, System.Runtime.Intrinsics.Vector128<System.IntPtr> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<sbyte> Xor(System.Runtime.Intrinsics.Vector128<sbyte> left, System.Runtime.Intrinsics.Vector128<sbyte> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ushort> Xor(System.Runtime.Intrinsics.Vector128<ushort> left, System.Runtime.Intrinsics.Vector128<ushort> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<uint> Xor(System.Runtime.Intrinsics.Vector128<uint> left, System.Runtime.Intrinsics.Vector128<uint> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ulong> Xor(System.Runtime.Intrinsics.Vector128<ulong> left, System.Runtime.Intrinsics.Vector128<ulong> right) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nint> Xor(System.Runtime.Intrinsics.Vector128<nint> left, System.Runtime.Intrinsics.Vector128<nint> right) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nuint> Xor(System.Runtime.Intrinsics.Vector128<nuint> left, System.Runtime.Intrinsics.Vector128<nuint> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.UIntPtr> Xor(System.Runtime.Intrinsics.Vector128<System.UIntPtr> left, System.Runtime.Intrinsics.Vector128<System.UIntPtr> right) { throw null; }
         public new abstract partial class X64 : System.Runtime.Intrinsics.X86.Sse.X64
         {
             internal X64() { }
@@ -4401,12 +4508,12 @@ namespace System.Runtime.Intrinsics.X86
         public unsafe static System.Runtime.Intrinsics.Vector128<short> LoadDquVector128(short* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<int> LoadDquVector128(int* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<long> LoadDquVector128(long* address) { throw null; }
-        public unsafe static System.Runtime.Intrinsics.Vector128<nint> LoadDquVector128(nint* address) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<System.IntPtr> LoadDquVector128(System.IntPtr* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<sbyte> LoadDquVector128(sbyte* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<ushort> LoadDquVector128(ushort* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<uint> LoadDquVector128(uint* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<ulong> LoadDquVector128(ulong* address) { throw null; }
-        public unsafe static System.Runtime.Intrinsics.Vector128<nuint> LoadDquVector128(nuint* address) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<System.UIntPtr> LoadDquVector128(System.UIntPtr* address) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<double> MoveAndDuplicate(System.Runtime.Intrinsics.Vector128<double> source) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<float> MoveHighAndDuplicate(System.Runtime.Intrinsics.Vector128<float> source) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<float> MoveLowAndDuplicate(System.Runtime.Intrinsics.Vector128<float> source) { throw null; }
@@ -4430,13 +4537,13 @@ namespace System.Runtime.Intrinsics.X86
         public static System.Runtime.Intrinsics.Vector128<short> BlendVariable(System.Runtime.Intrinsics.Vector128<short> left, System.Runtime.Intrinsics.Vector128<short> right, System.Runtime.Intrinsics.Vector128<short> mask) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<int> BlendVariable(System.Runtime.Intrinsics.Vector128<int> left, System.Runtime.Intrinsics.Vector128<int> right, System.Runtime.Intrinsics.Vector128<int> mask) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<long> BlendVariable(System.Runtime.Intrinsics.Vector128<long> left, System.Runtime.Intrinsics.Vector128<long> right, System.Runtime.Intrinsics.Vector128<long> mask) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nint> BlendVariable(System.Runtime.Intrinsics.Vector128<nint> left, System.Runtime.Intrinsics.Vector128<nint> right, System.Runtime.Intrinsics.Vector128<nint> mask) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.IntPtr> BlendVariable(System.Runtime.Intrinsics.Vector128<System.IntPtr> left, System.Runtime.Intrinsics.Vector128<System.IntPtr> right, System.Runtime.Intrinsics.Vector128<System.IntPtr> mask) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<sbyte> BlendVariable(System.Runtime.Intrinsics.Vector128<sbyte> left, System.Runtime.Intrinsics.Vector128<sbyte> right, System.Runtime.Intrinsics.Vector128<sbyte> mask) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<float> BlendVariable(System.Runtime.Intrinsics.Vector128<float> left, System.Runtime.Intrinsics.Vector128<float> right, System.Runtime.Intrinsics.Vector128<float> mask) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ushort> BlendVariable(System.Runtime.Intrinsics.Vector128<ushort> left, System.Runtime.Intrinsics.Vector128<ushort> right, System.Runtime.Intrinsics.Vector128<ushort> mask) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<uint> BlendVariable(System.Runtime.Intrinsics.Vector128<uint> left, System.Runtime.Intrinsics.Vector128<uint> right, System.Runtime.Intrinsics.Vector128<uint> mask) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ulong> BlendVariable(System.Runtime.Intrinsics.Vector128<ulong> left, System.Runtime.Intrinsics.Vector128<ulong> right, System.Runtime.Intrinsics.Vector128<ulong> mask) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nuint> BlendVariable(System.Runtime.Intrinsics.Vector128<nuint> left, System.Runtime.Intrinsics.Vector128<nuint> right, System.Runtime.Intrinsics.Vector128<nuint> mask) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.UIntPtr> BlendVariable(System.Runtime.Intrinsics.Vector128<System.UIntPtr> left, System.Runtime.Intrinsics.Vector128<System.UIntPtr> right, System.Runtime.Intrinsics.Vector128<System.UIntPtr> mask) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<double> Ceiling(System.Runtime.Intrinsics.Vector128<double> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<float> Ceiling(System.Runtime.Intrinsics.Vector128<float> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<double> CeilingScalar(System.Runtime.Intrinsics.Vector128<double> value) { throw null; }
@@ -4444,9 +4551,9 @@ namespace System.Runtime.Intrinsics.X86
         public static System.Runtime.Intrinsics.Vector128<float> CeilingScalar(System.Runtime.Intrinsics.Vector128<float> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<float> CeilingScalar(System.Runtime.Intrinsics.Vector128<float> upper, System.Runtime.Intrinsics.Vector128<float> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<long> CompareEqual(System.Runtime.Intrinsics.Vector128<long> left, System.Runtime.Intrinsics.Vector128<long> right) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nint> CompareEqual(System.Runtime.Intrinsics.Vector128<nint> left, System.Runtime.Intrinsics.Vector128<nint> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.IntPtr> CompareEqual(System.Runtime.Intrinsics.Vector128<System.IntPtr> left, System.Runtime.Intrinsics.Vector128<System.IntPtr> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ulong> CompareEqual(System.Runtime.Intrinsics.Vector128<ulong> left, System.Runtime.Intrinsics.Vector128<ulong> right) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nuint> CompareEqual(System.Runtime.Intrinsics.Vector128<nuint> left, System.Runtime.Intrinsics.Vector128<nuint> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.UIntPtr> CompareEqual(System.Runtime.Intrinsics.Vector128<System.UIntPtr> left, System.Runtime.Intrinsics.Vector128<System.UIntPtr> right) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<short> ConvertToVector128Int16(byte* address) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<short> ConvertToVector128Int16(System.Runtime.Intrinsics.Vector128<byte> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<short> ConvertToVector128Int16(System.Runtime.Intrinsics.Vector128<sbyte> value) { throw null; }
@@ -4471,26 +4578,26 @@ namespace System.Runtime.Intrinsics.X86
         public unsafe static System.Runtime.Intrinsics.Vector128<long> ConvertToVector128Int64(sbyte* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<long> ConvertToVector128Int64(ushort* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<long> ConvertToVector128Int64(uint* address) { throw null; }
-        public unsafe static System.Runtime.Intrinsics.Vector128<nint> ConvertToVector128NInt(byte* address) { throw null; }
-        public unsafe static System.Runtime.Intrinsics.Vector128<nint> ConvertToVector128NInt(short* address) { throw null; }
-        public unsafe static System.Runtime.Intrinsics.Vector128<nint> ConvertToVector128NInt(int* address) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nint> ConvertToVector128NInt(System.Runtime.Intrinsics.Vector128<byte> value) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nint> ConvertToVector128NInt(System.Runtime.Intrinsics.Vector128<short> value) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nint> ConvertToVector128NInt(System.Runtime.Intrinsics.Vector128<int> value) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nint> ConvertToVector128NInt(System.Runtime.Intrinsics.Vector128<sbyte> value) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nint> ConvertToVector128NInt(System.Runtime.Intrinsics.Vector128<ushort> value) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nint> ConvertToVector128NInt(System.Runtime.Intrinsics.Vector128<uint> value) { throw null; }
-        public unsafe static System.Runtime.Intrinsics.Vector128<nint> ConvertToVector128NInt(sbyte* address) { throw null; }
-        public unsafe static System.Runtime.Intrinsics.Vector128<nint> ConvertToVector128NInt(ushort* address) { throw null; }
-        public unsafe static System.Runtime.Intrinsics.Vector128<nint> ConvertToVector128NInt(uint* address) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<System.IntPtr> ConvertToVector128NInt(byte* address) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<System.IntPtr> ConvertToVector128NInt(short* address) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<System.IntPtr> ConvertToVector128NInt(int* address) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.IntPtr> ConvertToVector128NInt(System.Runtime.Intrinsics.Vector128<byte> value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.IntPtr> ConvertToVector128NInt(System.Runtime.Intrinsics.Vector128<short> value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.IntPtr> ConvertToVector128NInt(System.Runtime.Intrinsics.Vector128<int> value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.IntPtr> ConvertToVector128NInt(System.Runtime.Intrinsics.Vector128<sbyte> value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.IntPtr> ConvertToVector128NInt(System.Runtime.Intrinsics.Vector128<ushort> value) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.IntPtr> ConvertToVector128NInt(System.Runtime.Intrinsics.Vector128<uint> value) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<System.IntPtr> ConvertToVector128NInt(sbyte* address) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<System.IntPtr> ConvertToVector128NInt(ushort* address) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<System.IntPtr> ConvertToVector128NInt(uint* address) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<double> DotProduct(System.Runtime.Intrinsics.Vector128<double> left, System.Runtime.Intrinsics.Vector128<double> right, byte control) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<float> DotProduct(System.Runtime.Intrinsics.Vector128<float> left, System.Runtime.Intrinsics.Vector128<float> right, byte control) { throw null; }
         public static byte Extract(System.Runtime.Intrinsics.Vector128<byte> value, byte index) { throw null; }
         public static int Extract(System.Runtime.Intrinsics.Vector128<int> value, byte index) { throw null; }
-        public static nint Extract(System.Runtime.Intrinsics.Vector128<nint> value, byte index) { throw null; }
+        public static System.IntPtr Extract(System.Runtime.Intrinsics.Vector128<System.IntPtr> value, byte index) { throw null; }
         public static float Extract(System.Runtime.Intrinsics.Vector128<float> value, byte index) { throw null; }
         public static uint Extract(System.Runtime.Intrinsics.Vector128<uint> value, byte index) { throw null; }
-        public static nuint Extract(System.Runtime.Intrinsics.Vector128<nuint> value, byte index) { throw null; }
+        public static System.UIntPtr Extract(System.Runtime.Intrinsics.Vector128<System.UIntPtr> value, byte index) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<double> Floor(System.Runtime.Intrinsics.Vector128<double> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<float> Floor(System.Runtime.Intrinsics.Vector128<float> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<double> FloorScalar(System.Runtime.Intrinsics.Vector128<double> value) { throw null; }
@@ -4499,21 +4606,21 @@ namespace System.Runtime.Intrinsics.X86
         public static System.Runtime.Intrinsics.Vector128<float> FloorScalar(System.Runtime.Intrinsics.Vector128<float> upper, System.Runtime.Intrinsics.Vector128<float> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<byte> Insert(System.Runtime.Intrinsics.Vector128<byte> value, byte data, byte index) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<int> Insert(System.Runtime.Intrinsics.Vector128<int> value, int data, byte index) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nint> Insert(System.Runtime.Intrinsics.Vector128<nint> value, System.Runtime.Intrinsics.Vector128<nint> data, byte index) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.IntPtr> Insert(System.Runtime.Intrinsics.Vector128<System.IntPtr> value, System.Runtime.Intrinsics.Vector128<System.IntPtr> data, byte index) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<sbyte> Insert(System.Runtime.Intrinsics.Vector128<sbyte> value, sbyte data, byte index) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<float> Insert(System.Runtime.Intrinsics.Vector128<float> value, System.Runtime.Intrinsics.Vector128<float> data, byte index) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<uint> Insert(System.Runtime.Intrinsics.Vector128<uint> value, uint data, byte index) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nuint> Insert(System.Runtime.Intrinsics.Vector128<nuint> value, System.Runtime.Intrinsics.Vector128<nuint> data, byte index) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.UIntPtr> Insert(System.Runtime.Intrinsics.Vector128<System.UIntPtr> value, System.Runtime.Intrinsics.Vector128<System.UIntPtr> data, byte index) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<byte> LoadAlignedVector128NonTemporal(byte* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<short> LoadAlignedVector128NonTemporal(short* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<int> LoadAlignedVector128NonTemporal(int* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<long> LoadAlignedVector128NonTemporal(long* address) { throw null; }
-        public unsafe static System.Runtime.Intrinsics.Vector128<nint> LoadAlignedVector128NonTemporal(nint* address) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<System.IntPtr> LoadAlignedVector128NonTemporal(System.IntPtr* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<sbyte> LoadAlignedVector128NonTemporal(sbyte* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<ushort> LoadAlignedVector128NonTemporal(ushort* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<uint> LoadAlignedVector128NonTemporal(uint* address) { throw null; }
         public unsafe static System.Runtime.Intrinsics.Vector128<ulong> LoadAlignedVector128NonTemporal(ulong* address) { throw null; }
-        public unsafe static System.Runtime.Intrinsics.Vector128<nuint> LoadAlignedVector128NonTemporal(nuint* address) { throw null; }
+        public unsafe static System.Runtime.Intrinsics.Vector128<System.UIntPtr> LoadAlignedVector128NonTemporal(System.UIntPtr* address) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<int> Max(System.Runtime.Intrinsics.Vector128<int> left, System.Runtime.Intrinsics.Vector128<int> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<sbyte> Max(System.Runtime.Intrinsics.Vector128<sbyte> left, System.Runtime.Intrinsics.Vector128<sbyte> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ushort> Max(System.Runtime.Intrinsics.Vector128<ushort> left, System.Runtime.Intrinsics.Vector128<ushort> right) { throw null; }
@@ -4525,7 +4632,7 @@ namespace System.Runtime.Intrinsics.X86
         public static System.Runtime.Intrinsics.Vector128<ushort> MinHorizontal(System.Runtime.Intrinsics.Vector128<ushort> value) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ushort> MultipleSumAbsoluteDifferences(System.Runtime.Intrinsics.Vector128<byte> left, System.Runtime.Intrinsics.Vector128<byte> right, byte mask) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<long> Multiply(System.Runtime.Intrinsics.Vector128<int> left, System.Runtime.Intrinsics.Vector128<int> right) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nint> Multiply(System.Runtime.Intrinsics.Vector128<nint> left, System.Runtime.Intrinsics.Vector128<nint> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.IntPtr> Multiply(System.Runtime.Intrinsics.Vector128<System.IntPtr> left, System.Runtime.Intrinsics.Vector128<System.IntPtr> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<int> MultiplyLow(System.Runtime.Intrinsics.Vector128<int> left, System.Runtime.Intrinsics.Vector128<int> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<uint> MultiplyLow(System.Runtime.Intrinsics.Vector128<uint> left, System.Runtime.Intrinsics.Vector128<uint> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ushort> PackUnsignedSaturate(System.Runtime.Intrinsics.Vector128<int> left, System.Runtime.Intrinsics.Vector128<int> right) { throw null; }
@@ -4563,32 +4670,32 @@ namespace System.Runtime.Intrinsics.X86
         public static bool TestC(System.Runtime.Intrinsics.Vector128<short> left, System.Runtime.Intrinsics.Vector128<short> right) { throw null; }
         public static bool TestC(System.Runtime.Intrinsics.Vector128<int> left, System.Runtime.Intrinsics.Vector128<int> right) { throw null; }
         public static bool TestC(System.Runtime.Intrinsics.Vector128<long> left, System.Runtime.Intrinsics.Vector128<long> right) { throw null; }
-        public static bool TestC(System.Runtime.Intrinsics.Vector128<nint> left, System.Runtime.Intrinsics.Vector128<nint> right) { throw null; }
+        public static bool TestC(System.Runtime.Intrinsics.Vector128<System.IntPtr> left, System.Runtime.Intrinsics.Vector128<System.IntPtr> right) { throw null; }
         public static bool TestC(System.Runtime.Intrinsics.Vector128<sbyte> left, System.Runtime.Intrinsics.Vector128<sbyte> right) { throw null; }
         public static bool TestC(System.Runtime.Intrinsics.Vector128<ushort> left, System.Runtime.Intrinsics.Vector128<ushort> right) { throw null; }
         public static bool TestC(System.Runtime.Intrinsics.Vector128<uint> left, System.Runtime.Intrinsics.Vector128<uint> right) { throw null; }
         public static bool TestC(System.Runtime.Intrinsics.Vector128<ulong> left, System.Runtime.Intrinsics.Vector128<ulong> right) { throw null; }
-        public static bool TestC(System.Runtime.Intrinsics.Vector128<nuint> left, System.Runtime.Intrinsics.Vector128<nuint> right) { throw null; }
+        public static bool TestC(System.Runtime.Intrinsics.Vector128<System.UIntPtr> left, System.Runtime.Intrinsics.Vector128<System.UIntPtr> right) { throw null; }
         public static bool TestNotZAndNotC(System.Runtime.Intrinsics.Vector128<byte> left, System.Runtime.Intrinsics.Vector128<byte> right) { throw null; }
         public static bool TestNotZAndNotC(System.Runtime.Intrinsics.Vector128<short> left, System.Runtime.Intrinsics.Vector128<short> right) { throw null; }
         public static bool TestNotZAndNotC(System.Runtime.Intrinsics.Vector128<int> left, System.Runtime.Intrinsics.Vector128<int> right) { throw null; }
         public static bool TestNotZAndNotC(System.Runtime.Intrinsics.Vector128<long> left, System.Runtime.Intrinsics.Vector128<long> right) { throw null; }
-        public static bool TestNotZAndNotC(System.Runtime.Intrinsics.Vector128<nint> left, System.Runtime.Intrinsics.Vector128<nint> right) { throw null; }
+        public static bool TestNotZAndNotC(System.Runtime.Intrinsics.Vector128<System.IntPtr> left, System.Runtime.Intrinsics.Vector128<System.IntPtr> right) { throw null; }
         public static bool TestNotZAndNotC(System.Runtime.Intrinsics.Vector128<sbyte> left, System.Runtime.Intrinsics.Vector128<sbyte> right) { throw null; }
         public static bool TestNotZAndNotC(System.Runtime.Intrinsics.Vector128<ushort> left, System.Runtime.Intrinsics.Vector128<ushort> right) { throw null; }
         public static bool TestNotZAndNotC(System.Runtime.Intrinsics.Vector128<uint> left, System.Runtime.Intrinsics.Vector128<uint> right) { throw null; }
         public static bool TestNotZAndNotC(System.Runtime.Intrinsics.Vector128<ulong> left, System.Runtime.Intrinsics.Vector128<ulong> right) { throw null; }
-        public static bool TestNotZAndNotC(System.Runtime.Intrinsics.Vector128<nuint> left, System.Runtime.Intrinsics.Vector128<nuint> right) { throw null; }
+        public static bool TestNotZAndNotC(System.Runtime.Intrinsics.Vector128<System.UIntPtr> left, System.Runtime.Intrinsics.Vector128<System.UIntPtr> right) { throw null; }
         public static bool TestZ(System.Runtime.Intrinsics.Vector128<byte> left, System.Runtime.Intrinsics.Vector128<byte> right) { throw null; }
         public static bool TestZ(System.Runtime.Intrinsics.Vector128<short> left, System.Runtime.Intrinsics.Vector128<short> right) { throw null; }
         public static bool TestZ(System.Runtime.Intrinsics.Vector128<int> left, System.Runtime.Intrinsics.Vector128<int> right) { throw null; }
         public static bool TestZ(System.Runtime.Intrinsics.Vector128<long> left, System.Runtime.Intrinsics.Vector128<long> right) { throw null; }
-        public static bool TestZ(System.Runtime.Intrinsics.Vector128<nint> left, System.Runtime.Intrinsics.Vector128<nint> right) { throw null; }
+        public static bool TestZ(System.Runtime.Intrinsics.Vector128<System.IntPtr> left, System.Runtime.Intrinsics.Vector128<System.IntPtr> right) { throw null; }
         public static bool TestZ(System.Runtime.Intrinsics.Vector128<sbyte> left, System.Runtime.Intrinsics.Vector128<sbyte> right) { throw null; }
         public static bool TestZ(System.Runtime.Intrinsics.Vector128<ushort> left, System.Runtime.Intrinsics.Vector128<ushort> right) { throw null; }
         public static bool TestZ(System.Runtime.Intrinsics.Vector128<uint> left, System.Runtime.Intrinsics.Vector128<uint> right) { throw null; }
         public static bool TestZ(System.Runtime.Intrinsics.Vector128<ulong> left, System.Runtime.Intrinsics.Vector128<ulong> right) { throw null; }
-        public static bool TestZ(System.Runtime.Intrinsics.Vector128<nuint> left, System.Runtime.Intrinsics.Vector128<nuint> right) { throw null; }
+        public static bool TestZ(System.Runtime.Intrinsics.Vector128<System.UIntPtr> left, System.Runtime.Intrinsics.Vector128<System.UIntPtr> right) { throw null; }
         public new abstract partial class X64 : System.Runtime.Intrinsics.X86.Ssse3.X64
         {
             internal X64() { }
@@ -4605,11 +4712,11 @@ namespace System.Runtime.Intrinsics.X86
         internal Sse42() { }
         public static new bool IsSupported { get { throw null; } }
         public static System.Runtime.Intrinsics.Vector128<long> CompareGreaterThan(System.Runtime.Intrinsics.Vector128<long> left, System.Runtime.Intrinsics.Vector128<long> right) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nint> CompareGreaterThan(System.Runtime.Intrinsics.Vector128<nint> left, System.Runtime.Intrinsics.Vector128<nint> right) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.IntPtr> CompareGreaterThan(System.Runtime.Intrinsics.Vector128<System.IntPtr> left, System.Runtime.Intrinsics.Vector128<System.IntPtr> right) { throw null; }
         public static uint Crc32(uint crc, byte data) { throw null; }
         public static uint Crc32(uint crc, ushort data) { throw null; }
         public static uint Crc32(uint crc, uint data) { throw null; }
-        public static nuint Crc32(nuint crc, nuint data) { throw null; }
+        public static System.UIntPtr Crc32(System.UIntPtr crc, System.UIntPtr data) { throw null; }
         public new abstract partial class X64 : System.Runtime.Intrinsics.X86.Sse41.X64
         {
             internal X64() { }
@@ -4629,12 +4736,12 @@ namespace System.Runtime.Intrinsics.X86
         public static System.Runtime.Intrinsics.Vector128<short> AlignRight(System.Runtime.Intrinsics.Vector128<short> left, System.Runtime.Intrinsics.Vector128<short> right, byte mask) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<int> AlignRight(System.Runtime.Intrinsics.Vector128<int> left, System.Runtime.Intrinsics.Vector128<int> right, byte mask) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<long> AlignRight(System.Runtime.Intrinsics.Vector128<long> left, System.Runtime.Intrinsics.Vector128<long> right, byte mask) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nint> AlignRight(System.Runtime.Intrinsics.Vector128<nint> left, System.Runtime.Intrinsics.Vector128<nint> right, byte mask) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.IntPtr> AlignRight(System.Runtime.Intrinsics.Vector128<System.IntPtr> left, System.Runtime.Intrinsics.Vector128<System.IntPtr> right, byte mask) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<sbyte> AlignRight(System.Runtime.Intrinsics.Vector128<sbyte> left, System.Runtime.Intrinsics.Vector128<sbyte> right, byte mask) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ushort> AlignRight(System.Runtime.Intrinsics.Vector128<ushort> left, System.Runtime.Intrinsics.Vector128<ushort> right, byte mask) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<uint> AlignRight(System.Runtime.Intrinsics.Vector128<uint> left, System.Runtime.Intrinsics.Vector128<uint> right, byte mask) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<ulong> AlignRight(System.Runtime.Intrinsics.Vector128<ulong> left, System.Runtime.Intrinsics.Vector128<ulong> right, byte mask) { throw null; }
-        public static System.Runtime.Intrinsics.Vector128<nuint> AlignRight(System.Runtime.Intrinsics.Vector128<nuint> left, System.Runtime.Intrinsics.Vector128<nuint> right, byte mask) { throw null; }
+        public static System.Runtime.Intrinsics.Vector128<System.UIntPtr> AlignRight(System.Runtime.Intrinsics.Vector128<System.UIntPtr> left, System.Runtime.Intrinsics.Vector128<System.UIntPtr> right, byte mask) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<short> HorizontalAdd(System.Runtime.Intrinsics.Vector128<short> left, System.Runtime.Intrinsics.Vector128<short> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<int> HorizontalAdd(System.Runtime.Intrinsics.Vector128<int> left, System.Runtime.Intrinsics.Vector128<int> right) { throw null; }
         public static System.Runtime.Intrinsics.Vector128<short> HorizontalAddSaturate(System.Runtime.Intrinsics.Vector128<short> left, System.Runtime.Intrinsics.Vector128<short> right) { throw null; }
