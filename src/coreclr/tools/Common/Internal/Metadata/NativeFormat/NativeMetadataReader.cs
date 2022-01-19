@@ -63,7 +63,7 @@ namespace Internal.Metadata.NativeFormat
         MaxValue = 0xFFFF,
     }
 
-    public partial struct Handle
+    public partial struct Handle : IEquatable<Handle>
     {
         public override bool Equals(object obj)
         {

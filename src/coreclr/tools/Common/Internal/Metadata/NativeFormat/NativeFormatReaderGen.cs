@@ -70,7 +70,7 @@ namespace Internal.Metadata.NativeFormat
         internal Int32Collection _lowerBounds;
     } // ArraySignature
 
-    public partial struct ArraySignatureHandle
+    public partial struct ArraySignatureHandle : IEquatable<ArraySignatureHandle>
     {
         public override bool Equals(object obj)
         {
@@ -178,7 +178,7 @@ namespace Internal.Metadata.NativeFormat
         internal Handle _type;
     } // ByReferenceSignature
 
-    public partial struct ByReferenceSignatureHandle
+    public partial struct ByReferenceSignatureHandle : IEquatable<ByReferenceSignatureHandle>
     {
         public override bool Equals(object obj)
         {
@@ -285,7 +285,7 @@ namespace Internal.Metadata.NativeFormat
         internal BooleanCollection _value;
     } // ConstantBooleanArray
 
-    public partial struct ConstantBooleanArrayHandle
+    public partial struct ConstantBooleanArrayHandle : IEquatable<ConstantBooleanArrayHandle>
     {
         public override bool Equals(object obj)
         {
@@ -392,7 +392,7 @@ namespace Internal.Metadata.NativeFormat
         internal bool _value;
     } // ConstantBooleanValue
 
-    public partial struct ConstantBooleanValueHandle
+    public partial struct ConstantBooleanValueHandle : IEquatable<ConstantBooleanValueHandle>
     {
         public override bool Equals(object obj)
         {
@@ -511,7 +511,7 @@ namespace Internal.Metadata.NativeFormat
         internal Handle _type;
     } // ConstantBoxedEnumValue
 
-    public partial struct ConstantBoxedEnumValueHandle
+    public partial struct ConstantBoxedEnumValueHandle : IEquatable<ConstantBoxedEnumValueHandle>
     {
         public override bool Equals(object obj)
         {
@@ -618,7 +618,7 @@ namespace Internal.Metadata.NativeFormat
         internal ByteCollection _value;
     } // ConstantByteArray
 
-    public partial struct ConstantByteArrayHandle
+    public partial struct ConstantByteArrayHandle : IEquatable<ConstantByteArrayHandle>
     {
         public override bool Equals(object obj)
         {
@@ -725,7 +725,7 @@ namespace Internal.Metadata.NativeFormat
         internal byte _value;
     } // ConstantByteValue
 
-    public partial struct ConstantByteValueHandle
+    public partial struct ConstantByteValueHandle : IEquatable<ConstantByteValueHandle>
     {
         public override bool Equals(object obj)
         {
@@ -832,7 +832,7 @@ namespace Internal.Metadata.NativeFormat
         internal CharCollection _value;
     } // ConstantCharArray
 
-    public partial struct ConstantCharArrayHandle
+    public partial struct ConstantCharArrayHandle : IEquatable<ConstantCharArrayHandle>
     {
         public override bool Equals(object obj)
         {
@@ -939,7 +939,7 @@ namespace Internal.Metadata.NativeFormat
         internal char _value;
     } // ConstantCharValue
 
-    public partial struct ConstantCharValueHandle
+    public partial struct ConstantCharValueHandle : IEquatable<ConstantCharValueHandle>
     {
         public override bool Equals(object obj)
         {
@@ -1046,7 +1046,7 @@ namespace Internal.Metadata.NativeFormat
         internal DoubleCollection _value;
     } // ConstantDoubleArray
 
-    public partial struct ConstantDoubleArrayHandle
+    public partial struct ConstantDoubleArrayHandle : IEquatable<ConstantDoubleArrayHandle>
     {
         public override bool Equals(object obj)
         {
@@ -1153,7 +1153,7 @@ namespace Internal.Metadata.NativeFormat
         internal double _value;
     } // ConstantDoubleValue
 
-    public partial struct ConstantDoubleValueHandle
+    public partial struct ConstantDoubleValueHandle : IEquatable<ConstantDoubleValueHandle>
     {
         public override bool Equals(object obj)
         {
@@ -1270,7 +1270,7 @@ namespace Internal.Metadata.NativeFormat
         internal Handle _value;
     } // ConstantEnumArray
 
-    public partial struct ConstantEnumArrayHandle
+    public partial struct ConstantEnumArrayHandle : IEquatable<ConstantEnumArrayHandle>
     {
         public override bool Equals(object obj)
         {
@@ -1377,7 +1377,7 @@ namespace Internal.Metadata.NativeFormat
         internal HandleCollection _value;
     } // ConstantHandleArray
 
-    public partial struct ConstantHandleArrayHandle
+    public partial struct ConstantHandleArrayHandle : IEquatable<ConstantHandleArrayHandle>
     {
         public override bool Equals(object obj)
         {
@@ -1484,7 +1484,7 @@ namespace Internal.Metadata.NativeFormat
         internal Int16Collection _value;
     } // ConstantInt16Array
 
-    public partial struct ConstantInt16ArrayHandle
+    public partial struct ConstantInt16ArrayHandle : IEquatable<ConstantInt16ArrayHandle>
     {
         public override bool Equals(object obj)
         {
@@ -1591,7 +1591,7 @@ namespace Internal.Metadata.NativeFormat
         internal short _value;
     } // ConstantInt16Value
 
-    public partial struct ConstantInt16ValueHandle
+    public partial struct ConstantInt16ValueHandle : IEquatable<ConstantInt16ValueHandle>
     {
         public override bool Equals(object obj)
         {
@@ -1698,7 +1698,7 @@ namespace Internal.Metadata.NativeFormat
         internal Int32Collection _value;
     } // ConstantInt32Array
 
-    public partial struct ConstantInt32ArrayHandle
+    public partial struct ConstantInt32ArrayHandle : IEquatable<ConstantInt32ArrayHandle>
     {
         public override bool Equals(object obj)
         {
@@ -1805,7 +1805,7 @@ namespace Internal.Metadata.NativeFormat
         internal int _value;
     } // ConstantInt32Value
 
-    public partial struct ConstantInt32ValueHandle
+    public partial struct ConstantInt32ValueHandle : IEquatable<ConstantInt32ValueHandle>
     {
         public override bool Equals(object obj)
         {
@@ -1912,7 +1912,7 @@ namespace Internal.Metadata.NativeFormat
         internal Int64Collection _value;
     } // ConstantInt64Array
 
-    public partial struct ConstantInt64ArrayHandle
+    public partial struct ConstantInt64ArrayHandle : IEquatable<ConstantInt64ArrayHandle>
     {
         public override bool Equals(object obj)
         {
@@ -2019,7 +2019,7 @@ namespace Internal.Metadata.NativeFormat
         internal long _value;
     } // ConstantInt64Value
 
-    public partial struct ConstantInt64ValueHandle
+    public partial struct ConstantInt64ValueHandle : IEquatable<ConstantInt64ValueHandle>
     {
         public override bool Equals(object obj)
         {
@@ -2116,7 +2116,7 @@ namespace Internal.Metadata.NativeFormat
         } // Handle
     } // ConstantReferenceValue
 
-    public partial struct ConstantReferenceValueHandle
+    public partial struct ConstantReferenceValueHandle : IEquatable<ConstantReferenceValueHandle>
     {
         public override bool Equals(object obj)
         {
@@ -2223,7 +2223,7 @@ namespace Internal.Metadata.NativeFormat
         internal SByteCollection _value;
     } // ConstantSByteArray
 
-    public partial struct ConstantSByteArrayHandle
+    public partial struct ConstantSByteArrayHandle : IEquatable<ConstantSByteArrayHandle>
     {
         public override bool Equals(object obj)
         {
@@ -2330,7 +2330,7 @@ namespace Internal.Metadata.NativeFormat
         internal sbyte _value;
     } // ConstantSByteValue
 
-    public partial struct ConstantSByteValueHandle
+    public partial struct ConstantSByteValueHandle : IEquatable<ConstantSByteValueHandle>
     {
         public override bool Equals(object obj)
         {
@@ -2437,7 +2437,7 @@ namespace Internal.Metadata.NativeFormat
         internal SingleCollection _value;
     } // ConstantSingleArray
 
-    public partial struct ConstantSingleArrayHandle
+    public partial struct ConstantSingleArrayHandle : IEquatable<ConstantSingleArrayHandle>
     {
         public override bool Equals(object obj)
         {
@@ -2544,7 +2544,7 @@ namespace Internal.Metadata.NativeFormat
         internal float _value;
     } // ConstantSingleValue
 
-    public partial struct ConstantSingleValueHandle
+    public partial struct ConstantSingleValueHandle : IEquatable<ConstantSingleValueHandle>
     {
         public override bool Equals(object obj)
         {
@@ -2652,7 +2652,7 @@ namespace Internal.Metadata.NativeFormat
         internal HandleCollection _value;
     } // ConstantStringArray
 
-    public partial struct ConstantStringArrayHandle
+    public partial struct ConstantStringArrayHandle : IEquatable<ConstantStringArrayHandle>
     {
         public override bool Equals(object obj)
         {
@@ -2759,7 +2759,7 @@ namespace Internal.Metadata.NativeFormat
         internal string _value;
     } // ConstantStringValue
 
-    public partial struct ConstantStringValueHandle
+    public partial struct ConstantStringValueHandle : IEquatable<ConstantStringValueHandle>
     {
         public override bool Equals(object obj)
         {
@@ -2866,7 +2866,7 @@ namespace Internal.Metadata.NativeFormat
         internal UInt16Collection _value;
     } // ConstantUInt16Array
 
-    public partial struct ConstantUInt16ArrayHandle
+    public partial struct ConstantUInt16ArrayHandle : IEquatable<ConstantUInt16ArrayHandle>
     {
         public override bool Equals(object obj)
         {
@@ -2973,7 +2973,7 @@ namespace Internal.Metadata.NativeFormat
         internal ushort _value;
     } // ConstantUInt16Value
 
-    public partial struct ConstantUInt16ValueHandle
+    public partial struct ConstantUInt16ValueHandle : IEquatable<ConstantUInt16ValueHandle>
     {
         public override bool Equals(object obj)
         {
@@ -3080,7 +3080,7 @@ namespace Internal.Metadata.NativeFormat
         internal UInt32Collection _value;
     } // ConstantUInt32Array
 
-    public partial struct ConstantUInt32ArrayHandle
+    public partial struct ConstantUInt32ArrayHandle : IEquatable<ConstantUInt32ArrayHandle>
     {
         public override bool Equals(object obj)
         {
@@ -3187,7 +3187,7 @@ namespace Internal.Metadata.NativeFormat
         internal uint _value;
     } // ConstantUInt32Value
 
-    public partial struct ConstantUInt32ValueHandle
+    public partial struct ConstantUInt32ValueHandle : IEquatable<ConstantUInt32ValueHandle>
     {
         public override bool Equals(object obj)
         {
@@ -3294,7 +3294,7 @@ namespace Internal.Metadata.NativeFormat
         internal UInt64Collection _value;
     } // ConstantUInt64Array
 
-    public partial struct ConstantUInt64ArrayHandle
+    public partial struct ConstantUInt64ArrayHandle : IEquatable<ConstantUInt64ArrayHandle>
     {
         public override bool Equals(object obj)
         {
@@ -3401,7 +3401,7 @@ namespace Internal.Metadata.NativeFormat
         internal ulong _value;
     } // ConstantUInt64Value
 
-    public partial struct ConstantUInt64ValueHandle
+    public partial struct ConstantUInt64ValueHandle : IEquatable<ConstantUInt64ValueHandle>
     {
         public override bool Equals(object obj)
         {
@@ -3530,7 +3530,7 @@ namespace Internal.Metadata.NativeFormat
         internal NamedArgumentHandleCollection _namedArguments;
     } // CustomAttribute
 
-    public partial struct CustomAttributeHandle
+    public partial struct CustomAttributeHandle : IEquatable<CustomAttributeHandle>
     {
         public override bool Equals(object obj)
         {
@@ -3678,7 +3678,7 @@ namespace Internal.Metadata.NativeFormat
         internal CustomAttributeHandleCollection _customAttributes;
     } // Event
 
-    public partial struct EventHandle
+    public partial struct EventHandle : IEquatable<EventHandle>
     {
         public override bool Equals(object obj)
         {
@@ -3836,7 +3836,7 @@ namespace Internal.Metadata.NativeFormat
         internal CustomAttributeHandleCollection _customAttributes;
     } // Field
 
-    public partial struct FieldHandle
+    public partial struct FieldHandle : IEquatable<FieldHandle>
     {
         public override bool Equals(object obj)
         {
@@ -3944,7 +3944,7 @@ namespace Internal.Metadata.NativeFormat
         internal Handle _type;
     } // FieldSignature
 
-    public partial struct FieldSignatureHandle
+    public partial struct FieldSignatureHandle : IEquatable<FieldSignatureHandle>
     {
         public override bool Equals(object obj)
         {
@@ -4051,7 +4051,7 @@ namespace Internal.Metadata.NativeFormat
         internal MethodSignatureHandle _signature;
     } // FunctionPointerSignature
 
-    public partial struct FunctionPointerSignatureHandle
+    public partial struct FunctionPointerSignatureHandle : IEquatable<FunctionPointerSignatureHandle>
     {
         public override bool Equals(object obj)
         {
@@ -4209,7 +4209,7 @@ namespace Internal.Metadata.NativeFormat
         internal CustomAttributeHandleCollection _customAttributes;
     } // GenericParameter
 
-    public partial struct GenericParameterHandle
+    public partial struct GenericParameterHandle : IEquatable<GenericParameterHandle>
     {
         public override bool Equals(object obj)
         {
@@ -4338,7 +4338,7 @@ namespace Internal.Metadata.NativeFormat
         internal Handle _signature;
     } // MemberReference
 
-    public partial struct MemberReferenceHandle
+    public partial struct MemberReferenceHandle : IEquatable<MemberReferenceHandle>
     {
         public override bool Equals(object obj)
         {
@@ -4505,7 +4505,7 @@ namespace Internal.Metadata.NativeFormat
         internal CustomAttributeHandleCollection _customAttributes;
     } // Method
 
-    public partial struct MethodHandle
+    public partial struct MethodHandle : IEquatable<MethodHandle>
     {
         public override bool Equals(object obj)
         {
@@ -4624,7 +4624,7 @@ namespace Internal.Metadata.NativeFormat
         internal HandleCollection _genericTypeArguments;
     } // MethodInstantiation
 
-    public partial struct MethodInstantiationHandle
+    public partial struct MethodInstantiationHandle : IEquatable<MethodInstantiationHandle>
     {
         public override bool Equals(object obj)
         {
@@ -4741,7 +4741,7 @@ namespace Internal.Metadata.NativeFormat
         internal MethodHandle _method;
     } // MethodSemantics
 
-    public partial struct MethodSemanticsHandle
+    public partial struct MethodSemanticsHandle : IEquatable<MethodSemanticsHandle>
     {
         public override bool Equals(object obj)
         {
@@ -4891,7 +4891,7 @@ namespace Internal.Metadata.NativeFormat
         internal HandleCollection _varArgParameters;
     } // MethodSignature
 
-    public partial struct MethodSignatureHandle
+    public partial struct MethodSignatureHandle : IEquatable<MethodSignatureHandle>
     {
         public override bool Equals(object obj)
         {
@@ -4998,7 +4998,7 @@ namespace Internal.Metadata.NativeFormat
         internal int _number;
     } // MethodTypeVariableSignature
 
-    public partial struct MethodTypeVariableSignatureHandle
+    public partial struct MethodTypeVariableSignatureHandle : IEquatable<MethodTypeVariableSignatureHandle>
     {
         public override bool Equals(object obj)
         {
@@ -5127,7 +5127,7 @@ namespace Internal.Metadata.NativeFormat
         internal Handle _type;
     } // ModifiedType
 
-    public partial struct ModifiedTypeHandle
+    public partial struct ModifiedTypeHandle : IEquatable<ModifiedTypeHandle>
     {
         public override bool Equals(object obj)
         {
@@ -5266,7 +5266,7 @@ namespace Internal.Metadata.NativeFormat
         internal Handle _value;
     } // NamedArgument
 
-    public partial struct NamedArgumentHandle
+    public partial struct NamedArgumentHandle : IEquatable<NamedArgumentHandle>
     {
         public override bool Equals(object obj)
         {
@@ -5414,7 +5414,7 @@ namespace Internal.Metadata.NativeFormat
         internal NamespaceDefinitionHandleCollection _namespaceDefinitions;
     } // NamespaceDefinition
 
-    public partial struct NamespaceDefinitionHandle
+    public partial struct NamespaceDefinitionHandle : IEquatable<NamespaceDefinitionHandle>
     {
         public override bool Equals(object obj)
         {
@@ -5532,7 +5532,7 @@ namespace Internal.Metadata.NativeFormat
         internal ConstantStringValueHandle _name;
     } // NamespaceReference
 
-    public partial struct NamespaceReferenceHandle
+    public partial struct NamespaceReferenceHandle : IEquatable<NamespaceReferenceHandle>
     {
         public override bool Equals(object obj)
         {
@@ -5680,7 +5680,7 @@ namespace Internal.Metadata.NativeFormat
         internal CustomAttributeHandleCollection _customAttributes;
     } // Parameter
 
-    public partial struct ParameterHandle
+    public partial struct ParameterHandle : IEquatable<ParameterHandle>
     {
         public override bool Equals(object obj)
         {
@@ -5788,7 +5788,7 @@ namespace Internal.Metadata.NativeFormat
         internal Handle _type;
     } // PointerSignature
 
-    public partial struct PointerSignatureHandle
+    public partial struct PointerSignatureHandle : IEquatable<PointerSignatureHandle>
     {
         public override bool Equals(object obj)
         {
@@ -5946,7 +5946,7 @@ namespace Internal.Metadata.NativeFormat
         internal CustomAttributeHandleCollection _customAttributes;
     } // Property
 
-    public partial struct PropertyHandle
+    public partial struct PropertyHandle : IEquatable<PropertyHandle>
     {
         public override bool Equals(object obj)
         {
@@ -6075,7 +6075,7 @@ namespace Internal.Metadata.NativeFormat
         internal HandleCollection _parameters;
     } // PropertySignature
 
-    public partial struct PropertySignatureHandle
+    public partial struct PropertySignatureHandle : IEquatable<PropertySignatureHandle>
     {
         public override bool Equals(object obj)
         {
@@ -6192,7 +6192,7 @@ namespace Internal.Metadata.NativeFormat
         internal TypeDefinitionHandle _enclosingType;
     } // QualifiedField
 
-    public partial struct QualifiedFieldHandle
+    public partial struct QualifiedFieldHandle : IEquatable<QualifiedFieldHandle>
     {
         public override bool Equals(object obj)
         {
@@ -6309,7 +6309,7 @@ namespace Internal.Metadata.NativeFormat
         internal TypeDefinitionHandle _enclosingType;
     } // QualifiedMethod
 
-    public partial struct QualifiedMethodHandle
+    public partial struct QualifiedMethodHandle : IEquatable<QualifiedMethodHandle>
     {
         public override bool Equals(object obj)
         {
@@ -6417,7 +6417,7 @@ namespace Internal.Metadata.NativeFormat
         internal Handle _elementType;
     } // SZArraySignature
 
-    public partial struct SZArraySignatureHandle
+    public partial struct SZArraySignatureHandle : IEquatable<SZArraySignatureHandle>
     {
         public override bool Equals(object obj)
         {
@@ -6674,7 +6674,7 @@ namespace Internal.Metadata.NativeFormat
         internal CustomAttributeHandleCollection _moduleCustomAttributes;
     } // ScopeDefinition
 
-    public partial struct ScopeDefinitionHandle
+    public partial struct ScopeDefinitionHandle : IEquatable<ScopeDefinitionHandle>
     {
         public override bool Equals(object obj)
         {
@@ -6851,7 +6851,7 @@ namespace Internal.Metadata.NativeFormat
         internal ConstantStringValueHandle _culture;
     } // ScopeReference
 
-    public partial struct ScopeReferenceHandle
+    public partial struct ScopeReferenceHandle : IEquatable<ScopeReferenceHandle>
     {
         public override bool Equals(object obj)
         {
@@ -7100,7 +7100,7 @@ namespace Internal.Metadata.NativeFormat
         internal CustomAttributeHandleCollection _customAttributes;
     } // TypeDefinition
 
-    public partial struct TypeDefinitionHandle
+    public partial struct TypeDefinitionHandle : IEquatable<TypeDefinitionHandle>
     {
         public override bool Equals(object obj)
         {
@@ -7227,7 +7227,7 @@ namespace Internal.Metadata.NativeFormat
         internal TypeForwarderHandleCollection _nestedTypes;
     } // TypeForwarder
 
-    public partial struct TypeForwarderHandle
+    public partial struct TypeForwarderHandle : IEquatable<TypeForwarderHandle>
     {
         public override bool Equals(object obj)
         {
@@ -7346,7 +7346,7 @@ namespace Internal.Metadata.NativeFormat
         internal HandleCollection _genericTypeArguments;
     } // TypeInstantiationSignature
 
-    public partial struct TypeInstantiationSignatureHandle
+    public partial struct TypeInstantiationSignatureHandle : IEquatable<TypeInstantiationSignatureHandle>
     {
         public override bool Equals(object obj)
         {
@@ -7464,7 +7464,7 @@ namespace Internal.Metadata.NativeFormat
         internal ConstantStringValueHandle _typeName;
     } // TypeReference
 
-    public partial struct TypeReferenceHandle
+    public partial struct TypeReferenceHandle : IEquatable<TypeReferenceHandle>
     {
         public override bool Equals(object obj)
         {
@@ -7572,7 +7572,7 @@ namespace Internal.Metadata.NativeFormat
         internal Handle _signature;
     } // TypeSpecification
 
-    public partial struct TypeSpecificationHandle
+    public partial struct TypeSpecificationHandle : IEquatable<TypeSpecificationHandle>
     {
         public override bool Equals(object obj)
         {
@@ -7679,7 +7679,7 @@ namespace Internal.Metadata.NativeFormat
         internal int _number;
     } // TypeVariableSignature
 
-    public partial struct TypeVariableSignatureHandle
+    public partial struct TypeVariableSignatureHandle : IEquatable<TypeVariableSignatureHandle>
     {
         public override bool Equals(object obj)
         {

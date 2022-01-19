@@ -100,7 +100,7 @@ class ReaderGen : CsWriter
     {
         string handleName = $"{record.Name}Handle";
 
-        OpenScope($"public partial struct {handleName}");
+        OpenScope($"public partial struct {handleName} : IEquatable<{handleName}>");
 
         OpenScope("public override bool Equals(object obj)");
         WriteLine($"if (obj is {handleName})");

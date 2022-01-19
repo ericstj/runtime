@@ -12,7 +12,7 @@ namespace Internal.TypeSystem
     /// type system do not have a known size. This type is used to make such sizes viral through the type layout
     /// computations)
     /// </summary>
-    public struct LayoutInt
+    public struct LayoutInt : IEquatable<LayoutInt>
     {
         private int _value;
 
@@ -64,15 +64,9 @@ namespace Internal.TypeSystem
                 return _value.ToStringInvariant();
         }
 
-        public static bool operator ==(LayoutInt left, LayoutInt right)
-        {
-            return left._value == right._value;
-        }
+        public static bool operator ==(LayoutInt left, LayoutInt right) => left.Equals(right);
 
-        public static bool operator !=(LayoutInt left, LayoutInt right)
-        {
-            return left._value != right._value;
-        }
+        public static bool operator !=(LayoutInt left, LayoutInt right) => !left.Equals(right);
 
         public static LayoutInt operator +(LayoutInt left, LayoutInt right)
         {
@@ -90,14 +84,10 @@ namespace Internal.TypeSystem
             return new LayoutInt(checked(left._value - right._value));
         }
 
-        public override bool Equals(object obj)
-        {
-            if (obj is LayoutInt)
-            {
-                return this == (LayoutInt)obj;
-            }
-            return false;
-        }
+        public override bool Equals(object obj) =>
+            obj is LayoutInt other && Equals(other);
+
+        public bool Equals(LayoutInt other) => _value == other._value;
 
         public override int GetHashCode()
         {
