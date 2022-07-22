@@ -1,0 +1,43 @@
+<Project>
+  <Target Name="GetNetStandardData">
+    <ChooseBestTargetFrameworksTask BuildTargetFrameworks="netstandard2.0"
+                                    SupportedTargetFrameworks="$(TargetFrameworks)"
+                                    Condition="'$(TargetFrameworks)' != ''"
+                                    RuntimeGraph="$(RuntimeGraph)"
+                                    Distinct="true">
+      <Output TaskParameter="BestTargetFrameworks" PropertyName="_nestsandard2framework" />
+    </ChooseBestTargetFrameworksTask>
+
+    <MSBuild Projects="$(MSBuildProjectFile)" 
+             Targets="GetNetStandardProjectType" 
+             Condition="'$(_nestsandard2framework)' != ''"
+             Properties="TargetFramework=netstandard2.0">
+      <Output TaskParameter="TargetOutputs" ItemName="_netStandardProjectData" />
+    </MSBuild>
+
+    <PropertyGroup>
+      <_suppoortsNetStandard>false</_suppoortsNetStandard>
+      <_suppoortsNetStandard Condition="'$(_nestsandard2framework)' != ''">true</_suppoortsNetStandard>
+      <_projectType>no-netstandard</_projectType>
+      <_projectType Condition="'@(_netStandardProjectData)' != ''">%(_netStandardProjectData.Type)</_projectType>
+    </PropertyGroup>
+
+    <Exec Command="git rev-list v6.0.0... --count -- .\*.vb .\*.cs" ConsoleToMsBuild="true" EchoOff="true" StandardOutputImportance="Low">
+      <Output TaskParameter="ConsoleOutput" PropertyName="_gitRevListCount" />
+    </Exec>
+    <Message Text="$(MSBuildProjectName),$(_suppoortsNetStandard),$(_projectType),$(_gitRevListCount)" Importance="high" />
+  </Target>  
+  <Target Name="WriteNetStandardDataHeader">
+    <Message Text="ProjectName,SupportsNetStandard,NetStandardProjectType,Commits" Importance="High"/>
+  </Target>
+  <Target Name="GetNetStandardProjectType" Returns="@(_projectData)">
+    <ItemGroup>
+      <_projectData Include="unused">
+        <!-- use metadat in case we might want to capture more info -->
+        <Type>netstandard-implementation</Type>
+        <Type Condition="'$(IsPartialFacadeAssembly)' == 'true'">netstandard-facade</Type>
+        <Type Condition="'$(GeneratePlatformNotSupportedAssemblyMessage)' != ''">netstandard-pnse</Type>
+      </_projectData>
+    </ItemGroup>
+  </Target>
+</Project>

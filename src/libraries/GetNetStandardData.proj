@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.Build.Traversal" InitialTargets="WriteNetStandardDataHeader">
+  <!-- Reference all NetCoreAppCurrent shared framework src projects. -->
+  <ItemGroup>
+    <ProjectExclusions Include="Microsoft.XmlSerializer.Generator\src\Microsoft.XmlSerializer.Generator.csproj" />
+    <AnyProject Include="$(MSBuildThisFileDirectory)*\src\*.csproj;$(MSBuildThisFileDirectory)*\src\*.vbproj"
+                Exclude="@(ProjectExclusions);
+                         $(MSBuildThisFileDirectory)*\src\*.shproj" />
+    <ProjectReference Include="@(AnyProject);
+                               $(CoreLibProject)"
+                      Targets="GetNetStandardData" />
+  </ItemGroup>
+</Project>

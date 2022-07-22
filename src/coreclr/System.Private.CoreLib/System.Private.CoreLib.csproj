@@ -345,4 +345,6 @@
       <FileWrites Include="@(EventingSourceFile)" />
     </ItemGroup>
   </Target>
+  
+  <Import Project="$(LibrariesProjectRoot)\GetNetStandardData.targets" />
 </Project>
