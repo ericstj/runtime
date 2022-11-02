@@ -303,13 +303,5 @@ namespace System.Configuration.Internal
         public bool IsFullTrustSectionWithoutAptcaAllowed(IInternalConfigRecord configRecord) => true;
 
         public IDisposable Impersonate() => new DummyDisposable();
-
-#pragma warning disable SYSLIB0003
-        public void GetRestrictedPermissions(IInternalConfigRecord configRecord, out PermissionSet permissionSet, out bool isHostReady)
-        {
-            permissionSet = new PermissionSet(null);
-            isHostReady = true;
-        }
-#pragma warning restore SYSLIB0003
     }
 }

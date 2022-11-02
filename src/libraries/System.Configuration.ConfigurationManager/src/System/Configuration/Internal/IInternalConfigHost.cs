@@ -102,8 +102,5 @@ namespace System.Configuration.Internal
         bool IsFullTrustSectionWithoutAptcaAllowed(IInternalConfigRecord configRecord);
 
         IDisposable Impersonate();
-
-        [System.ObsoleteAttribute("Code Access Security is not supported or honored by the runtime.", DiagnosticId = "SYSLIB0003", UrlFormat = "https://aka.ms/dotnet-warnings/{0}")]
-        void GetRestrictedPermissions(IInternalConfigRecord configRecord, out PermissionSet permissionSet, out bool isHostReady);
     }
 }

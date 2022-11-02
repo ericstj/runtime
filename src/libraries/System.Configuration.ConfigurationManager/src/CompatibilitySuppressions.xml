@@ -2,6 +2,20 @@
 <Suppressions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Suppression>
     <DiagnosticId>CP0002</DiagnosticId>
+    <Target>M:System.Configuration.Internal.DelegatingConfigHost.GetRestrictedPermissions(System.Configuration.Internal.IInternalConfigRecord,System.Security.PermissionSet@,System.Boolean@)</Target>
+    <Left>lib/net6.0/System.Configuration.ConfigurationManager.dll</Left>
+    <Right>lib/net6.0/System.Configuration.ConfigurationManager.dll</Right>
+    <IsBaselineSuppression>true</IsBaselineSuppression>
+  </Suppression>
+  <Suppression>
+    <DiagnosticId>CP0002</DiagnosticId>
+    <Target>M:System.Configuration.Internal.IInternalConfigHost.GetRestrictedPermissions(System.Configuration.Internal.IInternalConfigRecord,System.Security.PermissionSet@,System.Boolean@)</Target>
+    <Left>lib/net6.0/System.Configuration.ConfigurationManager.dll</Left>
+    <Right>lib/net6.0/System.Configuration.ConfigurationManager.dll</Right>
+    <IsBaselineSuppression>true</IsBaselineSuppression>
+  </Suppression>
+  <Suppression>
+    <DiagnosticId>CP0002</DiagnosticId>
     <Target>M:System.Configuration.Internal.DelegatingConfigHost.get_HasLocalConfig</Target>
     <Left>lib/netstandard2.0/System.Configuration.ConfigurationManager.dll</Left>
     <Right>lib/net462/System.Configuration.ConfigurationManager.dll</Right>
@@ -33,6 +47,26 @@
   <Suppression>
     <DiagnosticId>CP0002</DiagnosticId>
     <Target>M:System.Configuration.SettingsContext.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)</Target>
+    <Left>lib/netstandard2.0/System.Configuration.ConfigurationManager.dll</Left>
+    <Right>lib/net462/System.Configuration.ConfigurationManager.dll</Right>
+  </Suppression>
+  <Suppression>
+    <DiagnosticId>CP0002</DiagnosticId>
+    <Target>M:System.Configuration.Internal.DelegatingConfigHost.GetRestrictedPermissions(System.Configuration.Internal.IInternalConfigRecord,System.Security.PermissionSet@,System.Boolean@)</Target>
+    <Left>lib/netstandard2.0/System.Configuration.ConfigurationManager.dll</Left>
+    <Right>lib/netstandard2.0/System.Configuration.ConfigurationManager.dll</Right>
+    <IsBaselineSuppression>true</IsBaselineSuppression>
+  </Suppression>
+  <Suppression>
+    <DiagnosticId>CP0002</DiagnosticId>
+    <Target>M:System.Configuration.Internal.IInternalConfigHost.GetRestrictedPermissions(System.Configuration.Internal.IInternalConfigRecord,System.Security.PermissionSet@,System.Boolean@)</Target>
+    <Left>lib/netstandard2.0/System.Configuration.ConfigurationManager.dll</Left>
+    <Right>lib/netstandard2.0/System.Configuration.ConfigurationManager.dll</Right>
+    <IsBaselineSuppression>true</IsBaselineSuppression>
+  </Suppression>
+  <Suppression>
+    <DiagnosticId>CP0006</DiagnosticId>
+    <Target>M:System.Configuration.Internal.IInternalConfigHost.GetRestrictedPermissions(System.Configuration.Internal.IInternalConfigRecord,System.Security.PermissionSet@,System.Boolean@)</Target>
     <Left>lib/netstandard2.0/System.Configuration.ConfigurationManager.dll</Left>
     <Right>lib/net462/System.Configuration.ConfigurationManager.dll</Right>
   </Suppression>
