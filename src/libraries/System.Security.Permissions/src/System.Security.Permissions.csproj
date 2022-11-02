@@ -2,6 +2,7 @@
   <PropertyGroup>
     <TargetFrameworks>$(NetCoreAppCurrent);$(NetCoreAppMinimum);netstandard2.0;$(NetFrameworkMinimum)</TargetFrameworks>
     <IsPartialFacadeAssembly>true</IsPartialFacadeAssembly>
+    <IncludeInternalObsoleteAttribute>true</IncludeInternalObsoleteAttribute>
     <Nullable>disable</Nullable>
     <NoWarn>$(NoWarn);nullable</NoWarn>
     <IsPackable>true</IsPackable>
@@ -31,7 +32,11 @@
     <Compile Include="System\Diagnostics\PerformanceCounterPermissionAccess.cs" />
     <Compile Include="System\Diagnostics\PerformanceCounterPermissionAttribute.cs" />
     <Compile Include="System\Diagnostics\PerformanceCounterPermissionEntry.cs" />
-    <Compile Include="System\Diagnostics\PerformanceCounterPermissionEntryCollection.cs" />
+    <Compile Include="System\Diagnostics\PerformanceCounterPermissionEntryCollection.cs" /><Compile Include="System\DirectoryServices\DirectoryServicesPermission.cs" />
+    <Compile Include="System\DirectoryServices\DirectoryServicesPermissionAccess.cs" />
+    <Compile Include="System\DirectoryServices\DirectoryServicesPermissionAttribute.cs" />
+    <Compile Include="System\DirectoryServices\DirectoryServicesPermissionEntry.cs" />
+    <Compile Include="System\DirectoryServices\DirectoryServicesPermissionEntryCollection.cs" />
     <Compile Include="System\Drawing\Printing\PrintingPermission.cs" />
     <Compile Include="System\Drawing\Printing\PrintingPermissionAttribute.cs" />
     <Compile Include="System\Drawing\Printing\PrintingPermissionLevel.cs" />

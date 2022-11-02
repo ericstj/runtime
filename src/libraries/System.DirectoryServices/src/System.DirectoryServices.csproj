@@ -30,6 +30,7 @@ System.DirectoryServices.ActiveDirectory.DomainController</PackageDescription>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetPlatformIdentifier)' == 'windows'">
+    <Compile Include="System.DirectoryServices.forwards.cs" />
     <Compile Include="System\DirectoryServices\ActiveDirectorySecurity.cs" />
     <Compile Include="System\DirectoryServices\AdsVLV.cs" />
     <Compile Include="System\DirectoryServices\AuthenticationTypes.cs" />
@@ -138,11 +139,6 @@ System.DirectoryServices.ActiveDirectory.DomainController</PackageDescription>
     <Compile Include="System\DirectoryServices\ActiveDirectory\UnsafeNativeMethods.cs" />
     <Compile Include="System\DirectoryServices\ActiveDirectory\Utils.cs" />
     <Compile Include="System\DirectoryServices\ActiveDirectory\WellKnownDN.cs" />
-    <Compile Include="System\DirectoryServices\DirectoryServicesPermission.cs" />
-    <Compile Include="System\DirectoryServices\DirectoryServicesPermissionAccess.cs" />
-    <Compile Include="System\DirectoryServices\DirectoryServicesPermissionAttribute.cs" />
-    <Compile Include="System\DirectoryServices\DirectoryServicesPermissionEntry.cs" />
-    <Compile Include="System\DirectoryServices\DirectoryServicesPermissionEntryCollection.cs" />
     <Compile Include="Interop\AdsOptions.cs" />
     <Compile Include="Interop\AdsPropertyOperation.cs" />
     <Compile Include="Interop\AdsSearchColumn.cs" />
@@ -243,7 +239,7 @@ System.DirectoryServices.ActiveDirectory.DomainController</PackageDescription>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="$(LibrariesProjectRoot)System.Security.Permissions\src\System.Security.Permissions.csproj" />
+    <ProjectReference Include="$(LibrariesProjectRoot)System.Security.Permissions\src\System.Security.Permissions.csproj" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFrameworkIdentifier)' == '.NETStandard'">
