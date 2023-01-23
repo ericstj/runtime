@@ -19,20 +19,20 @@
   </Choose>
 
   <!-- TODO: Remove this target when no library relies on the intellisense documentation file anymore.-->
-  <Target Name="ChangeDocumentationFileForPackaging"
-          AfterTargets="DocumentationProjectOutputGroup"
+  <Target Name="ChangeDocumentationFile"
+          BeforeTargets="CopyFilesToOutputDirectory"
           Condition="'$(UseIntellisenseDocumentationFile)' == 'true'">
     <ItemGroup>
-      <DocumentationProjectOutputGroupOutput Remove="@(DocumentationProjectOutputGroupOutput)" />
-      <DocumentationProjectOutputGroupOutput Include="$(IntellisenseFilePath)" />
+      <DocFileItem Remove="@(DocFileItem)" />
+      <DocFileItem Include="$(IntellisenseFilePath)" />
     </ItemGroup>
   </Target>
 
   <Target Name="CopyDocumentationFileToXmlDocDir"
           AfterTargets="CopyFilesToOutputDirectory"
           Condition="'$(IsNetCoreAppSrc)' == 'true' and '$(TargetFramework)' == '$(NetCoreAppCurrent)'"
-          DependsOnTargets="ChangeDocumentationFileForPackaging">
-    <Copy SourceFiles="@(DocumentationProjectOutputGroupOutput)"
+          DependsOnTargets="ChangeDocumentationFile">
+    <Copy SourceFiles="@(DocFileItem)"
           DestinationFolder="$(XmlDocDir)"
           SkipUnchangedFiles="true"
           UseHardlinksIfPossible="true" />
