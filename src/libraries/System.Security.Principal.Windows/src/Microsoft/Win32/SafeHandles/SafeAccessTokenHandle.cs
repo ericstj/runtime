@@ -7,7 +7,7 @@ using System.Security;
 
 namespace Microsoft.Win32.SafeHandles
 {
-    public sealed class SafeAccessTokenHandle : SafeHandle
+    public sealed partial class SafeAccessTokenHandle : SafeHandle
     {
         /// <summary>
         /// Creates a <see cref="T:Microsoft.Win32.SafeHandles.SafeAccessTokenHandle" />.
@@ -34,11 +34,6 @@ namespace Microsoft.Win32.SafeHandles
             {
                 return handle == IntPtr.Zero || handle == new IntPtr(-1);
             }
-        }
-
-        protected override bool ReleaseHandle()
-        {
-            return Interop.Kernel32.CloseHandle(handle);
         }
     }
 }
