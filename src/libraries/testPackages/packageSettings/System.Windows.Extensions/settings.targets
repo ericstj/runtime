@@ -1,6 +1,6 @@
 <Project>
   <ItemGroup>
     <!-- intentional dangling ref -->
-    <IgnoredReference Include="System.Drawing.Common" />
+    <IgnoredReference Include="System.Security.Permissions" />
   </ItemGroup>
 </Project>
