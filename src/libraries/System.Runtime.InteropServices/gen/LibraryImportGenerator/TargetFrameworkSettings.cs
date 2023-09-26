@@ -13,18 +13,6 @@ namespace Microsoft.Interop
     // which will be faster than the reflection-based ones.
     public readonly record struct TargetFrameworkSettings(TargetFramework TargetFramework, Version Version);
 
-    /// <summary>
-    /// Target framework identifier
-    /// </summary>
-    public enum TargetFramework
-    {
-        Unknown,
-        Framework,
-        Core,
-        Standard,
-        Net
-    }
-
     public static class TargetFrameworkSettingsExtensions
     {
         private static readonly Version FirstNonCoreVersion = new(5, 0);
