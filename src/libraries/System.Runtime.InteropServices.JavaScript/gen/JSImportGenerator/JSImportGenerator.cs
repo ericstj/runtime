@@ -9,6 +9,7 @@ using System.Threading;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using SourceGenerators;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
 [assembly: System.Resources.NeutralResourcesLanguage("en-US")]
@@ -18,6 +19,14 @@ namespace Microsoft.Interop.JavaScript
     [Generator]
     public sealed class JSImportGenerator : IIncrementalGenerator
     {
+        /// <summary> Full type name, used for diagnostics </summary>
+        private static readonly string s_generatorName = typeof(JSImportGenerator).FullName!;
+
+        /// <summary> Assembly location, used for diagnostics </summary>
+#pragma warning disable IL3000
+        private static readonly string s_generatorLocation = typeof(JSImportGenerator).Assembly.Location;
+#pragma warning restore IL3000
+
         internal sealed record IncrementalStubGenerationContext(
             JSSignatureContext SignatureContext,
             ContainingSyntaxContext ContainingSyntaxContext,
@@ -163,46 +172,54 @@ namespace Microsoft.Interop.JavaScript
             JSGeneratorOptions options,
             CancellationToken ct)
         {
-            ct.ThrowIfCancellationRequested();
-            // Get any attributes of interest on the method
-            AttributeData? jsImportAttr = null;
-            foreach (AttributeData attr in symbol.GetAttributes())
+            var operation = SourceGeneratorsEventSource.Log.StartGeneratorPhase(s_generatorName, s_generatorLocation, nameof(CalculateStubInformation));
+            try
             {
-                if (attr.AttributeClass is not null
-                    && attr.AttributeClass.ToDisplayString() == Constants.JSImportAttribute)
+                ct.ThrowIfCancellationRequested();
+                // Get any attributes of interest on the method
+                AttributeData? jsImportAttr = null;
+                foreach (AttributeData attr in symbol.GetAttributes())
                 {
-                    jsImportAttr = attr;
+                    if (attr.AttributeClass is not null
+                        && attr.AttributeClass.ToDisplayString() == Constants.JSImportAttribute)
+                    {
+                        jsImportAttr = attr;
+                    }
                 }
+
+                Debug.Assert(jsImportAttr is not null);
+
+                var locations = new MethodSignatureDiagnosticLocations(originalSyntax);
+                var generatorDiagnostics = new GeneratorDiagnosticsBag(new DescriptorProvider(), locations, SR.ResourceManager, typeof(FxResources.Microsoft.Interop.JavaScript.JSImportGenerator.SR));
+
+                // Process the JSImport attribute
+                JSImportData? jsImportData = ProcessJSImportAttribute(jsImportAttr!);
+
+                if (jsImportData is null)
+                {
+                    generatorDiagnostics.ReportConfigurationNotSupported(jsImportAttr!, "Invalid syntax");
+                    jsImportData = new JSImportData("INVALID_CSHARP_SYNTAX", null);
+                }
+
+                // Create the stub.
+                var signatureContext = JSSignatureContext.Create(symbol, environment, generatorDiagnostics, ct);
+
+                var containingTypeContext = new ContainingSyntaxContext(originalSyntax);
+
+                var methodSyntaxTemplate = new ContainingSyntax(originalSyntax.Modifiers, SyntaxKind.MethodDeclaration, originalSyntax.Identifier, originalSyntax.TypeParameterList);
+                return new IncrementalStubGenerationContext(
+                    signatureContext,
+                    containingTypeContext,
+                    methodSyntaxTemplate,
+                    locations,
+                    jsImportData,
+                    CreateGeneratorFactory(options),
+                    new SequenceEqualImmutableArray<DiagnosticInfo>(generatorDiagnostics.Diagnostics.ToImmutableArray()));
             }
-
-            Debug.Assert(jsImportAttr is not null);
-
-            var locations = new MethodSignatureDiagnosticLocations(originalSyntax);
-            var generatorDiagnostics = new GeneratorDiagnosticsBag(new DescriptorProvider(), locations, SR.ResourceManager, typeof(FxResources.Microsoft.Interop.JavaScript.JSImportGenerator.SR));
-
-            // Process the JSImport attribute
-            JSImportData? jsImportData = ProcessJSImportAttribute(jsImportAttr!);
-
-            if (jsImportData is null)
+            finally
             {
-                generatorDiagnostics.ReportConfigurationNotSupported(jsImportAttr!, "Invalid syntax");
-                jsImportData = new JSImportData("INVALID_CSHARP_SYNTAX", null);
+                SourceGeneratorsEventSource.Log.StopGeneratorPhase(operation);
             }
-
-            // Create the stub.
-            var signatureContext = JSSignatureContext.Create(symbol, environment, generatorDiagnostics, ct);
-
-            var containingTypeContext = new ContainingSyntaxContext(originalSyntax);
-
-            var methodSyntaxTemplate = new ContainingSyntax(originalSyntax.Modifiers, SyntaxKind.MethodDeclaration, originalSyntax.Identifier, originalSyntax.TypeParameterList);
-            return new IncrementalStubGenerationContext(
-                signatureContext,
-                containingTypeContext,
-                methodSyntaxTemplate,
-                locations,
-                jsImportData,
-                CreateGeneratorFactory(options),
-                new SequenceEqualImmutableArray<DiagnosticInfo>(generatorDiagnostics.Diagnostics.ToImmutableArray()));
         }
 
         private static MarshallingGeneratorFactoryKey<JSGeneratorOptions> CreateGeneratorFactory(JSGeneratorOptions options)
@@ -215,19 +232,27 @@ namespace Microsoft.Interop.JavaScript
         private static (MemberDeclarationSyntax, ImmutableArray<DiagnosticInfo>) GenerateSource(
             IncrementalStubGenerationContext incrementalContext)
         {
-            var diagnostics = new GeneratorDiagnosticsBag(new DescriptorProvider(), incrementalContext.DiagnosticLocation, SR.ResourceManager, typeof(FxResources.Microsoft.Interop.JavaScript.JSImportGenerator.SR));
+            var operation = SourceGeneratorsEventSource.Log.StartGeneratorPhase(s_generatorName, s_generatorLocation, "GenerateSource");
+            try
+            {
+                var diagnostics = new GeneratorDiagnosticsBag(new DescriptorProvider(), incrementalContext.DiagnosticLocation, SR.ResourceManager, typeof(FxResources.Microsoft.Interop.JavaScript.JSImportGenerator.SR));
 
-            // Generate stub code
-            var stubGenerator = new JSImportCodeGenerator(
-                incrementalContext.SignatureContext.SignatureContext.ElementTypeInformation,
-                incrementalContext.JSImportData,
-                incrementalContext.SignatureContext,
-                diagnostics,
-                incrementalContext.GeneratorFactoryKey.GeneratorFactory);
+                // Generate stub code
+                var stubGenerator = new JSImportCodeGenerator(
+                    incrementalContext.SignatureContext.SignatureContext.ElementTypeInformation,
+                    incrementalContext.JSImportData,
+                    incrementalContext.SignatureContext,
+                    diagnostics,
+                    incrementalContext.GeneratorFactoryKey.GeneratorFactory);
 
-            BlockSyntax code = stubGenerator.GenerateJSImportBody();
+                BlockSyntax code = stubGenerator.GenerateJSImportBody();
 
-            return (PrintGeneratedSource(incrementalContext.StubMethodSyntaxTemplate, incrementalContext.SignatureContext, incrementalContext.ContainingSyntaxContext, code), incrementalContext.Diagnostics.Array.AddRange(diagnostics.Diagnostics));
+                return (PrintGeneratedSource(incrementalContext.StubMethodSyntaxTemplate, incrementalContext.SignatureContext, incrementalContext.ContainingSyntaxContext, code), incrementalContext.Diagnostics.Array.AddRange(diagnostics.Diagnostics));
+            }
+            finally
+            {
+                SourceGeneratorsEventSource.Log.StopGeneratorPhase(operation);
+            }
         }
 
         private static Diagnostic? GetDiagnosticIfInvalidMethodForGeneration(MethodDeclarationSyntax methodSyntax, IMethodSymbol method)

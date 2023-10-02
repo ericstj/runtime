@@ -10,6 +10,7 @@ using System.Threading;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using SourceGenerators;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 using static Microsoft.Interop.SyntaxFactoryExtensions;
 
@@ -18,6 +19,14 @@ namespace Microsoft.Interop
     [Generator]
     public sealed partial class ComInterfaceGenerator : IIncrementalGenerator
     {
+        /// <summary> Full type name, used for diagnostics </summary>
+        private static readonly string s_generatorName = typeof(ComInterfaceGenerator).FullName!;
+
+        /// <summary> Assembly location, used for diagnostics </summary>
+#pragma warning disable IL3000
+        private static readonly string s_generatorLocation = typeof(ComInterfaceGenerator).Assembly.Location;
+#pragma warning restore IL3000
+
         public static class StepNames
         {
             public const string CalculateStubInformation = nameof(CalculateStubInformation);
@@ -194,7 +203,15 @@ namespace Microsoft.Interop
 
             context.RegisterSourceOutput(filesToGenerate, (context, data) =>
             {
-                context.AddSource(data.TypeName.Replace(TypeNames.GlobalAlias, ""), data.Source);
+                var operation = SourceGeneratorsEventSource.Log.StartGeneratorPhase(s_generatorName, s_generatorLocation, nameof(IncrementalGeneratorInitializationContext.RegisterSourceOutput));
+                try
+                {
+                    context.AddSource(data.TypeName.Replace(TypeNames.GlobalAlias, ""), data.Source);
+                }
+                finally
+                {
+                    SourceGeneratorsEventSource.Log.StopGeneratorPhase(operation);
+                }
             });
         }
 
@@ -221,163 +238,171 @@ namespace Microsoft.Interop
 
         private static IncrementalMethodStubGenerationContext CalculateStubInformation(MethodDeclarationSyntax syntax, IMethodSymbol symbol, int index, StubEnvironment environment, ManagedTypeInfo owningInterface, CancellationToken ct)
         {
-            ct.ThrowIfCancellationRequested();
-            INamedTypeSymbol? lcidConversionAttrType = environment.LcidConversionAttrType;
-            INamedTypeSymbol? suppressGCTransitionAttrType = environment.SuppressGCTransitionAttrType;
-            INamedTypeSymbol? unmanagedCallConvAttrType = environment.UnmanagedCallConvAttrType;
-            // Get any attributes of interest on the method
-            AttributeData? lcidConversionAttr = null;
-            AttributeData? suppressGCTransitionAttribute = null;
-            AttributeData? unmanagedCallConvAttribute = null;
-            foreach (AttributeData attr in symbol.GetAttributes())
+            var operation = SourceGeneratorsEventSource.Log.StartGeneratorPhase(s_generatorName, s_generatorLocation, nameof(CalculateStubInformation));
+            try
             {
-                if (lcidConversionAttrType is not null && SymbolEqualityComparer.Default.Equals(attr.AttributeClass, lcidConversionAttrType))
+                ct.ThrowIfCancellationRequested();
+                INamedTypeSymbol? lcidConversionAttrType = environment.LcidConversionAttrType;
+                INamedTypeSymbol? suppressGCTransitionAttrType = environment.SuppressGCTransitionAttrType;
+                INamedTypeSymbol? unmanagedCallConvAttrType = environment.UnmanagedCallConvAttrType;
+                // Get any attributes of interest on the method
+                AttributeData? lcidConversionAttr = null;
+                AttributeData? suppressGCTransitionAttribute = null;
+                AttributeData? unmanagedCallConvAttribute = null;
+                foreach (AttributeData attr in symbol.GetAttributes())
                 {
-                    lcidConversionAttr = attr;
-                }
-                else if (suppressGCTransitionAttrType is not null && SymbolEqualityComparer.Default.Equals(attr.AttributeClass, suppressGCTransitionAttrType))
-                {
-                    suppressGCTransitionAttribute = attr;
-                }
-                else if (unmanagedCallConvAttrType is not null && SymbolEqualityComparer.Default.Equals(attr.AttributeClass, unmanagedCallConvAttrType))
-                {
-                    unmanagedCallConvAttribute = attr;
-                }
-            }
-
-            var locations = new MethodSignatureDiagnosticLocations(syntax);
-            var generatorDiagnostics = new GeneratorDiagnosticsBag(new DiagnosticDescriptorProvider(), locations, SR.ResourceManager, typeof(FxResources.Microsoft.Interop.ComInterfaceGenerator.SR));
-
-            if (lcidConversionAttr is not null)
-            {
-                // Using LCIDConversion with source-generated interop is not supported
-                generatorDiagnostics.ReportConfigurationNotSupported(lcidConversionAttr, nameof(TypeNames.LCIDConversionAttribute));
-            }
-
-            GeneratedComInterfaceCompilationData.TryGetGeneratedComInterfaceAttributeFromInterface(symbol.ContainingType, out var generatedComAttribute);
-            var generatedComInterfaceAttributeData = GeneratedComInterfaceCompilationData.GetDataFromAttribute(generatedComAttribute);
-            // Create the stub.
-
-            var signatureContext = SignatureContext.Create(
-                symbol,
-                DefaultMarshallingInfoParser.Create(
-                    environment,
-                    generatorDiagnostics,
-                    symbol,
-                    generatedComInterfaceAttributeData,
-                    generatedComAttribute),
-                environment,
-                new CodeEmitOptions(SkipInit: true),
-                typeof(VtableIndexStubGenerator).Assembly);
-
-            if (!symbol.MethodImplementationFlags.HasFlag(MethodImplAttributes.PreserveSig))
-            {
-                // Search for the element information for the managed return value.
-                // We need to transform it such that any return type is converted to an out parameter at the end of the parameter list.
-                ImmutableArray<TypePositionInfo> returnSwappedSignatureElements = signatureContext.ElementTypeInformation;
-                for (int i = 0; i < returnSwappedSignatureElements.Length; ++i)
-                {
-                    if (returnSwappedSignatureElements[i].IsManagedReturnPosition)
+                    if (lcidConversionAttrType is not null && SymbolEqualityComparer.Default.Equals(attr.AttributeClass, lcidConversionAttrType))
                     {
-                        if (returnSwappedSignatureElements[i].ManagedType == SpecialTypeInfo.Void)
-                        {
-                            // Return type is void, just remove the element from the signature list.
-                            // We don't introduce an out parameter.
-                            returnSwappedSignatureElements = returnSwappedSignatureElements.RemoveAt(i);
-                        }
-                        else
-                        {
-                            if ((returnSwappedSignatureElements[i].ManagedType is SpecialTypeInfo { SpecialType: SpecialType.System_Int32 or SpecialType.System_Enum } or EnumTypeInfo
-                                    && returnSwappedSignatureElements[i].MarshallingAttributeInfo.Equals(NoMarshallingInfo.Instance))
-                                || (IsHResultLikeType(returnSwappedSignatureElements[i].ManagedType)))
-                            {
-                                generatorDiagnostics.ReportDiagnostic(DiagnosticInfo.Create(GeneratorDiagnostics.ComMethodManagedReturnWillBeOutVariable, symbol.Locations[0]));
-                            }
-                            // Convert the current element into an out parameter on the native signature
-                            // while keeping it at the return position in the managed signature.
-                            var managedSignatureAsNativeOut = returnSwappedSignatureElements[i] with
-                            {
-                                RefKind = RefKind.Out,
-                                RefKindSyntax = SyntaxKind.OutKeyword,
-                                ManagedIndex = TypePositionInfo.ReturnIndex,
-                                NativeIndex = symbol.Parameters.Length
-                            };
-                            returnSwappedSignatureElements = returnSwappedSignatureElements.SetItem(i, managedSignatureAsNativeOut);
-                        }
-                        break;
+                        lcidConversionAttr = attr;
+                    }
+                    else if (suppressGCTransitionAttrType is not null && SymbolEqualityComparer.Default.Equals(attr.AttributeClass, suppressGCTransitionAttrType))
+                    {
+                        suppressGCTransitionAttribute = attr;
+                    }
+                    else if (unmanagedCallConvAttrType is not null && SymbolEqualityComparer.Default.Equals(attr.AttributeClass, unmanagedCallConvAttrType))
+                    {
+                        unmanagedCallConvAttribute = attr;
                     }
                 }
 
-                signatureContext = signatureContext with
+                var locations = new MethodSignatureDiagnosticLocations(syntax);
+                var generatorDiagnostics = new GeneratorDiagnosticsBag(new DiagnosticDescriptorProvider(), locations, SR.ResourceManager, typeof(FxResources.Microsoft.Interop.ComInterfaceGenerator.SR));
+
+                if (lcidConversionAttr is not null)
                 {
-                    // Add the HRESULT return value in the native signature.
-                    // This element does not have any influence on the managed signature, so don't assign a managed index.
-                    ElementTypeInformation = returnSwappedSignatureElements.Add(
-                        new TypePositionInfo(SpecialTypeInfo.Int32, new ManagedHResultExceptionMarshallingInfo())
-                        {
-                            NativeIndex = TypePositionInfo.ReturnIndex
-                        })
-                };
-            }
-            else
-            {
-                // If our method is PreserveSig, we will notify the user if they are returning a type that may be an HRESULT type
-                // that is defined as a structure. These types used to work with built-in COM interop, but they do not work with
-                // source-generated interop as we now use the MemberFunction calling convention, which is more correct.
-                TypePositionInfo? managedReturnInfo = signatureContext.ElementTypeInformation.FirstOrDefault(e => e.IsManagedReturnPosition);
-                if (managedReturnInfo is { MarshallingAttributeInfo: UnmanagedBlittableMarshallingInfo, ManagedType: ValueTypeInfo valueType }
-                    && IsHResultLikeType(valueType))
-                {
-                    generatorDiagnostics.ReportDiagnostic(DiagnosticInfo.Create(
-                        GeneratorDiagnostics.HResultTypeWillBeTreatedAsStruct,
-                        symbol.Locations[0],
-                        ImmutableDictionary<string, string>.Empty.Add(GeneratorDiagnosticProperties.AddMarshalAsAttribute, "Error"),
-                        valueType.DiagnosticFormattedName));
+                    // Using LCIDConversion with source-generated interop is not supported
+                    generatorDiagnostics.ReportConfigurationNotSupported(lcidConversionAttr, nameof(TypeNames.LCIDConversionAttribute));
                 }
-            }
 
-            var direction = GetDirectionFromOptions(generatedComInterfaceAttributeData.Options);
+                GeneratedComInterfaceCompilationData.TryGetGeneratedComInterfaceAttributeFromInterface(symbol.ContainingType, out var generatedComAttribute);
+                var generatedComInterfaceAttributeData = GeneratedComInterfaceCompilationData.GetDataFromAttribute(generatedComAttribute);
+                // Create the stub.
 
-            // Ensure the size of collections are known at marshal / unmarshal in time.
-            // A collection that is marshalled in cannot have a size that is an 'out' parameter.
-            foreach (TypePositionInfo parameter in signatureContext.ManagedParameters)
-            {
-                MarshallerHelpers.ValidateCountInfoAvailableAtCall(
-                    direction,
-                    parameter,
-                    generatorDiagnostics,
+                var signatureContext = SignatureContext.Create(
                     symbol,
-                    GeneratorDiagnostics.SizeOfInCollectionMustBeDefinedAtCallOutParam,
-                    GeneratorDiagnostics.SizeOfInCollectionMustBeDefinedAtCallReturnValue);
+                    DefaultMarshallingInfoParser.Create(
+                        environment,
+                        generatorDiagnostics,
+                        symbol,
+                        generatedComInterfaceAttributeData,
+                        generatedComAttribute),
+                    environment,
+                    new CodeEmitOptions(SkipInit: true),
+                    typeof(VtableIndexStubGenerator).Assembly);
+
+                if (!symbol.MethodImplementationFlags.HasFlag(MethodImplAttributes.PreserveSig))
+                {
+                    // Search for the element information for the managed return value.
+                    // We need to transform it such that any return type is converted to an out parameter at the end of the parameter list.
+                    ImmutableArray<TypePositionInfo> returnSwappedSignatureElements = signatureContext.ElementTypeInformation;
+                    for (int i = 0; i < returnSwappedSignatureElements.Length; ++i)
+                    {
+                        if (returnSwappedSignatureElements[i].IsManagedReturnPosition)
+                        {
+                            if (returnSwappedSignatureElements[i].ManagedType == SpecialTypeInfo.Void)
+                            {
+                                // Return type is void, just remove the element from the signature list.
+                                // We don't introduce an out parameter.
+                                returnSwappedSignatureElements = returnSwappedSignatureElements.RemoveAt(i);
+                            }
+                            else
+                            {
+                                if ((returnSwappedSignatureElements[i].ManagedType is SpecialTypeInfo { SpecialType: SpecialType.System_Int32 or SpecialType.System_Enum } or EnumTypeInfo
+                                        && returnSwappedSignatureElements[i].MarshallingAttributeInfo.Equals(NoMarshallingInfo.Instance))
+                                    || (IsHResultLikeType(returnSwappedSignatureElements[i].ManagedType)))
+                                {
+                                    generatorDiagnostics.ReportDiagnostic(DiagnosticInfo.Create(GeneratorDiagnostics.ComMethodManagedReturnWillBeOutVariable, symbol.Locations[0]));
+                                }
+                                // Convert the current element into an out parameter on the native signature
+                                // while keeping it at the return position in the managed signature.
+                                var managedSignatureAsNativeOut = returnSwappedSignatureElements[i] with
+                                {
+                                    RefKind = RefKind.Out,
+                                    RefKindSyntax = SyntaxKind.OutKeyword,
+                                    ManagedIndex = TypePositionInfo.ReturnIndex,
+                                    NativeIndex = symbol.Parameters.Length
+                                };
+                                returnSwappedSignatureElements = returnSwappedSignatureElements.SetItem(i, managedSignatureAsNativeOut);
+                            }
+                            break;
+                        }
+                    }
+
+                    signatureContext = signatureContext with
+                    {
+                        // Add the HRESULT return value in the native signature.
+                        // This element does not have any influence on the managed signature, so don't assign a managed index.
+                        ElementTypeInformation = returnSwappedSignatureElements.Add(
+                            new TypePositionInfo(SpecialTypeInfo.Int32, new ManagedHResultExceptionMarshallingInfo())
+                            {
+                                NativeIndex = TypePositionInfo.ReturnIndex
+                            })
+                    };
+                }
+                else
+                {
+                    // If our method is PreserveSig, we will notify the user if they are returning a type that may be an HRESULT type
+                    // that is defined as a structure. These types used to work with built-in COM interop, but they do not work with
+                    // source-generated interop as we now use the MemberFunction calling convention, which is more correct.
+                    TypePositionInfo? managedReturnInfo = signatureContext.ElementTypeInformation.FirstOrDefault(e => e.IsManagedReturnPosition);
+                    if (managedReturnInfo is { MarshallingAttributeInfo: UnmanagedBlittableMarshallingInfo, ManagedType: ValueTypeInfo valueType }
+                        && IsHResultLikeType(valueType))
+                    {
+                        generatorDiagnostics.ReportDiagnostic(DiagnosticInfo.Create(
+                            GeneratorDiagnostics.HResultTypeWillBeTreatedAsStruct,
+                            symbol.Locations[0],
+                            ImmutableDictionary<string, string>.Empty.Add(GeneratorDiagnosticProperties.AddMarshalAsAttribute, "Error"),
+                            valueType.DiagnosticFormattedName));
+                    }
+                }
+
+                var direction = GetDirectionFromOptions(generatedComInterfaceAttributeData.Options);
+
+                // Ensure the size of collections are known at marshal / unmarshal in time.
+                // A collection that is marshalled in cannot have a size that is an 'out' parameter.
+                foreach (TypePositionInfo parameter in signatureContext.ManagedParameters)
+                {
+                    MarshallerHelpers.ValidateCountInfoAvailableAtCall(
+                        direction,
+                        parameter,
+                        generatorDiagnostics,
+                        symbol,
+                        GeneratorDiagnostics.SizeOfInCollectionMustBeDefinedAtCallOutParam,
+                        GeneratorDiagnostics.SizeOfInCollectionMustBeDefinedAtCallReturnValue);
+                }
+
+                var containingSyntaxContext = new ContainingSyntaxContext(syntax);
+
+                var methodSyntaxTemplate = new ContainingSyntax(syntax.Modifiers.StripAccessibilityModifiers(), SyntaxKind.MethodDeclaration, syntax.Identifier, syntax.TypeParameterList);
+
+                ImmutableArray<FunctionPointerUnmanagedCallingConventionSyntax> callConv = VirtualMethodPointerStubGenerator.GenerateCallConvSyntaxFromAttributes(
+                    suppressGCTransitionAttribute,
+                    unmanagedCallConvAttribute,
+                    ImmutableArray.Create(FunctionPointerUnmanagedCallingConvention(Identifier("MemberFunction"))));
+
+                var declaringType = ManagedTypeInfo.CreateTypeInfoForTypeSymbol(symbol.ContainingType);
+
+                var virtualMethodIndexData = new VirtualMethodIndexData(index, ImplicitThisParameter: true, direction, true, ExceptionMarshalling.Com);
+
+                return new IncrementalMethodStubGenerationContext(
+                    signatureContext,
+                    containingSyntaxContext,
+                    methodSyntaxTemplate,
+                    locations,
+                    callConv.ToSequenceEqualImmutableArray(SyntaxEquivalentComparer.Instance),
+                    virtualMethodIndexData,
+                    new ComExceptionMarshalling(),
+                    ComInterfaceGeneratorHelpers.CreateGeneratorFactory(environment, MarshalDirection.ManagedToUnmanaged),
+                    ComInterfaceGeneratorHelpers.CreateGeneratorFactory(environment, MarshalDirection.UnmanagedToManaged),
+                    owningInterface,
+                    declaringType,
+                    generatorDiagnostics.Diagnostics.ToSequenceEqualImmutableArray(),
+                    ComInterfaceDispatchMarshallingInfo.Instance);
             }
-
-            var containingSyntaxContext = new ContainingSyntaxContext(syntax);
-
-            var methodSyntaxTemplate = new ContainingSyntax(syntax.Modifiers.StripAccessibilityModifiers(), SyntaxKind.MethodDeclaration, syntax.Identifier, syntax.TypeParameterList);
-
-            ImmutableArray<FunctionPointerUnmanagedCallingConventionSyntax> callConv = VirtualMethodPointerStubGenerator.GenerateCallConvSyntaxFromAttributes(
-                suppressGCTransitionAttribute,
-                unmanagedCallConvAttribute,
-                ImmutableArray.Create(FunctionPointerUnmanagedCallingConvention(Identifier("MemberFunction"))));
-
-            var declaringType = ManagedTypeInfo.CreateTypeInfoForTypeSymbol(symbol.ContainingType);
-
-            var virtualMethodIndexData = new VirtualMethodIndexData(index, ImplicitThisParameter: true, direction, true, ExceptionMarshalling.Com);
-
-            return new IncrementalMethodStubGenerationContext(
-                signatureContext,
-                containingSyntaxContext,
-                methodSyntaxTemplate,
-                locations,
-                callConv.ToSequenceEqualImmutableArray(SyntaxEquivalentComparer.Instance),
-                virtualMethodIndexData,
-                new ComExceptionMarshalling(),
-                ComInterfaceGeneratorHelpers.CreateGeneratorFactory(environment, MarshalDirection.ManagedToUnmanaged),
-                ComInterfaceGeneratorHelpers.CreateGeneratorFactory(environment, MarshalDirection.UnmanagedToManaged),
-                owningInterface,
-                declaringType,
-                generatorDiagnostics.Diagnostics.ToSequenceEqualImmutableArray(),
-                ComInterfaceDispatchMarshallingInfo.Instance);
+            finally
+            {
+                SourceGeneratorsEventSource.Log.StopGeneratorPhase(operation);
+            }
         }
 
         private static MarshalDirection GetDirectionFromOptions(ComInterfaceOptions options)
@@ -398,64 +423,64 @@ namespace Microsoft.Interop
         }
 
         private static ImmutableArray<ComInterfaceAndMethodsContext> GroupComContextsForInterfaceGeneration(ImmutableArray<ComMethodContext> methods, ImmutableArray<ComInterfaceContext> interfaces, CancellationToken ct)
-        {
-            ct.ThrowIfCancellationRequested();
-            // We can end up with an empty set of contexts here as the compiler will call a SelectMany
-            // after a Collect with no input entries
-            if (interfaces.IsEmpty)
             {
-                return ImmutableArray<ComInterfaceAndMethodsContext>.Empty;
-            }
-
-            // Due to how the source generator driver processes the input item tables and our limitation that methods on COM interfaces can only be defined in a single partial definition of the type,
-            // we can guarantee that, if the interface contexts are in order of I1, I2, I3, I4..., then then method contexts are ordered as follows:
-            // - I1.M1
-            // - I1.M2
-            // - I1.M3
-            // - I2.M1
-            // - I2.M2
-            // - I2.M3
-            // - I4.M1 (I3 had no methods)
-            // - etc...
-            // This enable us to group our contexts by their containing syntax rather simply.
-            var contextList = ImmutableArray.CreateBuilder<ComInterfaceAndMethodsContext>();
-            int methodIndex = 0;
-            foreach (var iface in interfaces)
-            {
-                var methodList = ImmutableArray.CreateBuilder<ComMethodContext>();
-                while (methodIndex < methods.Length && methods[methodIndex].OwningInterface == iface)
+                ct.ThrowIfCancellationRequested();
+                // We can end up with an empty set of contexts here as the compiler will call a SelectMany
+                // after a Collect with no input entries
+                if (interfaces.IsEmpty)
                 {
-                    methodList.Add(methods[methodIndex++]);
+                    return ImmutableArray<ComInterfaceAndMethodsContext>.Empty;
                 }
-                contextList.Add(new(iface, methodList.ToImmutable().ToSequenceEqual()));
+
+                // Due to how the source generator driver processes the input item tables and our limitation that methods on COM interfaces can only be defined in a single partial definition of the type,
+                // we can guarantee that, if the interface contexts are in order of I1, I2, I3, I4..., then then method contexts are ordered as follows:
+                // - I1.M1
+                // - I1.M2
+                // - I1.M3
+                // - I2.M1
+                // - I2.M2
+                // - I2.M3
+                // - I4.M1 (I3 had no methods)
+                // - etc...
+                // This enable us to group our contexts by their containing syntax rather simply.
+                var contextList = ImmutableArray.CreateBuilder<ComInterfaceAndMethodsContext>();
+                int methodIndex = 0;
+                foreach (var iface in interfaces)
+                {
+                    var methodList = ImmutableArray.CreateBuilder<ComMethodContext>();
+                    while (methodIndex < methods.Length && methods[methodIndex].OwningInterface == iface)
+                    {
+                        methodList.Add(methods[methodIndex++]);
+                    }
+                    contextList.Add(new(iface, methodList.ToImmutable().ToSequenceEqual()));
+                }
+                return contextList.ToImmutable();
             }
-            return contextList.ToImmutable();
-        }
 
         private static readonly InterfaceDeclarationSyntax ImplementationInterfaceTemplate = InterfaceDeclaration("InterfaceImplementation")
                 .WithModifiers(TokenList(Token(SyntaxKind.FileKeyword), Token(SyntaxKind.UnsafeKeyword), Token(SyntaxKind.PartialKeyword)));
 
         private static InterfaceDeclarationSyntax GenerateImplementationInterface(ComInterfaceAndMethodsContext interfaceGroup, CancellationToken _)
-        {
-            var definingType = interfaceGroup.Interface.Info.Type;
-            var shadowImplementations = interfaceGroup.ShadowingMethods.Select(m => (Method: m, ManagedToUnmanagedStub: m.ManagedToUnmanagedStub))
-                .Where(p => p.ManagedToUnmanagedStub is GeneratedStubCodeContext)
-                .Select(ctx => ((GeneratedStubCodeContext)ctx.ManagedToUnmanagedStub).Stub.Node
-                .WithExplicitInterfaceSpecifier(
-                    ExplicitInterfaceSpecifier(ParseName(definingType.FullTypeName))));
-            var inheritedStubs = interfaceGroup.ShadowingMethods.Select(m => m.UnreachableExceptionStub);
-            return ImplementationInterfaceTemplate
-                .AddBaseListTypes(SimpleBaseType(definingType.Syntax))
-                .WithMembers(
-                    List<MemberDeclarationSyntax>(
-                        interfaceGroup.DeclaredMethods
-                        .Select(m => m.ManagedToUnmanagedStub)
-                        .OfType<GeneratedStubCodeContext>()
-                        .Select(ctx => ctx.Stub.Node)
-                        .Concat(shadowImplementations)
-                        .Concat(inheritedStubs)))
-                .AddAttributeLists(AttributeList(SingletonSeparatedList(Attribute(NameSyntaxes.System_Runtime_InteropServices_DynamicInterfaceCastableImplementationAttribute))));
-        }
+            {
+                var definingType = interfaceGroup.Interface.Info.Type;
+                var shadowImplementations = interfaceGroup.ShadowingMethods.Select(m => (Method: m, ManagedToUnmanagedStub: m.ManagedToUnmanagedStub))
+                    .Where(p => p.ManagedToUnmanagedStub is GeneratedStubCodeContext)
+                    .Select(ctx => ((GeneratedStubCodeContext)ctx.ManagedToUnmanagedStub).Stub.Node
+                    .WithExplicitInterfaceSpecifier(
+                        ExplicitInterfaceSpecifier(ParseName(definingType.FullTypeName))));
+                var inheritedStubs = interfaceGroup.ShadowingMethods.Select(m => m.UnreachableExceptionStub);
+                return ImplementationInterfaceTemplate
+                    .AddBaseListTypes(SimpleBaseType(definingType.Syntax))
+                    .WithMembers(
+                        List<MemberDeclarationSyntax>(
+                            interfaceGroup.DeclaredMethods
+                            .Select(m => m.ManagedToUnmanagedStub)
+                            .OfType<GeneratedStubCodeContext>()
+                            .Select(ctx => ctx.Stub.Node)
+                            .Concat(shadowImplementations)
+                            .Concat(inheritedStubs)))
+                    .AddAttributeLists(AttributeList(SingletonSeparatedList(Attribute(NameSyntaxes.System_Runtime_InteropServices_DynamicInterfaceCastableImplementationAttribute))));
+            }
 
         private static InterfaceDeclarationSyntax GenerateImplementationVTableMethods(ComInterfaceAndMethodsContext comInterfaceAndMethods, CancellationToken _)
         {

@@ -11,6 +11,7 @@ using System.Threading;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using SourceGenerators;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
 [assembly: System.Resources.NeutralResourcesLanguage("en-US")]
@@ -20,6 +21,14 @@ namespace Microsoft.Interop
     [Generator]
     public sealed class LibraryImportGenerator : IIncrementalGenerator
     {
+        /// <summary> Full type name, used for diagnostics </summary>
+        private static readonly string s_generatorName = typeof(LibraryImportGenerator).FullName!;
+
+        /// <summary> Assembly location, used for diagnostics </summary>
+#pragma warning disable IL3000
+        private static readonly string s_generatorLocation = typeof(LibraryImportGenerator).Assembly.Location;
+#pragma warning restore IL3000
+
         internal sealed record IncrementalStubGenerationContext(
             SignatureContext SignatureContext,
             ContainingSyntaxContext ContainingSyntaxContext,
@@ -218,161 +227,177 @@ namespace Microsoft.Interop
             LibraryImportGeneratorOptions options,
             CancellationToken ct)
         {
-            ct.ThrowIfCancellationRequested();
-            INamedTypeSymbol? lcidConversionAttrType = environment.LcidConversionAttrType;
-            INamedTypeSymbol? suppressGCTransitionAttrType = environment.SuppressGCTransitionAttrType;
-            INamedTypeSymbol? unmanagedCallConvAttrType = environment.UnmanagedCallConvAttrType;
-            INamedTypeSymbol? defaultDllImportSearchPathsAttrType = environment.DefaultDllImportSearchPathsAttrType;
-            // Get any attributes of interest on the method
-            AttributeData? generatedDllImportAttr = null;
-            AttributeData? lcidConversionAttr = null;
-            AttributeData? suppressGCTransitionAttribute = null;
-            AttributeData? unmanagedCallConvAttribute = null;
-            AttributeData? defaultDllImportSearchPathsAttribute = null;
-            foreach (AttributeData attr in symbol.GetAttributes())
+            var operation = SourceGeneratorsEventSource.Log.StartGeneratorPhase(s_generatorName, s_generatorLocation, nameof(CalculateStubInformation));
+            try
             {
-                if (attr.AttributeClass is not null
-                    && attr.AttributeClass.ToDisplayString() == TypeNames.LibraryImportAttribute)
+                ct.ThrowIfCancellationRequested();
+                INamedTypeSymbol? lcidConversionAttrType = environment.LcidConversionAttrType;
+                INamedTypeSymbol? suppressGCTransitionAttrType = environment.SuppressGCTransitionAttrType;
+                INamedTypeSymbol? unmanagedCallConvAttrType = environment.UnmanagedCallConvAttrType;
+                INamedTypeSymbol? defaultDllImportSearchPathsAttrType = environment.DefaultDllImportSearchPathsAttrType;
+                // Get any attributes of interest on the method
+                AttributeData? generatedDllImportAttr = null;
+                AttributeData? lcidConversionAttr = null;
+                AttributeData? suppressGCTransitionAttribute = null;
+                AttributeData? unmanagedCallConvAttribute = null;
+                AttributeData? defaultDllImportSearchPathsAttribute = null;
+                foreach (AttributeData attr in symbol.GetAttributes())
                 {
-                    generatedDllImportAttr = attr;
+                    if (attr.AttributeClass is not null
+                        && attr.AttributeClass.ToDisplayString() == TypeNames.LibraryImportAttribute)
+                    {
+                        generatedDllImportAttr = attr;
+                    }
+                    else if (lcidConversionAttrType is not null && SymbolEqualityComparer.Default.Equals(attr.AttributeClass, lcidConversionAttrType))
+                    {
+                        lcidConversionAttr = attr;
+                    }
+                    else if (suppressGCTransitionAttrType is not null && SymbolEqualityComparer.Default.Equals(attr.AttributeClass, suppressGCTransitionAttrType))
+                    {
+                        suppressGCTransitionAttribute = attr;
+                    }
+                    else if (unmanagedCallConvAttrType is not null && SymbolEqualityComparer.Default.Equals(attr.AttributeClass, unmanagedCallConvAttrType))
+                    {
+                        unmanagedCallConvAttribute = attr;
+                    }
+                    else if (defaultDllImportSearchPathsAttrType is not null && SymbolEqualityComparer.Default.Equals(attr.AttributeClass, defaultDllImportSearchPathsAttrType))
+                    {
+                        defaultDllImportSearchPathsAttribute = attr;
+                    }
                 }
-                else if (lcidConversionAttrType is not null && SymbolEqualityComparer.Default.Equals(attr.AttributeClass, lcidConversionAttrType))
+
+                Debug.Assert(generatedDllImportAttr is not null);
+
+                var locations = new MethodSignatureDiagnosticLocations(originalSyntax);
+                var generatorDiagnostics = new GeneratorDiagnosticsBag(new DiagnosticDescriptorProvider(), locations, SR.ResourceManager, typeof(FxResources.Microsoft.Interop.LibraryImportGenerator.SR));
+
+                // Process the LibraryImport attribute
+                LibraryImportCompilationData libraryImportData =
+                    ProcessLibraryImportAttribute(generatedDllImportAttr!) ??
+                    new LibraryImportCompilationData("INVALID_CSHARP_SYNTAX");
+
+                if (libraryImportData.IsUserDefined.HasFlag(InteropAttributeMember.StringMarshalling))
                 {
-                    lcidConversionAttr = attr;
+                    // User specified StringMarshalling.Custom without specifying StringMarshallingCustomType
+                    if (libraryImportData.StringMarshalling == StringMarshalling.Custom && libraryImportData.StringMarshallingCustomType is null)
+                    {
+                        generatorDiagnostics.ReportInvalidStringMarshallingConfiguration(
+                            generatedDllImportAttr, symbol.Name, SR.InvalidStringMarshallingConfigurationMissingCustomType);
+                    }
+
+                    // User specified something other than StringMarshalling.Custom while specifying StringMarshallingCustomType
+                    if (libraryImportData.StringMarshalling != StringMarshalling.Custom && libraryImportData.StringMarshallingCustomType is not null)
+                    {
+                        generatorDiagnostics.ReportInvalidStringMarshallingConfiguration(
+                            generatedDllImportAttr, symbol.Name, SR.InvalidStringMarshallingConfigurationNotCustom);
+                    }
                 }
-                else if (suppressGCTransitionAttrType is not null && SymbolEqualityComparer.Default.Equals(attr.AttributeClass, suppressGCTransitionAttrType))
+
+                if (lcidConversionAttr is not null)
                 {
-                    suppressGCTransitionAttribute = attr;
+                    // Using LCIDConversion with LibraryImport is not supported
+                    generatorDiagnostics.ReportConfigurationNotSupported(lcidConversionAttr, nameof(TypeNames.LCIDConversionAttribute));
                 }
-                else if (unmanagedCallConvAttrType is not null && SymbolEqualityComparer.Default.Equals(attr.AttributeClass, unmanagedCallConvAttrType))
-                {
-                    unmanagedCallConvAttribute = attr;
-                }
-                else if (defaultDllImportSearchPathsAttrType is not null && SymbolEqualityComparer.Default.Equals(attr.AttributeClass, defaultDllImportSearchPathsAttrType))
-                {
-                    defaultDllImportSearchPathsAttribute = attr;
-                }
+
+                // Create the stub.
+                var signatureContext = SignatureContext.Create(
+                    symbol,
+                    DefaultMarshallingInfoParser.Create(environment, generatorDiagnostics, symbol, libraryImportData, generatedDllImportAttr),
+                    environment,
+                    new CodeEmitOptions(SkipInit: targetFramework.TargetFramework == TargetFramework.Net),
+                    typeof(LibraryImportGenerator).Assembly);
+
+                var containingTypeContext = new ContainingSyntaxContext(originalSyntax);
+
+                var methodSyntaxTemplate = new ContainingSyntax(originalSyntax.Modifiers, SyntaxKind.MethodDeclaration, originalSyntax.Identifier, originalSyntax.TypeParameterList);
+
+                List<AttributeSyntax> additionalAttributes = GenerateSyntaxForForwardedAttributes(suppressGCTransitionAttribute, unmanagedCallConvAttribute, defaultDllImportSearchPathsAttribute);
+                return new IncrementalStubGenerationContext(
+                    signatureContext,
+                    containingTypeContext,
+                    methodSyntaxTemplate,
+                    locations,
+                    new SequenceEqualImmutableArray<AttributeSyntax>(additionalAttributes.ToImmutableArray(), SyntaxEquivalentComparer.Instance),
+                    LibraryImportData.From(libraryImportData),
+                    LibraryImportGeneratorHelpers.CreateGeneratorFactory(environment, targetFramework, options),
+                    new SequenceEqualImmutableArray<DiagnosticInfo>(generatorDiagnostics.Diagnostics.ToImmutableArray())
+                    );
             }
-
-            Debug.Assert(generatedDllImportAttr is not null);
-
-            var locations = new MethodSignatureDiagnosticLocations(originalSyntax);
-            var generatorDiagnostics = new GeneratorDiagnosticsBag(new DiagnosticDescriptorProvider(), locations, SR.ResourceManager, typeof(FxResources.Microsoft.Interop.LibraryImportGenerator.SR));
-
-            // Process the LibraryImport attribute
-            LibraryImportCompilationData libraryImportData =
-                ProcessLibraryImportAttribute(generatedDllImportAttr!) ??
-                new LibraryImportCompilationData("INVALID_CSHARP_SYNTAX");
-
-            if (libraryImportData.IsUserDefined.HasFlag(InteropAttributeMember.StringMarshalling))
+            finally
             {
-                // User specified StringMarshalling.Custom without specifying StringMarshallingCustomType
-                if (libraryImportData.StringMarshalling == StringMarshalling.Custom && libraryImportData.StringMarshallingCustomType is null)
-                {
-                    generatorDiagnostics.ReportInvalidStringMarshallingConfiguration(
-                        generatedDllImportAttr, symbol.Name, SR.InvalidStringMarshallingConfigurationMissingCustomType);
-                }
-
-                // User specified something other than StringMarshalling.Custom while specifying StringMarshallingCustomType
-                if (libraryImportData.StringMarshalling != StringMarshalling.Custom && libraryImportData.StringMarshallingCustomType is not null)
-                {
-                    generatorDiagnostics.ReportInvalidStringMarshallingConfiguration(
-                        generatedDllImportAttr, symbol.Name, SR.InvalidStringMarshallingConfigurationNotCustom);
-                }
+                SourceGeneratorsEventSource.Log.StopGeneratorPhase(operation);
             }
-
-            if (lcidConversionAttr is not null)
-            {
-                // Using LCIDConversion with LibraryImport is not supported
-                generatorDiagnostics.ReportConfigurationNotSupported(lcidConversionAttr, nameof(TypeNames.LCIDConversionAttribute));
-            }
-
-            // Create the stub.
-            var signatureContext = SignatureContext.Create(
-                symbol,
-                DefaultMarshallingInfoParser.Create(environment, generatorDiagnostics, symbol, libraryImportData, generatedDllImportAttr),
-                environment,
-                new CodeEmitOptions(SkipInit: targetFramework.TargetFramework == TargetFramework.Net),
-                typeof(LibraryImportGenerator).Assembly);
-
-            var containingTypeContext = new ContainingSyntaxContext(originalSyntax);
-
-            var methodSyntaxTemplate = new ContainingSyntax(originalSyntax.Modifiers, SyntaxKind.MethodDeclaration, originalSyntax.Identifier, originalSyntax.TypeParameterList);
-
-            List<AttributeSyntax> additionalAttributes = GenerateSyntaxForForwardedAttributes(suppressGCTransitionAttribute, unmanagedCallConvAttribute, defaultDllImportSearchPathsAttribute);
-            return new IncrementalStubGenerationContext(
-                signatureContext,
-                containingTypeContext,
-                methodSyntaxTemplate,
-                locations,
-                new SequenceEqualImmutableArray<AttributeSyntax>(additionalAttributes.ToImmutableArray(), SyntaxEquivalentComparer.Instance),
-                LibraryImportData.From(libraryImportData),
-                LibraryImportGeneratorHelpers.CreateGeneratorFactory(environment, targetFramework, options),
-                new SequenceEqualImmutableArray<DiagnosticInfo>(generatorDiagnostics.Diagnostics.ToImmutableArray())
-                );
         }
 
         private static (MemberDeclarationSyntax, ImmutableArray<DiagnosticInfo>) GenerateSource(
             IncrementalStubGenerationContext pinvokeStub,
             LibraryImportGeneratorOptions options)
         {
-            var diagnostics = new GeneratorDiagnosticsBag(new DiagnosticDescriptorProvider(), pinvokeStub.DiagnosticLocation, SR.ResourceManager, typeof(FxResources.Microsoft.Interop.LibraryImportGenerator.SR));
-            if (options.GenerateForwarders)
+            var operation = SourceGeneratorsEventSource.Log.StartGeneratorPhase(s_generatorName, s_generatorLocation, nameof(GenerateSource));
+            try
             {
-                return (PrintForwarderStub(pinvokeStub.StubMethodSyntaxTemplate, explicitForwarding: true, pinvokeStub, diagnostics), pinvokeStub.Diagnostics.Array.AddRange(diagnostics.Diagnostics));
-            }
-
-            bool supportsTargetFramework = !pinvokeStub.LibraryImportData.SetLastError
-                || options.GenerateForwarders
-                || (pinvokeStub.GeneratorFactoryKey.Key.TargetFramework is (TargetFramework.Net, { Major: >= 6 }));
-
-            foreach (TypePositionInfo typeInfo in pinvokeStub.SignatureContext.ElementTypeInformation)
-            {
-                if (typeInfo.MarshallingAttributeInfo is MissingSupportMarshallingInfo)
+                var diagnostics = new GeneratorDiagnosticsBag(new DiagnosticDescriptorProvider(), pinvokeStub.DiagnosticLocation, SR.ResourceManager, typeof(FxResources.Microsoft.Interop.LibraryImportGenerator.SR));
+                if (options.GenerateForwarders)
                 {
-                    supportsTargetFramework = false;
-                    break;
+                    return (PrintForwarderStub(pinvokeStub.StubMethodSyntaxTemplate, explicitForwarding: true, pinvokeStub, diagnostics), pinvokeStub.Diagnostics.Array.AddRange(diagnostics.Diagnostics));
                 }
+
+                bool supportsTargetFramework = !pinvokeStub.LibraryImportData.SetLastError
+                    || options.GenerateForwarders
+                    || (pinvokeStub.GeneratorFactoryKey.Key.TargetFramework is (TargetFramework.Net, { Major: >= 6 }));
+
+                foreach (TypePositionInfo typeInfo in pinvokeStub.SignatureContext.ElementTypeInformation)
+                {
+                    if (typeInfo.MarshallingAttributeInfo is MissingSupportMarshallingInfo)
+                    {
+                        supportsTargetFramework = false;
+                        break;
+                    }
+                }
+
+                // Generate stub code
+                var stubGenerator = new PInvokeStubCodeGenerator(
+                    pinvokeStub.SignatureContext.ElementTypeInformation,
+                    pinvokeStub.LibraryImportData.SetLastError && !options.GenerateForwarders,
+                    diagnostics,
+                    pinvokeStub.GeneratorFactoryKey.GeneratorFactory,
+                    new CodeEmitOptions(SkipInit: pinvokeStub.GeneratorFactoryKey.Key.TargetFramework is (TargetFramework.Net, _)));
+
+                // Check if the generator should produce a forwarder stub - regular DllImport.
+                // This is done if the signature is blittable or the target framework is not supported.
+                if (stubGenerator.StubIsBasicForwarder
+                    || !supportsTargetFramework)
+                {
+                    return (PrintForwarderStub(pinvokeStub.StubMethodSyntaxTemplate, !supportsTargetFramework, pinvokeStub, diagnostics), pinvokeStub.Diagnostics.Array.AddRange(diagnostics.Diagnostics));
+                }
+
+                ImmutableArray<AttributeSyntax> forwardedAttributes = pinvokeStub.ForwardedAttributes.Array;
+
+                const string innerPInvokeName = "__PInvoke";
+
+                BlockSyntax code = stubGenerator.GeneratePInvokeBody(innerPInvokeName);
+
+                LocalFunctionStatementSyntax dllImport = CreateTargetDllImportAsLocalStatement(
+                    stubGenerator,
+                    options,
+                    pinvokeStub.LibraryImportData,
+                    innerPInvokeName,
+                    pinvokeStub.StubMethodSyntaxTemplate.Identifier.Text);
+
+                if (!forwardedAttributes.IsEmpty)
+                {
+                    dllImport = dllImport.AddAttributeLists(AttributeList(SeparatedList(forwardedAttributes)));
+                }
+
+                dllImport = dllImport.WithLeadingTrivia(Comment("// Local P/Invoke"));
+                code = code.AddStatements(dllImport);
+
+                return (pinvokeStub.ContainingSyntaxContext.WrapMemberInContainingSyntaxWithUnsafeModifier(PrintGeneratedSource(pinvokeStub.StubMethodSyntaxTemplate, pinvokeStub.SignatureContext, code)), pinvokeStub.Diagnostics.Array.AddRange(diagnostics.Diagnostics));
             }
-
-            // Generate stub code
-            var stubGenerator = new PInvokeStubCodeGenerator(
-                pinvokeStub.SignatureContext.ElementTypeInformation,
-                pinvokeStub.LibraryImportData.SetLastError && !options.GenerateForwarders,
-                diagnostics,
-                pinvokeStub.GeneratorFactoryKey.GeneratorFactory,
-                new CodeEmitOptions(SkipInit: pinvokeStub.GeneratorFactoryKey.Key.TargetFramework is (TargetFramework.Net, _)));
-
-            // Check if the generator should produce a forwarder stub - regular DllImport.
-            // This is done if the signature is blittable or the target framework is not supported.
-            if (stubGenerator.StubIsBasicForwarder
-                || !supportsTargetFramework)
+            finally
             {
-                return (PrintForwarderStub(pinvokeStub.StubMethodSyntaxTemplate, !supportsTargetFramework, pinvokeStub, diagnostics), pinvokeStub.Diagnostics.Array.AddRange(diagnostics.Diagnostics));
+                SourceGeneratorsEventSource.Log.StopGeneratorPhase(operation);
             }
-
-            ImmutableArray<AttributeSyntax> forwardedAttributes = pinvokeStub.ForwardedAttributes.Array;
-
-            const string innerPInvokeName = "__PInvoke";
-
-            BlockSyntax code = stubGenerator.GeneratePInvokeBody(innerPInvokeName);
-
-            LocalFunctionStatementSyntax dllImport = CreateTargetDllImportAsLocalStatement(
-                stubGenerator,
-                options,
-                pinvokeStub.LibraryImportData,
-                innerPInvokeName,
-                pinvokeStub.StubMethodSyntaxTemplate.Identifier.Text);
-
-            if (!forwardedAttributes.IsEmpty)
-            {
-                dllImport = dllImport.AddAttributeLists(AttributeList(SeparatedList(forwardedAttributes)));
-            }
-
-            dllImport = dllImport.WithLeadingTrivia(Comment("// Local P/Invoke"));
-            code = code.AddStatements(dllImport);
-
-            return (pinvokeStub.ContainingSyntaxContext.WrapMemberInContainingSyntaxWithUnsafeModifier(PrintGeneratedSource(pinvokeStub.StubMethodSyntaxTemplate, pinvokeStub.SignatureContext, code)), pinvokeStub.Diagnostics.Array.AddRange(diagnostics.Diagnostics));
         }
 
         private static MemberDeclarationSyntax PrintForwarderStub(ContainingSyntax userDeclaredMethod, bool explicitForwarding, IncrementalStubGenerationContext stub, GeneratorDiagnosticsBag diagnostics)

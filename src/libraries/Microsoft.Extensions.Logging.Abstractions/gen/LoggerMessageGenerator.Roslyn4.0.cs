@@ -11,6 +11,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.DotnetRuntime.Extensions;
 #endif
 using Microsoft.CodeAnalysis.Text;
+using SourceGenerators;
 
 [assembly: System.Resources.NeutralResourcesLanguage("en-us")]
 
@@ -39,6 +40,7 @@ namespace Microsoft.Extensions.Logging.Generators
 
         private static void Execute(Compilation compilation, ImmutableArray<ClassDeclarationSyntax> classes, SourceProductionContext context)
         {
+            var operation = SourceGeneratorsEventSource.Log.StartGeneratorPhase(s_generatorName, s_generatorLocation, nameof(Execute));
             if (classes.IsDefaultOrEmpty)
             {
                 // nothing to do yet
@@ -56,6 +58,7 @@ namespace Microsoft.Extensions.Logging.Generators
 
                 context.AddSource("LoggerMessage.g.cs", SourceText.From(result, Encoding.UTF8));
             }
+            SourceGeneratorsEventSource.Log.StopGeneratorPhase(operation);
         }
     }
 }

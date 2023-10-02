@@ -9,12 +9,21 @@ using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
+using SourceGenerators;
 
 namespace Microsoft.Extensions.Options.Generators
 {
     [Generator]
     public class OptionsValidatorGenerator : IIncrementalGenerator
     {
+        /// <summary> Full type name, used for diagnostics </summary>
+        private static readonly string s_generatorName = typeof(OptionsValidatorGenerator).FullName!;
+
+        /// <summary> Assembly location, used for diagnostics </summary>
+#pragma warning disable IL3000
+        private static readonly string s_generatorLocation = typeof(OptionsValidatorGenerator).Assembly.Location;
+#pragma warning restore IL3000
+
         public void Initialize(IncrementalGeneratorInitializationContext context)
         {
             IncrementalValuesProvider<(TypeDeclarationSyntax? TypeSyntax, SemanticModel SemanticModel)> typeDeclarations = context.SyntaxProvider
@@ -32,21 +41,30 @@ namespace Microsoft.Extensions.Options.Generators
 
         private static void HandleAnnotatedTypes(Compilation compilation, ImmutableArray<(TypeDeclarationSyntax? TypeSyntax, SemanticModel SemanticModel)> types, SourceProductionContext context)
         {
-            if (!SymbolLoader.TryLoad(compilation, out var symbolHolder))
+            var operation = SourceGeneratorsEventSource.Log.StartGeneratorPhase(s_generatorName, s_generatorLocation, nameof(HandleAnnotatedTypes));
+
+            try
             {
-                // Not eligible compilation
-                return;
+                if (!SymbolLoader.TryLoad(compilation, out var symbolHolder))
+                {
+                    // Not eligible compilation
+                    return;
+                }
+
+                var parser = new Parser(compilation, context.ReportDiagnostic, symbolHolder!, context.CancellationToken);
+
+                var validatorTypes = parser.GetValidatorTypes(types);
+                if (validatorTypes.Count > 0)
+                {
+                    var emitter = new Emitter(compilation);
+                    var result = emitter.Emit(validatorTypes, context.CancellationToken);
+
+                    context.AddSource("Validators.g.cs", SourceText.From(result, Encoding.UTF8));
+                }
             }
-
-            var parser = new Parser(compilation, context.ReportDiagnostic, symbolHolder!, context.CancellationToken);
-
-            var validatorTypes = parser.GetValidatorTypes(types);
-            if (validatorTypes.Count > 0)
+            finally
             {
-                var emitter = new Emitter(compilation);
-                var result = emitter.Emit(validatorTypes, context.CancellationToken);
-
-                context.AddSource("Validators.g.cs", SourceText.From(result, Encoding.UTF8));
+                SourceGeneratorsEventSource.Log.StopGeneratorPhase(operation);
             }
         }
     }

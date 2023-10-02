@@ -6,6 +6,7 @@ using System;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using SourceGenerators;
+using System.Diagnostics;
 
 namespace Microsoft.Extensions.Configuration.Binder.SourceGeneration
 {
@@ -16,6 +17,9 @@ namespace Microsoft.Extensions.Configuration.Binder.SourceGeneration
     public sealed partial class ConfigurationBindingGenerator : IIncrementalGenerator
     {
         private static readonly string ProjectName = Emitter.s_assemblyName.Name!;
+
+        private static readonly string s_generatorName = typeof(ConfigurationBindingGenerator).FullName!;
+        private static readonly string s_generatorLocation = typeof(ConfigurationBindingGenerator).Assembly.Location;
 
         public const string GenSpecTrackingName = nameof(SourceGenerationSpec);
 
@@ -49,9 +53,13 @@ namespace Microsoft.Extensions.Configuration.Binder.SourceGeneration
 
                     try
                     {
+                        var operation = SourceGeneratorsEventSource.Log.StartGeneratorPhase(s_generatorName, s_generatorLocation, "Parse");
+
                         Parser parser = new(compilationData);
                         SourceGenerationSpec? spec = parser.GetSourceGenerationSpec(tuple.Left, cancellationToken);
                         ImmutableEquatableArray<DiagnosticInfo>? diagnostics = parser.Diagnostics?.ToImmutableEquatableArray();
+
+                        SourceGeneratorsEventSource.Log.StopGeneratorPhase(operation);
                         return (spec, diagnostics);
                     }
                     catch (Exception ex)
@@ -71,6 +79,8 @@ namespace Microsoft.Extensions.Configuration.Binder.SourceGeneration
 
         private void ReportDiagnosticsAndEmitSource(SourceProductionContext sourceProductionContext, (SourceGenerationSpec? SourceGenerationSpec, ImmutableEquatableArray<DiagnosticInfo>? Diagnostics) input)
         {
+            var operation = SourceGeneratorsEventSource.Log.StartGeneratorPhase(s_generatorName, s_generatorLocation, nameof(ReportDiagnosticsAndEmitSource));
+
             if (input.Diagnostics is ImmutableEquatableArray<DiagnosticInfo> diagnostics)
             {
                 foreach (DiagnosticInfo diagnostic in diagnostics)
@@ -85,6 +95,8 @@ namespace Microsoft.Extensions.Configuration.Binder.SourceGeneration
                 Emitter emitter = new(spec);
                 emitter.Emit(sourceProductionContext);
             }
+
+            SourceGeneratorsEventSource.Log.StopGeneratorPhase(operation);
         }
 
         internal sealed class CompilationData

@@ -6,6 +6,7 @@ using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
+using SourceGenerators;
 
 #pragma warning disable RS1035 // IIncrementalGenerator isn't available for the target configuration
 
@@ -23,6 +24,7 @@ namespace Microsoft.Extensions.Logging.Generators
 
         public void Execute(GeneratorExecutionContext context)
         {
+            var operation = SourceGeneratorsEventSource.Log.StartGeneratorPhase(s_generatorName, s_generatorLocation, nameof(Execute));
             if (context.SyntaxContextReceiver is not SyntaxContextReceiver receiver || receiver.ClassDeclarations.Count == 0)
             {
                 // nothing to do yet
@@ -38,6 +40,7 @@ namespace Microsoft.Extensions.Logging.Generators
 
                 context.AddSource("LoggerMessage.g.cs", SourceText.From(result, Encoding.UTF8));
             }
+            SourceGeneratorsEventSource.Log.StopGeneratorPhase(operation);
         }
 
         private sealed class SyntaxContextReceiver : ISyntaxContextReceiver

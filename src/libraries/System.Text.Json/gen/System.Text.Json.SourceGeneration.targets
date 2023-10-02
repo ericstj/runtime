@@ -32,6 +32,7 @@
     <Compile Include="$(CommonPath)\Roslyn\GetBestTypeByMetadataName.cs" Link="Common\Roslyn\GetBestTypeByMetadataName.cs" />
     <Compile Include="$(CommonPath)\SourceGenerators\DiagnosticInfo.cs" Link="Common\SourceGenerators\DiagnosticInfo.cs" />
     <Compile Include="$(CommonPath)\SourceGenerators\ImmutableEquatableArray.cs" Link="Common\SourceGenerators\ImmutableEquatableArray.cs" />
+    <Compile Include="$(CommonPath)\SourceGenerators\SourceGeneratorsEventSource.cs" Link="Common\SourceGenerators\SourceGeneratorsEventSource.cs" />
     <Compile Include="$(CommonPath)\SourceGenerators\SourceWriter.cs" Link="Common\SourceGenerators\SourceWriter.cs" />
     <Compile Include="$(CommonPath)\SourceGenerators\TypeModelHelper.cs" Link="Common\SourceGenerators\TypeModelHelper.cs" />
     <Compile Include="$(CommonPath)\SourceGenerators\TypeRef.cs" Link="Common\SourceGenerators\TypeRef.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="Helpers\KnownTypeSymbols.cs" />
     <Compile Include="Helpers\RoslynExtensions.cs" />
     <Compile Include="JsonConstants.cs" />
+    <Compile Include="JsonSourceGenerator.cs" />
     <Compile Include="JsonSourceGenerator.DiagnosticDescriptors.cs" />
     <Compile Include="JsonSourceGenerator.Emitter.cs" />
     <Compile Include="JsonSourceGenerator.Emitter.ExceptionMessages.cs" />

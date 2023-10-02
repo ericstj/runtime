@@ -42,9 +42,11 @@ namespace System.Text.Json.SourceGeneration
                 .Combine(knownTypeSymbols)
                 .Select(static (tuple, cancellationToken) =>
                 {
+                    var operation = SourceGeneratorsEventSource.Log.StartGeneratorPhase(s_generatorName, s_generatorLocation, "Parse");
                     Parser parser = new(tuple.Right);
                     ContextGenerationSpec? contextGenerationSpec = parser.ParseContextGenerationSpec(tuple.Left.ContextClass, tuple.Left.SemanticModel, cancellationToken);
                     ImmutableEquatableArray<DiagnosticInfo> diagnostics = parser.Diagnostics.ToImmutableEquatableArray();
+                    SourceGeneratorsEventSource.Log.StopGeneratorPhase(operation);
                     return (contextGenerationSpec, diagnostics);
                 })
 #if ROSLYN4_4_OR_GREATER
@@ -57,6 +59,7 @@ namespace System.Text.Json.SourceGeneration
 
         private void ReportDiagnosticsAndEmitSource(SourceProductionContext sourceProductionContext, (ContextGenerationSpec? ContextGenerationSpec, ImmutableEquatableArray<DiagnosticInfo> Diagnostics) input)
         {
+            var operation = SourceGeneratorsEventSource.Log.StartGeneratorPhase(s_generatorName, s_generatorLocation, nameof(ReportDiagnosticsAndEmitSource));
             // Report any diagnostics ahead of emitting.
             foreach (DiagnosticInfo diagnostic in input.Diagnostics)
             {
@@ -71,6 +74,7 @@ namespace System.Text.Json.SourceGeneration
             OnSourceEmitting?.Invoke(ImmutableArray.Create(input.ContextGenerationSpec));
             Emitter emitter = new(sourceProductionContext);
             emitter.Emit(input.ContextGenerationSpec);
+            SourceGeneratorsEventSource.Log.StopGeneratorPhase(operation);
         }
 
         /// <summary>

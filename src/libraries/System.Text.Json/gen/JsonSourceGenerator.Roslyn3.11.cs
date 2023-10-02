@@ -43,6 +43,7 @@ namespace System.Text.Json.SourceGeneration
         /// <param name="executionContext"></param>
         public void Execute(GeneratorExecutionContext executionContext)
         {
+            var operation = SourceGeneratorsEventSource.Log.StartGeneratorPhase(s_generatorName, s_generatorLocation, nameof(Execute));
             if (executionContext.SyntaxContextReceiver is not SyntaxContextReceiver receiver || receiver.ContextClassDeclarations == null)
             {
                 // nothing to do yet
@@ -83,6 +84,7 @@ namespace System.Text.Json.SourceGeneration
             {
                 emitter.Emit(contextGenerationSpec);
             }
+            SourceGeneratorsEventSource.Log.StopGeneratorPhase(operation);
         }
 
         private sealed class SyntaxContextReceiver : ISyntaxContextReceiver

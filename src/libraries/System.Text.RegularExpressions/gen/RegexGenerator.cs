@@ -11,6 +11,7 @@ using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using SourceGenerators;
 
 [assembly: System.Resources.NeutralResourcesLanguage("en-us")]
 
@@ -20,6 +21,14 @@ namespace System.Text.RegularExpressions.Generator
     [Generator(LanguageNames.CSharp)]
     public partial class RegexGenerator : IIncrementalGenerator
     {
+        /// <summary> Full type name, used for diagnostics </summary>
+        private static readonly string s_generatorName = typeof(RegexGenerator).FullName!;
+
+        /// <summary> Assembly location, used for diagnostics </summary>
+        #pragma warning disable IL3000
+        private static readonly string s_generatorLocation = typeof(RegexGenerator).Assembly.Location;
+        #pragma warning restore IL3000
+
         /// <summary>Name of the type emitted to contain helpers used by the generated code.</summary>
         private const string HelpersTypeName = "Utilities";
         /// <summary>Namespace containing all the generated code.</summary>
@@ -67,6 +76,8 @@ namespace System.Text.RegularExpressions.Generator
                 // or it will be a RegexPatternAndSyntax containing all of the successfully parsed data from the attribute/method.
                 .Select((methodOrDiagnostic, _) =>
                 {
+                    var operation = SourceGeneratorsEventSource.Log.StartGeneratorPhase(s_generatorName, s_generatorLocation, "Select-Single-Method");
+
                     if (methodOrDiagnostic is RegexPatternAndSyntax method)
                     {
                         try
@@ -79,7 +90,13 @@ namespace System.Text.RegularExpressions.Generator
                         {
                             return new DiagnosticData(DiagnosticDescriptors.InvalidRegexArguments, method.DiagnosticLocation, e.Message);
                         }
+                        finally
+                        {
+                            SourceGeneratorsEventSource.Log.StopGeneratorPhase(operation);
+                        }
                     }
+
+                    SourceGeneratorsEventSource.Log.StopGeneratorPhase(operation);
 
                     return methodOrDiagnostic;
                 })
@@ -87,28 +104,37 @@ namespace System.Text.RegularExpressions.Generator
                 // Generate the RunnerFactory for each regex, if possible.  This is where the bulk of the implementation occurs.
                 .Select((state, _) =>
                 {
-                    if (state is not RegexMethod regexMethod)
+                    var operation = SourceGeneratorsEventSource.Log.StartGeneratorPhase(s_generatorName, s_generatorLocation, "Emit-Single-Method");
+                    try
                     {
-                        Debug.Assert(state is DiagnosticData);
-                        return state;
-                    }
+                        if (state is not RegexMethod regexMethod)
+                        {
+                            Debug.Assert(state is DiagnosticData);
+                            return state;
+                        }
 
-                    // If we're unable to generate a full implementation for this regex, report a diagnostic.
-                    // We'll still output a limited implementation that just caches a new Regex(...).
-                    if (!SupportsCodeGeneration(regexMethod, regexMethod.CompilationData.LanguageVersion, out string? reason))
+                        // If we're unable to generate a full implementation for this regex, report a diagnostic.
+                        // We'll still output a limited implementation that just caches a new Regex(...).
+                        if (!SupportsCodeGeneration(regexMethod, regexMethod.CompilationData.LanguageVersion, out string? reason))
+                        {
+                            return (regexMethod, reason, new DiagnosticData(DiagnosticDescriptors.LimitedSourceGeneration, regexMethod.DiagnosticLocation), regexMethod.CompilationData);
+                        }
+
+                        // Generate the core logic for the regex.
+                        Dictionary<string, string[]> requiredHelpers = new();
+                        var sw = new StringWriter();
+                        var writer = new IndentedTextWriter(sw);
+                        writer.Indent += 2;
+                        writer.WriteLine();
+                        EmitRegexDerivedTypeRunnerFactory(writer, regexMethod, requiredHelpers, regexMethod.CompilationData.CheckOverflow);
+                        writer.Indent -= 2;
+
+                        return (regexMethod, sw.ToString(), requiredHelpers, regexMethod.CompilationData);
+                    }
+                    finally
                     {
-                        return (regexMethod, reason, new DiagnosticData(DiagnosticDescriptors.LimitedSourceGeneration, regexMethod.DiagnosticLocation), regexMethod.CompilationData);
+                        SourceGeneratorsEventSource.Log.StopGeneratorPhase(operation);
                     }
-
-                    // Generate the core logic for the regex.
-                    Dictionary<string, string[]> requiredHelpers = new();
-                    var sw = new StringWriter();
-                    var writer = new IndentedTextWriter(sw);
-                    writer.Indent += 2;
-                    writer.WriteLine();
-                    EmitRegexDerivedTypeRunnerFactory(writer, regexMethod, requiredHelpers, regexMethod.CompilationData.CheckOverflow);
-                    writer.Indent -= 2;
-                    return (regexMethod, sw.ToString(), requiredHelpers, regexMethod.CompilationData);
                 })
 
                 // Combine all of the generated text outputs into a single batch. We then generate a single source output from that batch.
@@ -121,6 +147,8 @@ namespace System.Text.RegularExpressions.Generator
             // and raise all of the created diagnostics.
             context.RegisterSourceOutput(results, static (context, results) =>
             {
+                var operation = SourceGeneratorsEventSource.Log.StartGeneratorPhase(s_generatorName, s_generatorLocation, "Emit");
+
                 // Report any top-level diagnostics.
                 bool allFailures = true;
                 foreach (object result in results)
@@ -285,6 +313,8 @@ namespace System.Text.RegularExpressions.Generator
 
                 // Save out the source
                 context.AddSource("RegexGenerator.g.cs", sw.ToString());
+
+                SourceGeneratorsEventSource.Log.StopGeneratorPhase(operation);
             });
         }
 
