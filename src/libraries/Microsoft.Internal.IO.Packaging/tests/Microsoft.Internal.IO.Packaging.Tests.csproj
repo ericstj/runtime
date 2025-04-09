@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>$(NetFrameworkCurrent)</TargetFramework>
+    <DefineConstants>$(DefineConstants);NO_COMPRESSION_OPTION</DefineConstants>
+  </PropertyGroup>
+
+  <Import Project="$(LibrariesProjectRoot)\System.IO.Packaging\tests\System.IO.Packaging.Tests.projitems" />
+
+  <ItemGroup>
+    <Compile Include="Random.Shared.cs" />
+    <Compile Include="$(CoreLibSharedDir)System\Diagnostics\CodeAnalysis\DynamicallyAccessedMembersAttribute.cs" />
+    <Compile Include="$(CoreLibSharedDir)System\Diagnostics\CodeAnalysis\DynamicallyAccessedMemberTypes.cs" />
+    <Compile Include="$(CoreLibSharedDir)System\Diagnostics\CodeAnalysis\RequiresUnreferencedCodeAttribute.cs" />
+    <Compile Include="$(CoreLibSharedDir)System\Diagnostics\CodeAnalysis\RequiresDynamicCodeAttribute.cs" />
+    <Compile Include="$(CoreLibSharedDir)System\Runtime\CompilerServices\IsExternalInit.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\src\Microsoft.Internal.IO.Packaging.csproj" />
+    <Reference Include="System.IO.Compression" />
+  </ItemGroup>
+</Project>

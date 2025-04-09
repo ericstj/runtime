@@ -1,0 +1,21 @@
+<Project>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)LargeFilesTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)XunitAssemblyAttributes.cs" />
+    <Compile Include="$(CommonTestPath)TestUtilities\System\DisableParallelization.cs" Link="Common\TestUtilities\System\DisableParallelization.cs" />
+    <Compile Include="$(CommonTestPath)\System\IO\WrappedStream.cs" Link="Common\System\IO\WrappedStream.cs" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFrameworkIdentifier)' != '.NETFramework'">
+    <Compile Include="$(MSBuildThisFileDirectory)ReflectionTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PartPieceTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LargeFilesTests.Net.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tests.Net.cs" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TestWindowsBase)' == '.NETFramework'">
+    <Compile Include="$(MSBuildThisFileDirectory)Tests.NetFramework.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.IO.Packaging.TestData" Version="$(SystemIOPackagingTestDataVersion)" />
+  </ItemGroup>
+</Project>

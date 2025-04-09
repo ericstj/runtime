@@ -1,0 +1,37 @@
+<Project>
+
+  <ItemGroup Condition="'$(IsPartialFacadeAssembly)' != 'true'">
+    <Compile Include="$(MSBuildThisFileDirectory)System\IO\Packaging\CompressionOption.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\IO\Packaging\ContentType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\IO\Packaging\EncryptionOption.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\IO\Packaging\FileFormatException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\IO\Packaging\IgnoreFlushAndCloseStream.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\IO\Packaging\InterleavedZipPackagePartStream.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\IO\Packaging\InterleavedZipPackagePartStream.PieceDirectory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\IO\Packaging\InternalRelationshipCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\IO\Packaging\OrderedDictionary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\IO\Packaging\Package.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\IO\Packaging\PackagePart.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\IO\Packaging\PackagePartCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\IO\Packaging\PackageProperties.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\IO\Packaging\PackageRelationship.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\IO\Packaging\PackageRelationshipCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\IO\Packaging\PackageRelationshipSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\IO\Packaging\PackageRelationshipSelectorType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\IO\Packaging\PackageXmlEnum.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\IO\Packaging\PackageXmlStringTable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\IO\Packaging\PackagingUtilities.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\IO\Packaging\PackUriHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\IO\Packaging\PartBasedPackageProperties.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\IO\Packaging\TargetMode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\IO\Packaging\XmlCompatibilityReader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\IO\Packaging\XmlWrappingReader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\IO\Packaging\ZipPackage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\IO\Packaging\ZipPackagePart.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\IO\Packaging\ZipPackagePartPiece.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\IO\Packaging\ZipStreamManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\IO\Packaging\ZipWrappingStream.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\IO\Packaging\PackUriHelper.PackUriScheme.cs" />
+    <Compile Include="$(CommonPath)System\Obsoletions.cs" Link="Common\System\Obsoletions.cs" />
+  </ItemGroup>
+</Project>

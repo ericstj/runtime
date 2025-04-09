@@ -3927,6 +3927,13 @@ namespace System.IO.Packaging.Tests
         [InlineData(CompressionOption.Maximum, CompressionOption.Normal, 2)]
         [InlineData(CompressionOption.Fast, CompressionOption.Normal, 6)]
         [InlineData(CompressionOption.SuperFast, CompressionOption.Normal, 6)]
+#elif NO_COMPRESSION_OPTION
+        [InlineData(CompressionOption.NotCompressed, CompressionOption.Normal, 0)]
+        [InlineData(CompressionOption.Normal, CompressionOption.Normal, 0)]
+        [InlineData(CompressionOption.Maximum, CompressionOption.Normal, 0)]
+        [InlineData(CompressionOption.Fast, CompressionOption.Normal, 0)]
+        [InlineData(CompressionOption.SuperFast, CompressionOption.Normal, 0)]
+
 #else
         [InlineData(CompressionOption.NotCompressed, CompressionOption.NotCompressed, 0)]
         [InlineData(CompressionOption.Normal, CompressionOption.Normal, 0)]

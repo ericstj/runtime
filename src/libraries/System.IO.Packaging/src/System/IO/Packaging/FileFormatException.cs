@@ -113,6 +113,13 @@ namespace System.IO
             _sourceUri = sourceUri;
         }
 
+
+        /// <summary>
+        /// Creates a new instance of the FileFormatException class and initializes it with serialized data.
+        /// This constructor is called during deserialization to reconstitute the exception object transmitted over a stream.
+        /// </summary>
+        /// <param name="info">The object that holds the serialized object data.</param>
+        /// <param name="context">The contextual information about the source or destination.</param>
 #if NET8_0_OR_GREATER
         [Obsolete(Obsoletions.LegacyFormatterImplMessage, DiagnosticId = Obsoletions.LegacyFormatterImplDiagId, UrlFormat = Obsoletions.SharedUrlFormat)]
         [EditorBrowsable(EditorBrowsableState.Never)]
