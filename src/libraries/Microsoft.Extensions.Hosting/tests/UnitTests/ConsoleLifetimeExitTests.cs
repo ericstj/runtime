@@ -49,6 +49,11 @@ namespace Microsoft.Extensions.Hosting.Tests
                 // SIGTERM handler
                 await Task.Delay(100);
 
+                // Force garbage collection to ensure all finalizers are run before exiting
+                // This ensures that none of our finalizers hang
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+
                 Console.WriteLine("Run has completed");
                 return 123;
             }, messagePipe.GetClientHandleAsString(), new RemoteInvokeOptions() { Start = false, ExpectedExitCode = 123 });
@@ -99,7 +104,7 @@ namespace Microsoft.Extensions.Hosting.Tests
         private static unsafe void SimulatePosixSignalWindows(string pipeHandleAsString)
         {
             try
-            {
+            {                
                 using var readPipe = new AnonymousPipeClientStream(PipeDirection.In, pipeHandleAsString);
 
                 int signal = (int)readPipe.ReadByte();
@@ -113,20 +118,20 @@ namespace Microsoft.Extensions.Hosting.Tests
                 };
 
 #if NETFRAMEWORK
-            if (ctrlType == CTRL_C_EVENT || ctrlType == CTRL_BREAK_EVENT)            
-            {
-                var handlerMethod = Type.GetType("System.Console, mscorlib")?.GetMethod("BreakEvent", BindingFlags.NonPublic | BindingFlags.Static);
-                Assert.NotNull(handlerMethod);
-                handlerMethod.Invoke(null, [ctrlType]);
-            }
-            else // CTRL_SHUTDOWN_EVENT
-            {
-                var handlerField = typeof(AppDomain).GetField("_processExit", BindingFlags.NonPublic | BindingFlags.Instance);
-                Assert.NotNull(handlerField);
-                EventHandler handler = (EventHandler)handlerField.GetValue(AppDomain.CurrentDomain);
-                Assert.NotNull(handler);
-                handler.Invoke(AppDomain.CurrentDomain, null);
-            }
+                if (ctrlType == CTRL_C_EVENT || ctrlType == CTRL_BREAK_EVENT)            
+                {
+                    var handlerMethod = Type.GetType("System.Console, mscorlib")?.GetMethod("BreakEvent", BindingFlags.NonPublic | BindingFlags.Static);
+                    Assert.NotNull(handlerMethod);
+                    handlerMethod.Invoke(null, [ctrlType]);
+                }
+                else // CTRL_SHUTDOWN_EVENT
+                {
+                    var handlerField = typeof(AppDomain).GetField("_processExit", BindingFlags.NonPublic | BindingFlags.Instance);
+                    Assert.NotNull(handlerField);
+                    EventHandler handler = (EventHandler)handlerField.GetValue(AppDomain.CurrentDomain);
+                    Assert.NotNull(handler);
+                    handler.Invoke(AppDomain.CurrentDomain, null);
+                }
 #else
                 // get the System.Runtime.InteropServices.PosixSignalRegistration.HandlerRoutine private method
                 var handlerMethod = typeof(PosixSignalRegistration).GetMethod("HandlerRoutine", BindingFlags.NonPublic | BindingFlags.Static);
@@ -135,12 +140,21 @@ namespace Microsoft.Extensions.Hosting.Tests
                 var handlerPtr = handlerMethod.MethodHandle.GetFunctionPointer();
                 delegate* unmanaged<int, int> handler = (delegate* unmanaged<int, int>)handlerPtr;
 
-                handler(ctrlType);
+                // we cannot get the OS's ConsoleStateLock but simulate it by taking a lock on PosixSignalRegistration.s_registrations
+                var lockObjectField = typeof(PosixSignalRegistration).GetField("s_registrations", BindingFlags.NonPublic | BindingFlags.Static);
+                Assert.NotNull(lockObjectField);
+                var lockObject = lockObjectField.GetValue(null);
+                Assert.NotNull(lockObject);
 
-                if (signal == SIGTERM)
+                lock (lockObject)
                 {
-                    // on Windows the OS will kill the process immediately after this
-                    Environment.FailFast("Simulating shutdown");
+                    handler(ctrlType);
+
+                    if (signal == SIGTERM)
+                    {
+                        // on Windows the OS will kill the process immediately after this
+                        Environment.FailFast("Simulating shutdown");
+                    }
                 }
 #endif
             }

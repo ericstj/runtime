@@ -40,6 +40,7 @@ namespace Microsoft.Extensions.Hosting.Internal
 
             // don't allow Dispose to unregister handlers, since Windows has a lock that prevents the unregistration while this handler is running
             // just leak these, since the process is exiting
+            PosixSignalRegistration?[] posixRegistrations = [_sigIntRegistration, _sigQuitRegistration, _sigTermRegistration];
             _sigIntRegistration = null;
             _sigQuitRegistration = null;
             _sigTermRegistration = null;
@@ -49,6 +50,10 @@ namespace Microsoft.Extensions.Hosting.Internal
             // We could wait for a signal here, like Dispose as is done in non-netcoreapp case, but those inevitably could have user
             // code that runs after them in the user's Main. Instead we just block this thread completely and let the main routine exit.
             Thread.Sleep(HostOptions.ShutdownTimeout);
+
+            // Ensure that all signal registrations are kept alive until the application is fully stopped 
+            // Since attempting to unregister them would hang the process.
+            GC.KeepAlive(posixRegistrations);
         }
 
         private partial void UnregisterShutdownHandlers()
