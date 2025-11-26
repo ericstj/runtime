@@ -38,20 +38,20 @@ PARAMETERS:
 
 EXAMPLES:
     .\breaking-change-doc.ps1 -PrNumber 114929                                                        # Process specific PR
-    .\breaking-change-doc.ps1 -Query "repo:dotnet/runtime state:closed label:needs-breaking-change-doc-created is:merged merged:>2024-09-16 -milestone:11.0.0"
-    .\breaking-change-doc.ps1 -Query "repo:dotnet/runtime state:closed label:needs-breaking-change-doc-created is:merged" -Comment
+    .\breaking-change-doc.ps1 -Query "state:closed label:needs-breaking-change-doc-created is:merged merged:>2024-09-16 -milestone:11.0.0"
+    .\breaking-change-doc.ps1 -Query "state:closed label:needs-breaking-change-doc-created is:merged" -Comment
     .\breaking-change-doc.ps1 -PrNumber 114929 -CreateIssues                                         # Create issues directly
     .\breaking-change-doc.ps1 -Query "your-search-query" -CollectOnly                                # Only collect data
 
 QUERY EXAMPLES:
     # PRs merged after specific date, excluding milestone:
-    "repo:dotnet/runtime state:closed label:needs-breaking-change-doc-created is:merged merged:>2024-09-16 -milestone:11.0.0"
+    "state:closed label:needs-breaking-change-doc-created is:merged merged:>2024-09-16 -milestone:11.0.0"
 
     # All PRs with the target label:
-    "repo:dotnet/runtime state:closed label:needs-breaking-change-doc-created is:merged"
+    "state:closed label:needs-breaking-change-doc-created is:merged"
 
     # PRs from specific author:
-    "repo:dotnet/runtime state:closed label:needs-breaking-change-doc-created is:merged author:username"
+    "state:closed label:needs-breaking-change-doc-created is:merged author:username"
 
 SETUP:
     1. Install GitHub CLI and authenticate: gh auth login
@@ -179,7 +179,7 @@ EXAMPLES:
     .\breaking-change-doc.ps1 -PrNumber 114929
 
   Query for PRs (example - customize as needed):
-    .\breaking-change-doc.ps1 -Query "repo:dotnet/runtime state:closed label:needs-breaking-change-doc-created is:merged merged:>2024-09-16 -milestone:11.0.0"
+    .\breaking-change-doc.ps1 -Query "state:closed label:needs-breaking-change-doc-created is:merged merged:>2024-09-16 -milestone:11.0.0"
 
 Use -Help for more examples and detailed usage information.
 "@
