@@ -10,6 +10,7 @@
       Condition="'$(TargetFramework)' != '' and
                  '$(GeneratePlatformNotSupportedAssemblyMessage)' == '' and
                  $([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', '$(NetCoreAppCurrent)'))">$(UseCompilerGeneratedDocXmlFile)</IsCandidateCompilerGeneratedDocFile>
+    <IntermediateDocFileOverride>$([MSBuild]::NormalizePath('$(IntermediateOutputPath)', 'doc-override', '$(TargetName).xml'))</IntermediateDocFileOverride>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(UseCompilerGeneratedDocXmlFile)' != 'true'">
@@ -22,9 +23,8 @@
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(UseCompilerGeneratedDocXmlFile)' != 'true' or '$(IsPlatformNotSupportedAssembly)' == 'true'">
-    <!-- Suppress "CS1591 - Missing XML comment for publicly visible type or member" compiler errors when the intellisense package xml file is used. -->
+    <!-- Suppress "CS1591 - Missing XML comment for publicly visible type or member" compiler errors when not using the compiler generated doc xml file. -->
     <NoWarn Condition="'$(SkipIntellisenseNoWarnCS1591)' != 'true'">$(NoWarn);CS1591</NoWarn>
-    <IntermediateDocFileOverride>$([MSBuild]::NormalizePath('$(IntermediateOutputPath)', 'doc-override', '$(TargetName).xml'))</IntermediateDocFileOverride>
   </PropertyGroup>
 
   <!-- Flow these properties to consuming projects for Microsoft.Internal.Runtime.DotNetApiDocs.Transport.proj to only
@@ -120,13 +120,13 @@
     <PropertyGroup>
       <PNSEDocTargetFramework>@(_PNSECandidateTargetFramework)</PNSEDocTargetFramework>
     </PropertyGroup>
-</Target>
+  </Target>
 
-<Target Name="AddProjectReferenceToPNSEDocSource"
-        DependsOnTargets="GetPNSEDocTargetFramework"
-        BeforeTargets="PrepareForBuild"
-        Condition="'$(IsPlatformNotSupportedAssembly)' == 'true' and
-                   '$(UseCompilerGeneratedDocXmlFile)' == 'true'">
+  <Target Name="AddProjectReferenceToPNSEDocSource"
+          DependsOnTargets="GetPNSEDocTargetFramework"
+          BeforeTargets="PrepareForBuild"
+          Condition="'$(IsPlatformNotSupportedAssembly)' == 'true' and
+                    '$(UseCompilerGeneratedDocXmlFile)' == 'true'">
     
     <Error Condition="'$(PNSEDocTargetFramework)' == ''"
            Text="Could not find a compatible TargetFramework to use as the documentation source for this PNSE build. Set 'PNSEDocTargetFramework' to the desired target framework." />
