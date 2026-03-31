@@ -127,8 +127,8 @@ try {
         $releases = @($releasesJson | ConvertFrom-Json)
     }
 
-    # Filter to .NET version tags (v{major}.{minor}.{patch}[-prerelease])
-    $versionReleases = @($releases | Where-Object { $_.tagName -match '^v\d+\.\d+\.\d+' })
+    # Filter to .NET version tags (v{major}.{minor}.{patch}[-prerelease]) with a valid publishedAt
+    $versionReleases = @($releases | Where-Object { $_.tagName -match '^v\d+\.\d+\.\d+' -and $_.publishedAt })
 
     $lastTagBefore = "Unknown"
     $firstTagWith = "Not yet released"
