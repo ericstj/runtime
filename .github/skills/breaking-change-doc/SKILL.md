@@ -135,8 +135,9 @@ Search for existing breaking change issues in dotnet/docs:
 Read the breaking change issue template from dotnet/docs at:
 `.github/ISSUE_TEMPLATE/02-breaking-change.yml`
 
-Use `mcp_github_get_file_contents` with owner=`dotnet`, repo=`docs`,
-path=`.github/ISSUE_TEMPLATE/02-breaking-change.yml`.
+```
+gh api repos/dotnet/docs/contents/.github/ISSUE_TEMPLATE/02-breaking-change.yml -H "Accept: application/vnd.github.raw"
+```
 
 This template defines the required sections and dropdown values. Use it as a
 structural reference only — do **not** output YAML.
