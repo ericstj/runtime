@@ -4,6 +4,10 @@ description: >
   needs-breaking-change-doc-created. Produces two markdown files
   (issue-draft.md and pr-comment.md) and optionally comments on the PR.
 
+concurrency:
+  group: "breaking-change-doc-${{ github.event.pull_request.number || inputs.pr_number || github.run_id }}"
+  cancel-in-progress: true
+
 on:
   pull_request_target:
     types: [closed, labeled]
@@ -18,7 +22,6 @@ on:
         required: false
         type: boolean
         default: false
-
 # ###############################################################
 # Override the COPILOT_GITHUB_TOKEN secret usage for the workflow
 # with a randomly-selected token from a pool of secrets.

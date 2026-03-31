@@ -1,17 +1,14 @@
 # Get-VersionInfo.ps1
-# Determines the .NET version context for a merged PR using local git tags.
-# Called by the breaking-change-doc skill to provide accurate version information.
+# Determines the .NET version context for a merged PR using the GitHub CLI (gh).
 #
 # Usage:
-#   pwsh .github/skills/breaking-change-doc/Get-VersionInfo.ps1 -PrNumber 114929 [-RepoRoot .]
+#   pwsh .github/skills/breaking-change-doc/Get-VersionInfo.ps1 -PrNumber 114929
 #
 # Output: JSON object with LastTagBeforeMerge, FirstTagWithChange, EstimatedVersion
 
 param(
     [Parameter(Mandatory = $true)]
     [string]$PrNumber,
-
-    [string]$RepoRoot = ".",
 
     [string]$SourceRepo = "dotnet/runtime",
 
@@ -108,48 +105,12 @@ function Get-EstimatedNextVersion {
     }
 }
 
-function Find-ClosestTagByDistance {
-    param([string]$targetCommit, [int]$maxTags = 10)
-
-    $recentTags = git tag --sort=-version:refname 2>$null | Select-Object -First $maxTags
-    $closestTag = $null
-    $minDistance = [int]::MaxValue
-
-    foreach ($tag in $recentTags) {
-        if ($targetCommit -match '^[a-f0-9]{40}$') {
-            git merge-base --is-ancestor $targetCommit $tag 2>$null
-            if ($LASTEXITCODE -eq 0) {
-                continue
-            }
-        }
-
-        $distance = git rev-list --count "$tag..$targetCommit" 2>$null
-        if ($LASTEXITCODE -eq 0 -and $distance -match '^\d+$') {
-            $distanceNum = [int]$distance
-            if ($distanceNum -lt $minDistance) {
-                $minDistance = $distanceNum
-                $closestTag = $tag
-            }
-        }
-    }
-
-    return $closestTag
-}
-
 try {
-    Push-Location $RepoRoot
-
-    # Unshallow if needed (GitHub Actions default is fetch-depth=1)
-    $isShallow = git rev-parse --is-shallow-repository 2>$null
-    if ($isShallow -eq "true") {
-        Write-Verbose "Shallow clone detected \u2014 fetching full history for tag/ancestry operations"
-        git fetch --unshallow --tags 2>$null | Out-Null
-    } else {
-        git fetch --tags 2>$null | Out-Null
-    }
-
-    # Get merge commit and base ref from GitHub CLI
+    # Step 1: Get PR merge info via GitHub CLI
     $prJson = gh pr view $PrNumber --repo $SourceRepo --json mergeCommit,mergedAt,baseRefName 2>$null
+    if ($LASTEXITCODE -ne 0) {
+        throw "Failed to fetch PR #$PrNumber from $SourceRepo"
+    }
     $prData = $prJson | ConvertFrom-Json
 
     $targetCommit = $prData.mergeCommit.oid
@@ -159,41 +120,51 @@ try {
         $BaseRef = $prData.baseRefName
     }
 
+    # Step 2: Get recent releases (tags with published dates) in a single API call
+    $releasesJson = gh release list --repo $SourceRepo --limit 100 --json tagName,publishedAt 2>$null
+    $releases = @()
+    if ($LASTEXITCODE -eq 0 -and $releasesJson) {
+        $releases = @($releasesJson | ConvertFrom-Json)
+    }
+
+    # Filter to .NET version tags (v{major}.{minor}.{patch}[-prerelease])
+    $versionReleases = @($releases | Where-Object { $_.tagName -match '^v\d+\.\d+\.\d+' })
+
+    $lastTagBefore = "Unknown"
     $firstTagWith = "Not yet released"
 
-    if ($targetCommit) {
-        $firstTagWith = git describe --tags --contains $targetCommit 2>$null
-        if ($firstTagWith -and $firstTagWith -match '^([^~^]+)') {
-            $firstTagWith = $matches[1]
+    if ($mergedAt -and $versionReleases.Count -gt 0) {
+        $mergedAtDate = [DateTimeOffset]::Parse($mergedAt)
+
+        # Find the most recent release published before the merge
+        $beforeMerge = @($versionReleases |
+            Where-Object { [DateTimeOffset]::Parse($_.publishedAt) -lt $mergedAtDate } |
+            Sort-Object { [DateTimeOffset]::Parse($_.publishedAt) } -Descending)
+
+        if ($beforeMerge.Count -gt 0) {
+            $lastTagBefore = $beforeMerge[0].tagName
         }
-    }
 
-    if (-not $targetCommit) {
-        $targetCommit = git rev-parse "origin/$BaseRef" 2>$null
-    }
+        # Find candidate releases published at or after the merge, oldest first
+        $afterMerge = @($versionReleases |
+            Where-Object { [DateTimeOffset]::Parse($_.publishedAt) -ge $mergedAtDate } |
+            Sort-Object { [DateTimeOffset]::Parse($_.publishedAt) })
 
-    # Find the last tag before this commit
-    $lastTagBefore = "Unknown"
-    if ($targetCommit) {
-        $closestTag = Find-ClosestTagByDistance -targetCommit $targetCommit
-        if ($closestTag) {
-            $lastTagBefore = $closestTag
-        } else {
-            if ($BaseRef -eq "main") {
-                $lastTagBefore = git describe --tags --abbrev=0 "origin/$BaseRef" 2>$null
-                if (-not $lastTagBefore) {
-                    $lastTagBefore = git tag --sort=-version:refname | Select-Object -First 1 2>$null
+        # Verify containment via the compare API: behind_by == 0 means the tag
+        # includes every commit reachable from the merge commit.
+        if ($targetCommit -and $afterMerge.Count -gt 0) {
+            foreach ($release in $afterMerge) {
+                $tag = $release.tagName
+                $behindBy = gh api "repos/$SourceRepo/compare/${targetCommit}...${tag}" --jq '.behind_by' 2>$null
+                if ($LASTEXITCODE -eq 0 -and $behindBy -match '^\d+$' -and [int]$behindBy -eq 0) {
+                    $firstTagWith = $tag
+                    break
                 }
-            } else {
-                $lastTagBefore = git describe --tags --abbrev=0 "origin/$BaseRef" 2>$null
             }
         }
     }
 
-    $lastTagBefore = if ($lastTagBefore) { $lastTagBefore.Trim() } else { "Unknown" }
-    $firstTagWith = if ($firstTagWith -and $firstTagWith -ne "Not yet released") { $firstTagWith.Trim() } else { "Not yet released" }
-
-    # Estimate version
+    # Step 3: Estimate version
     $estimatedVersion = "Next release"
 
     if ($firstTagWith -ne "Not yet released") {
@@ -222,10 +193,4 @@ try {
         EstimatedVersion   = "Next release"
         Error              = $_.Exception.Message
     } | ConvertTo-Json
-} finally {
-    try {
-        Pop-Location -ErrorAction Stop
-    } catch {
-        # Ignore failures when restoring location to avoid masking original errors
-    }
 }
