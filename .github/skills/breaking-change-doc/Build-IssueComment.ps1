@@ -41,8 +41,10 @@ $issueBody = Get-Content -Path $IssueDraftPath -Raw -Encoding UTF8
 $encodedTitle = [Uri]::EscapeDataString($Title)
 $encodedBody = [Uri]::EscapeDataString($issueBody)
 $encodedLabels = [Uri]::EscapeDataString($Labels)
+$encodedEmailSubject = [Uri]::EscapeDataString("[Breaking Change] $Title")
 
 $issueUrl = "https://github.com/$DocsRepo/issues/new?title=$encodedTitle&body=$encodedBody&labels=$encodedLabels"
+$notificationEmailUrl = "mailto:dotnetbcn@microsoft.com?subject=$encodedEmailSubject"
 
 $comment = @"
 ## Breaking Change Documentation
@@ -57,7 +59,7 @@ $issueBody
 :point_right: **[Click here to create the issue in dotnet/docs]($issueUrl)**
 
 After creating the issue, please email a link to it to
-[.NET Breaking Change Notifications](mailto:dotnetbcn@microsoft.com).
+[.NET Breaking Change Notifications]($notificationEmailUrl).
 "@
 
 # GitHub comment body limit is 65536 characters. If the comment exceeds this,
@@ -79,7 +81,7 @@ workflow artifacts for the complete content.
 :point_right: **[Click here to create the issue in dotnet/docs]($issueUrl)**
 
 After creating the issue, please email a link to it to
-[.NET Breaking Change Notifications](mailto:dotnetbcn@microsoft.com).
+[.NET Breaking Change Notifications]($notificationEmailUrl).
 "@
 }
 

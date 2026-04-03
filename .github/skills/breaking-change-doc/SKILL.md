@@ -28,13 +28,13 @@ migration guidance. This skill automates that process:
 
 ### Trigger modes
 
-- **Interactive**: Ask Copilot in VS Code (e.g. "Document the breaking change
+- **Interactive**: Ask Copilot (e.g. "Document the breaking change
   in PR #114929"). The skill presents a draft for review before publishing.
 - **Automated**: The [GitHub Agentic Workflow](https://github.github.com/gh-aw/)
   at `.github/workflows/breaking-change-doc.md` triggers when a PR labeled
   `needs-breaking-change-doc-created` is merged (or the label is added to an
   already-merged PR). It can also be run manually via `workflow_dispatch` with
-  an optional `suppress_comment` flag for dry-run inspection. The compiled
+  an optional `suppress_output` flag for dry-run inspection. The compiled
   workflow (`.lock.yml`) must be regenerated with `gh aw compile` after changes.
 
 ### Files
