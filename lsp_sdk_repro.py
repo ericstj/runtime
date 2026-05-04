@@ -17,8 +17,8 @@ import asyncio
 import sys
 from pathlib import Path
 
-# Requires the 'copilot' SDK package. Install with:
-#   pip install copilot
+# Requires the GitHub Copilot SDK. Install with:
+#   pip install github-copilot-sdk
 from copilot import CopilotClient, PermissionHandler
 from copilot.session import SessionEventType
 
